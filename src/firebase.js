@@ -1,9 +1,9 @@
-// Import the functions you need from the SDKs you need
+// Importing functions from the SDKs we need
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth'; // Import authentication
 import { getAnalytics } from 'firebase/analytics';
 
-// Your web app's Firebase configuration
+// Our web app's Firebase configuration
 const firebaseConfig = {
   apiKey: 'AIzaSyB3TT0zMdvSJrFqAqdZUUSjf_GFRJfozcg',
   authDomain: 'climate-quiz-b2393.firebaseapp.com',
