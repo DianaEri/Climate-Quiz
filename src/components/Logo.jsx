@@ -1,5 +1,5 @@
 import React from 'react';
-import recycleIcon from '../assets/recycle.svg'; // Adjust the path to match your SVG location
+import recycleIcon from '../assets/recycle.svg'; 
 
 const Logo = () => {
   return (
