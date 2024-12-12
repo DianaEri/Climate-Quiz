@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Home from './components/Home'; // Corrected path for Home
-import StudentDashboard from './components/StudentDashboard'; // Assuming it's also in the components folder
-import TeacherDashboard from './components/TeacherDashboard'; // Assuming it's also in the components folder
+import Home from './components/Home'; 
+import StudentDashboard from './components/StudentDashboard'; 
+import TeacherDashboard from './components/TeacherDashboard'; 
 import './index.css';
 
 const App = () => {
