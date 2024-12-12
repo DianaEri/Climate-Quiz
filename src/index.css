@@ -1,0 +1,361 @@
+html,
+body {
+  width: 100%;
+  height: 100%; /* Full height of the viewport */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+#root {
+  width: 100%;
+  height: 100%; /* Inherit full height from html and body */
+  display: flex;
+  flex-direction: column; /* Stack child components vertically */
+}
+
+.home-view {
+  background-color: #efe4db; /* Light background for Home */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.student-view {
+  background-color: #efe4db; /* White background for Student Dashboard */
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  display: flex; /* Enable flexbox */
+  flex-direction: column; /* Stack child elements vertically */
+}
+
+.teacher-view {
+  background-color: #efe4db; /* Grayish background for Teacher Dashboard */
+  width: 100%;
+  height: 100%;
+}
+
+.dashboard-parent {
+  width: 100%; /* Full width of the parent container */
+  flex: 1; /* Grow to fill the remaining space in .student-view */
+  display: flex; /* Enable flexbox */
+  justify-content: center; /* Center children horizontally */
+  align-items: center; /* Center children vertically */
+}
+
+/* Center the entire login container */
+.login-container {
+  width: 90%; /* Occupy 90% of the viewport width */
+  max-width: 100%; /* Remove fixed width limitations */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Form Input Fields */
+.login-container input {
+  width: 80%; /* Make inputs responsive to container width */
+  padding: 1rem;
+  margin: 1rem 0; /* Add spacing between inputs */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+/* Login button with pill shape */
+.login-button {
+  display: flex; /* Flexbox for aligning text and icon */
+  align-items: center;
+  justify-content: space-between;
+  width: 90%; /* Match input field width */
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #2da4bc;
+  border: none;
+  border-radius: 30px; /* Make the button pill-shaped */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+  margin-top: 1.2rem;
+  font-weight: bold;
+}
+
+/* Adjust button text */
+.button-text {
+  margin-left: 10px; /* Optional: Add spacing to align text properly */
+}
+
+/* SVG icon inside the button */
+.button-icon {
+  width: 25px; /* Adjust size as needed */
+  height: 25px;
+  margin-left: auto; /* Push the icon to the far right */
+  fill: white;
+}
+
+/* Hover effect for button */
+.login-button:hover {
+  background-color: #005f8c; /* Darker blue on hover */
+}
+
+/* Active button effect */
+.login-button:active {
+  transform: scale(0.98); /* Slightly shrink the button on click */
+}
+
+/* Center the entire login container */
+.login-container {
+  width: 90%; /* Occupy 90% of the viewport width */
+  max-width: 100%; /* Remove fixed width limitations */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* "Klimat" styling */
+.logo-klimatet {
+  font-size: 6rem;
+  font-weight: bold;
+  margin: 0 auto; /* Center "Klimat" horizontally */
+  text-align: center; /* Ensure text is centered */
+  width: 100%; /* Ensure it takes the full row width */
+}
+
+/* Container for "Quizet" and SVG */
+.logo-quizet {
+  display: flex; /* Flex container to align "Quizet" and the icon */
+  align-items: center; /* Align items vertically */
+  justify-content: flex-start; /* Align content to the left */
+  width: 100%; /* Take up the full width of the container */
+  margin: 0;
+  padding: 0;
+}
+
+/* "Quizet" styling */
+.logo-quiz {
+  font-size: 5.5rem;
+  font-weight: bold;
+  margin: 0;
+  margin-right: 0.5rem; /* Add spacing between "Quizet" and the icon */
+}
+
+/* SVG styling */
+.logo-icon {
+  width: 80px;
+  height: 80px;
+  transform: rotate(30deg) translateY(5px); /* Rotate and slightly adjust position */
+}
+
+.topnav {
+  display: flex; /* Flexbox for layout */
+  justify-content: space-between; /* Space out items (left and right) */
+  align-items: center; /* Vertically align items */
+  background-color: #efe4db; /* Navbar background */
+  padding: 10px; /* Add consistent padding */
+  position: fixed; /* Make the navbar fixed at the top */
+  top: 0; /* Position it at the very top */
+  left: 0; /* Align it with the left edge */
+  width: 100%; /* Make it span the full width of the viewport */
+  z-index: 1000; /* Ensure it appears above other content */
+  box-sizing: border-box; /* Ensure padding is included in the width calculation */
+}
+
+/* Hidden links container */
+.topnav #myLinks {
+  display: none; /* Hidden by default */
+  position: absolute; /* Position it relative to the navbar */
+  top: 100%; /* Place it directly below the navbar */
+  left: 0; /* Align it with the left edge of the navbar */
+  width: 100%; /* Span the full width */
+  background-color: #333; /* Match navbar background */
+  z-index: 999; /* Ensure it appears above other content */
+  padding: 10px 0; /* Add padding for the dropdown */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+}
+
+/* Dropdown links styling */
+.topnav #myLinks a {
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  display: block;
+}
+
+.topnav #myLinks a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.nav-left {
+  display: flex; /* Flex container for hamburger and logo */
+  align-items: center; /* Center items vertically */
+}
+
+.logo {
+  display: flex; /* Flexbox for the two words */
+  flex-direction: column; /* Stack "Klimat" and "Quizet" vertically */
+  line-height: 1;
+}
+
+.logo-klimat {
+  font-size: 18px; /* Adjust size for "Klimat" */
+  font-weight: bold;
+  color: black;
+}
+
+.icon {
+  font-size: 32px; /* Increase icon size */
+  color: black;
+  margin-right: 10px; /* Space between icon and logo */
+  cursor: pointer;
+}
+
+.logo {
+  font-size: 18px; /* Logo text size */
+  font-weight: bold;
+  color: black;
+}
+
+.user-icon {
+  position: relative;
+  font-size: 34px; /* User icon size */
+  color: #ef813e;
+  cursor: pointer;
+}
+
+.user-icon-container {
+  position: relative; /* Enable pseudo-element positioning */
+  display: inline-block; /* Ensure it behaves like an inline element */
+}
+
+.user-icon-container::after {
+  content: ''; /* Empty content for the dot */
+  position: absolute; /* Position relative to the container */
+  top: -5px; /* Adjust to place the dot above the SVG */
+  right: -5px; /* Adjust to place the dot to the right of the SVG */
+  width: 12px; /* Dot size */
+  height: 12px; /* Dot size */
+  background-color: #789b60; /* Dot color */
+  border-radius: 50%; /* Make it a circle */
+  border: 2px solid white; /* Optional: Add a white border for better contrast */
+  z-index: 10; /* Ensure the dot appears above other content */
+}
+
+.topnav a {
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  display: block;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.active {
+  background-color: #04aa6d;
+  color: white;
+}
+
+.dashboard-container {
+  display: flex; /* Enable flexbox */
+  flex-direction: column; /* Stack buttons vertically */
+  justify-content: center; /* Center buttons vertically */
+  align-items: center; /* Center buttons horizontally */
+  width: 90%; /* Take 90% of the parent width */
+  max-width: 1280px; /* Optional: Limit the maximum width */
+  padding: 16px; /* Add spacing around the container */
+  box-sizing: border-box; /* Include padding in the size calculation */
+  gap: 20px; /* Add space between the buttons */
+}
+
+/* SVG Container */
+.svg-container {
+  width: 100%; /* Full width */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px; /* Adjust spacing between SVG and footer */
+}
+
+.svg-icon {
+  width: 80px; /* Adjust size */
+  height: 80px;
+}
+
+/* Footer Container */
+.footer {
+  width: 100%;
+  background-color: #adc290;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  padding-top: 0.6rem;
+}
+
+/* Icons and Text */
+.footer-icons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%; /* Occupy 90% of the parent width */
+  padding: 10px 0;
+}
+
+.icon-text-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  text-align: center;
+}
+
+.footer-icon {
+  font-size: 24px;
+  color: black;
+  position: relative;
+  margin-bottom: 5px;
+}
+
+.bell-icon-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.bell-notification-dot {
+  content: '';
+  position: absolute;
+  top: -5px;
+  right: 23px;
+  width: 10px;
+  height: 10px;
+  background-color: #e7625f;
+  border: 2px solid white;
+  border-radius: 50%;
+  z-index: 10;
+}
+
+.footer-label {
+  font-size: 14px;
+  color: black;
+  text-align: center;
+}
