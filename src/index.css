@@ -35,12 +35,13 @@ body {
 }
 
 .teacher-view {
-  background-color: #efe4db; /* White background for Student Dashboard */
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  display: flex; /* Enable flexbox */
+  background-color: #efe4db; /* Background color */
+  display: flex; /* Flex container */
   flex-direction: column; /* Stack child elements vertically */
-  padding-top: 60px;
+  min-height: 100vh; /* Ensure the container takes at least full viewport height */
+  padding-top: 60px; /* Space for any header or top content */
+  padding-bottom: 100px;
+  box-sizing: border-box; /* Include padding in height calculations */
 }
 
 .dashboard-parent {
@@ -393,6 +394,7 @@ body {
   justify-content: center;
   margin-top: 20px; /* Space above the table */
   margin-bottom: 50px; /* Space below the table */
+  background-color: #efe4db;
 }
 
 .dashboard-table {
@@ -454,31 +456,28 @@ body {
 
 .grade-buttons {
   display: flex;
-  justify-content: space-evenly; /* Distribute buttons evenly across the row */
-  align-items: center; /* Align buttons vertically */
-  width: 100%; /* Ensure the row spans the full width */
-  margin: 20px 0; /* Add spacing above and below the row */
+  justify-content: space-evenly; /* Distribute buttons evenly */
+  align-items: center;
+  width: 100%;
+  margin: 10px 0; /* Adjust spacing above and below the row */
+  position: relative; /* Prevent overlapping */
+  z-index: 1; /* Ensure grade buttons stay behind other elements */
 }
 
 .grade-button {
-  width: 90px; /* Reduced size for the button */
-  height: 90px;
+  width: 120px; /* Further increase button size */
+  height: 120px; /* Match width */
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  transition: transform 0.2s ease; /* Hover effect */
-  background: none; /* Remove any background */
-  border: none; /* Remove border if present */
-}
-
-.grade-button:hover {
-  transform: scale(1.1); /* Slightly enlarge on hover */
+  background: none; /* Remove background */
+  border: none; /* Remove default border */
 }
 
 .grade-svg {
-  width: 100%; /* Limit SVG width */
-  height: 100%; /* Keep height proportional */
+  width: 80%; /* Adjust SVG size relative to the button */
+  height: 80%; /* Maintain aspect ratio */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -492,11 +491,14 @@ body {
   fill: black; /* Default color for inactive state */
 }
 
+
 .filter-container {
   display: flex;
   justify-content: flex-end; /* Align the button to the right */
-  width: 100%; /* Ensure it spans the full width of its container */
+  width: 100%; /* Ensure it spans the full width */
   margin: 10px 0; /* Add spacing above and below the filter button */
+  z-index: 2; /* Ensure it is above the grade buttons */
+  position: relative; /* Ensure stacking works */
 }
 
 .filter-button {
@@ -513,6 +515,13 @@ body {
 
 .filter-button:hover {
   background-color: #1a7d8a; /* Slightly darker shade on hover */
+}
+
+.dynamic-table-wrapper {
+  flex: 1; /* Allow the dynamic content area to grow and push footer to the bottom */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Content starts from the top */
 }
 
 

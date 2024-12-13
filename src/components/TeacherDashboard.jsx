@@ -30,18 +30,101 @@ const gradeData = {
     ["Saga Lindberg", "98%", <RoundButton />],
     ["Oliver Ekström", "92%", <RoundButton />],
     ["Emil Andersson", "91%", <RoundButton />],
-    // Add more rows for grade 7...
+    ["Ida Sandström", "89%", <RoundButton />],
+    ["Amina Al-Badawi", "86%", <RoundButton />],
+    ["Viktor Ivanov", "83%", <RoundButton />],
+    ["Linnea Dahlgren", "81%", <RoundButton />],
+    ["Erik Nyberg", "79%", <RoundButton />],
+    ["Omar Al-Fayez", "77%", <RoundButton />],
+    ["Elin Öhman", "74%", <RoundButton />],
+    ["Freja Norberg", "72%", <RoundButton />],
+    ["Axel Sjöberg", "71%", <RoundButton />],
+    ["Filip Johansson", "69%", <RoundButton />],
+    ["Maja Blomqvist", "67%", <RoundButton />],
+    ["Sebastian Holmgren", "66%", <RoundButton />],
+    ["Malin Andersson", "64%", <RoundButton />],
+    ["Johan Larsson", "62%", <RoundButton />],
+    ["Elias Sundqvist", "61%", <RoundButton />],
+    ["Klara Forsberg", "59%", <RoundButton />],
+    ["Layla Nasser", "57%", <RoundButton />],
+    ["Oscar Wallin", "55%", <RoundButton />],
+    ["Simon Bergqvist", "53%", <RoundButton />],
+    ["Alice Holmberg", "52%", <RoundButton />],
+    ["Luka Kovač", "50%", <RoundButton />],
+    ["Lovisa Sjögren", "48%", <RoundButton />],
+    ["Albin Strömberg", "47%", <RoundButton />],
+    ["Khalid Darwish", "45%", <RoundButton />],
+    ["Anna Korhonen", "44%", <RoundButton />],
+    ["Noel Engman", "43%", <RoundButton />],
+    ["Tilda Åkerman", "42%", <RoundButton />],
   ],
+  
   8: [
     ["Amir Hassan", "97%", <RoundButton />],
     ["Lina Eriksson", "96%", <RoundButton />],
-    // Add more rows for grade 8...
+    ["Elias Karlsson", "94%", <RoundButton />],
+    ["Hanna Nyström", "93%", <RoundButton />],
+    ["Oskar Johansson", "92%", <RoundButton />],
+    ["Fatima Al-Rahman", "91%", <RoundButton />],
+    ["Jakob Lindberg", "89%", <RoundButton />],
+    ["Mira Sundqvist", "88%", <RoundButton />],
+    ["Mohammed Khalil", "87%", <RoundButton />],
+    ["Sara Bergström", "86%", <RoundButton />],
+    ["Viktor Andersson", "84%", <RoundButton />],
+    ["Alva Holm", "83%", <RoundButton />],
+    ["Jonas Ek", "81%", <RoundButton />],
+    ["Emma Larsson", "79%", <RoundButton />],
+    ["Felix Åkerman", "77%", <RoundButton />],
+    ["Mariam Fadel", "76%", <RoundButton />],
+    ["Axel Sjödin", "74%", <RoundButton />],
+    ["Matilda Nygren", "73%", <RoundButton />],
+    ["Erik Nord", "71%", <RoundButton />],
+    ["Jasmin Salim", "69%", <RoundButton />],
+    ["Lukas Håkansson", "68%", <RoundButton />],
+    ["Elina Björk", "66%", <RoundButton />],
+    ["Noah Lindqvist", "65%", <RoundButton />],
+    ["Klara Jönsson", "64%", <RoundButton />],
+    ["Ali Osman", "62%", <RoundButton />],
+    ["Tove Svensson", "61%", <RoundButton />],
+    ["Henrik Wallin", "59%", <RoundButton />],
+    ["Nora Hallgren", "57%", <RoundButton />],
+    ["William Alström", "55%", <RoundButton />],
+    ["Adam Taha", "54%", <RoundButton />],
   ],
+  
   9: [
     ["Tarek Ahmad", "95%", <RoundButton />],
     ["Moa Svensson", "94%", <RoundButton />],
-    // Add more rows for grade 9...
+    ["Elias Lindgren", "93%", <RoundButton />],
+    ["Sofia Bergström", "92%", <RoundButton />],
+    ["Omar Al-Fayez", "91%", <RoundButton />],
+    ["Hanna Sjöberg", "89%", <RoundButton />],
+    ["Fatima Hussein", "88%", <RoundButton />],
+    ["Viktor Dahl", "87%", <RoundButton />],
+    ["Emma Nyberg", "85%", <RoundButton />],
+    ["Amira Khalil", "84%", <RoundButton />],
+    ["Jakob Håkansson", "83%", <RoundButton />],
+    ["Alva Åström", "81%", <RoundButton />],
+    ["Lukas Holmberg", "79%", <RoundButton />],
+    ["Matilda Ek", "78%", <RoundButton />],
+    ["Mohammed Salim", "77%", <RoundButton />],
+    ["Felix Andersson", "75%", <RoundButton />],
+    ["Elin Björk", "73%", <RoundButton />],
+    ["Klara Larsson", "72%", <RoundButton />],
+    ["Noah Svensson", "71%", <RoundButton />],
+    ["Ali Osman", "69%", <RoundButton />],
+    ["Linnea Jönsson", "68%", <RoundButton />],
+    ["Johan Wallin", "67%", <RoundButton />],
+    ["Mariam Fadel", "66%", <RoundButton />],
+    ["Henrik Karlsson", "64%", <RoundButton />],
+    ["Sara Nilsson", "63%", <RoundButton />],
+    ["Simon Hallgren", "61%", <RoundButton />],
+    ["Freja Lindqvist", "60%", <RoundButton />],
+    ["Erik Nyström", "58%", <RoundButton />],
+    ["Tove Sandberg", "56%", <RoundButton />],
+    ["William Alström", "55%", <RoundButton />],
   ],
+  
 };
 
 const TeacherDashboard = () => {
@@ -86,7 +169,7 @@ const TeacherDashboard = () => {
       />
 
       <SubHeading text="Totalt korrekta svar per årskurs" />
-
+      <div className="dynamic-table-wrapper">
       {/* Grade Buttons */}
       <div className="grade-buttons">
         {Object.keys(gradeSvgs).map((grade) => (
@@ -113,7 +196,7 @@ const TeacherDashboard = () => {
           row[2], // RoundButton for "Besök"
         ])}
       />
-
+      </div>
       <Footer />
     </div>
   );
