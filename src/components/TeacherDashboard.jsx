@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import MobileNavbar from './MobileNavbar';
 import Heading from './Heading';
 import SubHeading from './SubHeading';
@@ -129,25 +129,43 @@ const gradeData = {
 
 const TeacherDashboard = () => {
   const [activeGrade, setActiveGrade] = useState(7); // Default Grade 7
-  const [rows, setRows] = useState(gradeData[7]);
-  const [isDescending, setIsDescending] = useState(true); // Default Descending Order
+  const [rows, setRows] = useState([]);
+  const [isDescending, setIsDescending] = useState(true); // Default Result Sorting
+  const [isNameDescending, setIsNameDescending] = useState(true); // Default Name Sorting
+
+  // Sort rows when the grade or sorting order changes
+  useEffect(() => {
+    const sortedRows = [...gradeData[activeGrade]].sort((a, b) => {
+      const aValue = parseInt(a[1].replace('%', ''), 10);
+      const bValue = parseInt(b[1].replace('%', ''), 10);
+      return isDescending ? bValue - aValue : aValue - bValue;
+    });
+    setRows(sortedRows);
+  }, [activeGrade, isDescending]);
 
   const handleGradeClick = (grade) => {
     setActiveGrade(grade);
-    setRows(gradeData[grade]);
+    setIsDescending(true); // Reset to default sorting when switching grades
   };
 
-  const handleFilter = () => {
+  const handleResultFilter = () => {
     const sortedRows = [...rows].sort((a, b) => {
-      // Extract numeric values from percentage strings
-      const aValue = parseInt(a[1].replace('%', ''), 10); // Remove "%" and parse as integer
-      const bValue = parseInt(b[1].replace('%', ''), 10); // Remove "%" and parse as integer
-  
-      return isDescending ? bValue - aValue : aValue - bValue; // Sort based on ascending/descending order
+      const aValue = parseInt(a[1].replace('%', ''), 10);
+      const bValue = parseInt(b[1].replace('%', ''), 10);
+      return isDescending ? bValue - aValue : aValue - bValue;
     });
-  
     setRows(sortedRows);
-    setIsDescending(!isDescending); // Toggle sorting order
+    setIsDescending(!isDescending);
+  };
+
+  const handleNameFilter = () => {
+    const sortedRows = [...rows].sort((a, b) => {
+      const aName = a[0].toLowerCase();
+      const bName = b[0].toLowerCase();
+      return isNameDescending ? bName.localeCompare(aName) : aName.localeCompare(bName);
+    });
+    setRows(sortedRows);
+    setIsNameDescending(!isNameDescending);
   };
 
   return (
@@ -181,11 +199,20 @@ const TeacherDashboard = () => {
           />
         ))}
       </div>
-
-      {/* Filter Button */}
-      <div className="filter-container">
-        <FilterButton onFilter={handleFilter} />
-      </div>
+      <SubHeading text="Filter" />
+        {/* Filter Buttons */}
+        <div className="filter-container">
+          <FilterButton
+            label="Resultat"
+            isDescending={isDescending}
+            onFilter={handleResultFilter}
+          />
+          <FilterButton
+            label="Namn"
+            isDescending={isNameDescending}
+            onFilter={handleNameFilter}
+          />
+        </div>
 
       {/* Dynamic Table for Grades */}
       <Table

@@ -459,9 +459,9 @@ body {
   justify-content: space-evenly; /* Distribute buttons evenly */
   align-items: center;
   width: 100%;
-  margin: 10px 0; /* Adjust spacing above and below the row */
-  position: relative; /* Prevent overlapping */
-  z-index: 1; /* Ensure grade buttons stay behind other elements */
+  margin: 20px 0; /* Add spacing above and below the buttons */
+  position: relative; /* Ensure no overlap with other elements */
+  z-index: 1; /* Keep the buttons above background but below filter buttons */
 }
 
 .grade-button {
@@ -506,11 +506,18 @@ body {
   background-color: black;
   color: white;
   border: none;
-  border-radius: 30px;
+  border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
+  display: flex;
+  align-items: center; /* Align text and icon vertically */
+  gap: 8px; /* Add space between text and icon */
   transition: background-color 0.3s ease;
   margin-right: 10px;
+}
+
+.filter-icon {
+  font-size: 18px;
 }
 
 .dynamic-table-wrapper {
