@@ -302,11 +302,12 @@ body {
 /* SVG Wrapper */
 .svg-wrapper {
   width: 100%;
-  background-color: #efe4db; /* Match the page background color */
+  background-color: transparent; 
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: -30px; /* Slight overlap with footer */
+  position: relative;
+  bottom: -30px; /* Align it to the bottom of its container */
 }
 
 /* Footer */
