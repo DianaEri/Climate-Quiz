@@ -2,11 +2,13 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faHouse,
-  faUser,
   faMagnifyingGlass,
+} from '@fortawesome/free-solid-svg-icons';
+import {
+  faUser,
   faMessage,
   faBell,
-} from '@fortawesome/free-solid-svg-icons';
+} from '@fortawesome/free-regular-svg-icons';
 
 const Footer = () => {
   return (
