@@ -513,15 +513,12 @@ body {
   margin-right: 10px;
 }
 
-.filter-button:hover {
-  background-color: #1a7d8a; /* Slightly darker shade on hover */
-}
-
 .dynamic-table-wrapper {
   flex: 1; /* Allow the dynamic content area to grow and push footer to the bottom */
   display: flex;
   flex-direction: column;
   justify-content: flex-start; /* Content starts from the top */
+  padding-bottom: 100px; /* Ensure enough space below table to avoid footer overlap */
+  background-color: #efe4db;
 }
-
 
