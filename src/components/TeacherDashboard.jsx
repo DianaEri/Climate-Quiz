@@ -11,7 +11,6 @@ const TeacherDashboard = () => {
       <MobileNavbar />
       <Heading text="Student Quiz" />
       <SubHeading text="Senaste fem inskickade Quiz" />
-      <SVGAboveFooter />
       <Footer />
     </div>
   );
