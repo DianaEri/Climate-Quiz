@@ -1,13 +1,18 @@
 import React from 'react';
+import MobileNavbar from './MobileNavbar';
+import Heading from './Heading';
+import SubHeading from './SubHeading';
+import SVGAboveFooter from './SVGAboveFooter';
+import Footer from './Footer';
 
 const TeacherDashboard = () => {
   return (
-    <div>
-      <h1>Teacher Dashboard</h1>
-      <p>
-        Welcome, teacher! Here you can create and manage quizzes for your
-        students.
-      </p>
+    <div className="teacher-view">
+      <MobileNavbar />
+      <Heading text="Student Quiz" />
+      <SubHeading text="Senaste fem inskickade Quiz" />
+      <SVGAboveFooter />
+      <Footer />
     </div>
   );
 };
