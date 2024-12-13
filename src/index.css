@@ -386,3 +386,133 @@ body {
   padding: 0; /* Reset default padding */
   padding: 0 5%;
 }
+
+.table-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px; /* Space above the table */
+  margin-bottom: 50px; /* Space below the table */
+}
+
+.dashboard-table {
+  width: 95%;
+  border-collapse: collapse; /* Remove extra spacing */
+  text-align: left; /* Default alignment for table text */
+}
+
+.dashboard-table th {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3); /* Bottom border for header */
+  text-align: center; /* Center-align the header content */
+}
+
+.dashboard-table td {
+  padding: 10px 0;
+  font-size: 16px;
+  text-align: center; /* Center-align all text horizontally */
+  vertical-align: middle; /* Center-align all text vertically */
+}
+
+.dashboard-table td:first-child,
+.dashboard-table th:first-child {
+  text-align: left; /* Keep the first column (Student) left-aligned */
+}
+
+/* Center content inside the "Quiz" column */
+.dashboard-table td:last-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Add lines between rows */
+.data-row:not(:first-child) {
+  border-top: 1px solid rgba(0, 0, 0, 0.2); /* Line above row */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2); /* Line below row */
+}
+
+.round-button {
+  width: 30px; /* Diameter of the circle */
+  height: 30px; /* Diameter of the circle */
+  background-color: #2da4bc; /* Color matching the pill button */
+  border-radius: 50%; /* Make it a perfect circle */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer; /* Pointer cursor for interactivity */
+  border: none; /* Remove default border */
+  outline: none; /* Remove focus outline */
+}
+
+.circle-up-icon {
+  color: white; /* Icon color */
+  font-size: 20px; /* Adjust icon size */
+}
+
+.grade-buttons {
+  display: flex;
+  justify-content: space-evenly; /* Distribute buttons evenly across the row */
+  align-items: center; /* Align buttons vertically */
+  width: 100%; /* Ensure the row spans the full width */
+  margin: 20px 0; /* Add spacing above and below the row */
+}
+
+.grade-button {
+  width: 90px; /* Reduced size for the button */
+  height: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s ease; /* Hover effect */
+  background: none; /* Remove any background */
+  border: none; /* Remove border if present */
+}
+
+.grade-button:hover {
+  transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
+.grade-svg {
+  width: 100%; /* Limit SVG width */
+  height: 100%; /* Keep height proportional */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grade-button.active .grade-svg path {
+  fill: #2da4bc; /* Active state color */
+}
+
+.grade-svg path {
+  fill: black; /* Default color for inactive state */
+}
+
+.filter-container {
+  display: flex;
+  justify-content: flex-end; /* Align the button to the right */
+  width: 100%; /* Ensure it spans the full width of its container */
+  margin: 10px 0; /* Add spacing above and below the filter button */
+}
+
+.filter-button {
+  padding: 10px 20px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  margin-right: 10px;
+}
+
+.filter-button:hover {
+  background-color: #1a7d8a; /* Slightly darker shade on hover */
+}
+
+
