@@ -459,7 +459,7 @@ body {
   justify-content: space-evenly; /* Distribute buttons evenly */
   align-items: center;
   width: 100%;
-  margin: 20px 0; /* Add spacing above and below the buttons */
+  margin: 7px 0; /* Add spacing above and below the buttons */
   position: relative; /* Ensure no overlap with other elements */
   z-index: 1; /* Keep the buttons above background but below filter buttons */
 }
@@ -494,9 +494,12 @@ body {
 
 .filter-container {
   display: flex;
+  align-items: center; /* Align items vertically */
+  justify-content: space-between; /* Distribute items with space */
+  margin-bottom: 20px; /* Add some spacing below */
   justify-content: flex-end; /* Align the button to the right */
   width: 100%; /* Ensure it spans the full width */
-  margin: 10px 0; /* Add spacing above and below the filter button */
+  margin: 7px 0; /* Add spacing above and below the filter button */
   z-index: 2; /* Ensure it is above the grade buttons */
   position: relative; /* Ensure stacking works */
 }
@@ -529,3 +532,7 @@ body {
   background-color: #efe4db;
 }
 
+.filter-container .subheading {
+  margin-left: auto; /* Push the subheading to the left */
+  font-size: 18px; /* Adjust size to match design */
+}

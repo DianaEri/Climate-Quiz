@@ -199,9 +199,9 @@ const TeacherDashboard = () => {
           />
         ))}
       </div>
-      <SubHeading text="Filter" />
         {/* Filter Buttons */}
         <div className="filter-container">
+          <SubHeading text="Filter" />
           <FilterButton
             label="Resultat"
             isDescending={isDescending}
