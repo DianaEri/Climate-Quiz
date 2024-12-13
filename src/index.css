@@ -94,8 +94,8 @@ body {
 
 /* SVG icon inside the button */
 .button-icon {
-  width: 25px; /* Adjust size as needed */
-  height: 25px;
+  width: 30px; /* Adjust size as needed */
+  height: 30px;
   margin-left: auto; /* Push the icon to the far right */
   fill: white;
 }
@@ -286,7 +286,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 30px; /* Adjust spacing between SVG and footer */
+  margin-bottom: 50px; /* Adjust spacing between SVG and footer */
 }
 
 .svg-icon {
@@ -296,34 +296,28 @@ body {
 
 /* Footer Container */
 .footer {
-  width: 100%;
-  background-color: #adc290;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between; /* Distribute icons across the footer */
   align-items: center;
+  padding: 20px 20px; /* Add padding to the footer */
+  background-color: #adc290; /* Footer background */
   position: fixed;
   bottom: 0;
-  left: 0;
-  z-index: 1000;
-  padding-top: 0.6rem;
+  width: 100%;
+  box-sizing: border-box; /* Include padding in the total width */
 }
 
-/* Icons and Text */
 .footer-icons {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 90%; /* Occupy 90% of the parent width */
-  padding: 10px 0;
+  width: 100%;
 }
 
 .icon-text-column {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  flex: 1;
-  text-align: center;
 }
 
 .footer-icon {
@@ -334,7 +328,7 @@ body {
 }
 
 .bell-icon-container {
-  position: relative;
+  position: relative; /* Enables relative positioning for the notification dot */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -342,16 +336,15 @@ body {
 }
 
 .bell-notification-dot {
-  content: '';
-  position: absolute;
-  top: -5px;
-  right: 23px;
-  width: 10px;
-  height: 10px;
-  background-color: #e7625f;
-  border: 2px solid white;
-  border-radius: 50%;
-  z-index: 10;
+  position: absolute; /* Position relative to the bell-icon-container */
+  top: -5px; /* Adjust vertically relative to the icon */
+  right: 3px; /* Position relative to the right edge of the bell icon */
+  width: 10px; /* Size of the notification dot */
+  height: 10px; /* Size of the notification dot */
+  background-color: #e7625f; /* Dot color */
+  border: 2px solid white; /* Optional: Add a border for contrast */
+  border-radius: 50%; /* Make the dot circular */
+  z-index: 10; /* Ensure the dot appears above the icon */
 }
 
 .footer-label {
