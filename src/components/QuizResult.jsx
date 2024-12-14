@@ -44,7 +44,7 @@ const QuizResult = ({ score, totalQuestions }) => {
 
   return (
     <div className="quiz-result-container">
-      <p><strong>Bra jobbat med att slutföra quizen!</strong></p>
+      <p className='motivating-message-quiz'>Bra jobbat med att slutföra quizen!</p>
 
       {/* achievement smiley image */}
       <img
@@ -53,7 +53,7 @@ const QuizResult = ({ score, totalQuestions }) => {
         style={{ display: 'block', margin: '0 auto', width: '100px' }}
       />
 
-      <p>
+      <p className='motivating-message-quiz-result'>
         Fortsätt det fantastiska arbetet och lärandet – du gör ett riktigt bra jobb!
         Du har fått {score} rätt av {totalQuestions} möjliga.
       </p>

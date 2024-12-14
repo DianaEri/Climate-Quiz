@@ -710,6 +710,20 @@ progress.progress-bar::-moz-progress-bar {
   padding-bottom: 1rem;
 }
 
+.motivating-message-quiz{
+  padding-top: 5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+.motivating-message-quiz-result{
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-size: 1.5rem;
+}
+
 /*Quiz END*/
 
 
