@@ -715,13 +715,17 @@ progress.progress-bar::-moz-progress-bar {
   padding-left: 1rem;
   padding-right: 1rem;
   font-weight: bold;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
 }
 
 .motivating-message-quiz-result{
   padding-left: 1rem;
   padding-right: 1rem;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
+}
+
+.achievement-image{
+  padding-left: 20rem;
 }
 
 /*Quiz END*/

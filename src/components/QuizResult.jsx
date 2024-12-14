@@ -47,7 +47,7 @@ const QuizResult = ({ score, totalQuestions }) => {
       <p className='motivating-message-quiz'>Bra jobbat med att slutföra quizen!</p>
 
       {/* achievement smiley image */}
-      <img
+      <img className='achievement-image'
         src={achievementSmiley}
         alt="Achievement Smiley"
         style={{ display: 'block', margin: '0 auto', width: '100px' }}
