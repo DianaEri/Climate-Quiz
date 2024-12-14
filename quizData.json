@@ -1,0 +1,125 @@
+[
+    {
+      "id": 0,
+      "question": "Vilken gas är den största bidragaren till den globala uppvärmningen?",
+      "correct_answer": "Koldioxid (CO2)",
+      "incorrect_answers": ["Syre (O2)", "Metan (CH4)", "Väte (H2)"]
+    },
+    {
+      "id": 1,
+      "question": "Hur mycket har den globala medeltemperaturen ökat sedan förindustriell tid?",
+      "correct_answer": "Cirka 1°C",
+      "incorrect_answers": ["Cirka 0,5°C", "Cirka 2°C", "Cirka 3°C"]
+    },
+    {
+      "id": 2,
+      "question": "Vilket av följande är en förnybar energikälla?",
+      "correct_answer": "Solenergi",
+      "incorrect_answers": ["Kol", "Naturgas", "Kärnkraft"]
+    },
+    {
+      "id": 3,
+      "question": "Vilket djur är en symbol för klimatförändringarnas effekter?",
+      "correct_answer": "Isbjörn",
+      "incorrect_answers": ["Delfin", "Pingvin", "Grizzlybjörn"]
+    },
+    {
+      "id": 4,
+      "question": "Vilket land släpper ut mest koldioxid totalt sett i världen?",
+      "correct_answer": "Kina",
+      "incorrect_answers": ["USA", "Indien", "Ryssland"]
+    },
+    {
+      "id": 5,
+      "question": "Vilket av följande är ett exempel på en växthusgas?",
+      "correct_answer": "Koldioxid (CO₂)",
+      "incorrect_answers": ["Syre (O₂)", "Kväve (N₂)", "Helium (He)"]
+    },
+    {
+      "id": 6,
+      "question": "Vad är 'havsnivåhöjning' en konsekvens av?",
+      "correct_answer": "Is- och glaciärsmältning",
+      "incorrect_answers": ["Mindre regn", "Färre fossila bränslen", "Fler naturkatastrofer"]
+    },
+    {
+      "id": 7,
+      "question": "Vilket av följande är ett exempel på en lösning för att bekämpa klimatförändringar?",
+      "correct_answer": "Trädplantering",
+      "incorrect_answers": ["Mer plastanvändning", "Fler fossila bränslen", "Mindre kollektivtrafik"]
+    },
+    {
+      "id": 8,
+      "question": "Vad kan du göra för att minska ditt koldioxidavtryck?",
+      "correct_answer": "Alla ovanstående",
+      "incorrect_answers": ["Kollektivtrafik före bil", "Minska köttkonsumtion", "Släcka oanvända lampor"]
+    },
+    {
+      "id": 9,
+      "question": "Vad visar grafen?",
+      "correct_answer": "Havsnivåer",
+      "incorrect_answers": ["Temperaturavikelser", "Väderprognoser", "Nederbördsmätningar"],
+      "chart_data": {
+        "labels": ["2014", "2015", "2016"],
+        "datasets": [
+          {
+            "label": "GMSL (mm)",
+            "data": [37.3, 41.6, 43.5],
+            "backgroundColor": "#307786",
+            "borderColor": "#307786",
+            "borderWidth": 1
+          },
+          {
+            "label": "GMSL Uncertainty (mm)",
+            "data": [6.8, 6.8, 7.1],
+            "backgroundColor": "#2DA4BC",
+            "borderColor": "#2DA4BC",
+            "borderWidth": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": 10,
+      "question": "Vilken sektor släpper ut mest växthusgaser globalt?",
+      "correct_answer": "Energi",
+      "incorrect_answers": ["Transport", "Jordbruk", "Industri"]
+    },
+    {
+      "id": 11,
+      "question": "Vad är havsförsurning och vad orsakar det?",
+      "correct_answer": "Sura hav",
+      "incorrect_answers": ["Varmare hav", "Havsföroreningar", "Höjd havsnivå"]
+    },
+    {
+      "id": 12,
+      "question": "Vad är den huvudsakliga orsaken till den globala uppvärmningen?",
+      "correct_answer": "Växthusgasutsläpp",
+      "incorrect_answers": ["Vulkaner", "Solaktivitet", "Klimatcykler"]
+    },
+    {
+      "id": 13,
+      "question": "Vad visar grafen?",
+      "correct_answer": "Temperaturavikelser",
+      "incorrect_answers": ["Väderprognoser", "Nederbördsmätningar", "Havsnivåer"],
+      "chart_data": {
+        "labels": ["2014", "2015", "2016"],
+        "datasets": [
+          {
+            "label": "GISTEMP (°C)",
+            "data": [0.74, 0.87, 0.99],
+            "backgroundColor": "rgba(54, 162, 235, 0.6)",
+            "borderColor": "rgba(54, 162, 235, 1)",
+            "borderWidth": 1
+          },
+          {
+            "label": "GCAG (°C)",
+            "data": [0.7408, 0.8998, 0.9363],
+            "backgroundColor": "rgba(255, 99, 132, 0.6)",
+            "borderColor": "rgba(255, 99, 132, 1)",
+            "borderWidth": 1
+          }
+        ]
+      }
+    }
+  ]
+  
