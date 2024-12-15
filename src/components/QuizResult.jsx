@@ -6,6 +6,8 @@ import {
   Tooltip,
   Legend
 } from 'chart.js'; 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleUp } from '@fortawesome/free-solid-svg-icons';
 import achievementSmiley from './achievement_smiley.svg'; 
 
 // Register Chart.js components
@@ -75,7 +77,9 @@ const QuizResult = ({ score, totalQuestions }) => {
 
       {/* Button to go back to the start page */}
       <div className="button-container">
-        <button className="next-button">Tillbaka till startsidan</button>
+        <button className="next-button">
+         Tillbaka till startsidan <FontAwesomeIcon icon={faCircleUp} className="button-icon" />
+        </button>
       </div>
     </div>
   );
