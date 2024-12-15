@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleUp } from '@fortawesome/free-solid-svg-icons';
 import Question from "./Question";
 import QuizResult from "./QuizResult"; 
 
@@ -50,6 +52,7 @@ const Quiz = () => {
 
   return (
     <div className="quiz-container">
+      <FontAwesomeIcon icon={faCircleUp} className="circle-up-icon" />
       {isQuizFinished ? (
         <QuizResult 
           score={score} 
@@ -68,7 +71,7 @@ const Quiz = () => {
           )}
           <div className="button-container">
             <button className="next-button" onClick={handleNext}>
-              {currentIndex < quizData.length - 1 ? 'Nästa fråga' : 'Skicka in'}
+              {currentIndex < quizData.length - 1 ? 'Nästa fråga' : 'Skicka in'}  <FontAwesomeIcon icon={faCircleUp} className="button-icon" />
             </button>
           </div>
         </>
