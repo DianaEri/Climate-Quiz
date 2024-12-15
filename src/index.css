@@ -728,6 +728,17 @@ progress.progress-bar::-moz-progress-bar {
   padding-left: 20rem;
 }
 
+.view-answes-link-container{
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-size: 1.8rem;
+}
+
+.answer-link{
+  font-weight: bold;
+  color: #2DA4BC; 
+
+}
 /*Quiz END*/
 
 

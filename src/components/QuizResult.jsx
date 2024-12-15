@@ -67,9 +67,11 @@ const QuizResult = ({ score, totalQuestions }) => {
       </div>
 
       {/* Link to view all answers with correct solutions */}
+      <div className='view-answes-link-container'>
       <p className="view-answers-link">
         Se alla <a href="#" className="answer-link">dina svar</a> med rätta lösningar.
       </p>
+      </div>
 
       {/* Button to go back to the start page */}
       <div className="button-container">
