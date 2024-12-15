@@ -655,7 +655,8 @@ progress.progress-bar::-moz-progress-bar {
 
 .question-body {
   text-align: left; 
-  width: 100%; 
+  width: 100%;
+  background-color: #EFE4DB; 
 }
 
 .option-button {
