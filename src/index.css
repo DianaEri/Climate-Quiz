@@ -712,8 +712,8 @@ progress.progress-bar::-moz-progress-bar {
 
 .motivating-message-quiz{
   padding-top: 5rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding-left: 3.8rem;
+  padding-right: 3.8rem;
   font-weight: bold;
   font-size: 1.5rem;
 }
