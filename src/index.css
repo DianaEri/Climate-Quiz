@@ -1,18 +1,23 @@
-html,
-body {
+html, body, #root {
   width: 100%;
   height: 100%; /* Full height of the viewport */
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
+  background-image: url('/assets/mobile-bg.svg'); /* Set background image */
+  background-size: cover; /* Make the image cover the entire viewport */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent tiling */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
-#root {
-  width: 100%;
-  height: 100%; /* Inherit full height from html and body */
+.login-container {
+  width: 100%; /* Ensure full width */
+  height: 100%; /* Full height of the viewport */
   display: flex;
-  flex-direction: column; /* Stack child components vertically */
+  justify-content: center;
+  align-items: center;
 }
 
 .home-view {
@@ -52,15 +57,56 @@ body {
   align-items: center; /* Center children vertically */
 }
 
-/* Center the entire login container */
+/* General container styling */
 .login-container {
-  width: 100%; /* Occupy 90% of the viewport width */
-  max-width: 100%; /* Remove fixed width limitations */
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100%;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+
+/* Box styling */
+.login-box {
+  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+  border-radius: 15px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  padding: 30px;
+  width: 80%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Title styling */
+.login-title {
+  margin-bottom: 20px;
+}
+
+/* Error message styling */
+.error-message {
+  color: red;
+  margin-bottom: 10px;
+}
+
+/* Input styling */
+.login-input {
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+/* Button styling (if necessary, or leave it in the PillButton component) */
+/* .pill-button {
+  Add specific button styling here, if applicable
+} */
+
 
 /* Form Input Fields */
 .login-container input {

@@ -34,35 +34,27 @@ const Home = ({ setLoggedIn, setUserType }) => {
 
   return (
     <div
-      className="login-container"
-      style={{
-        backgroundImage: `url(${mobileBackground})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        height: '100vh',
-        width: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
-      <Logo />
-      <h2>Logga in</h2>
-      {error && <p className="error-message">{error}</p>}
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Lösenord"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <PillButton onClick={handleLogin} text="Logga in" icon={faUserCircle} />
+      className="login-container">
+      <div className="login-box">
+        <Logo />
+        <h2 className="login-title">Logga in</h2>
+        {error && <p className="error-message">{error}</p>}
+        <input
+          type="email"
+          className="login-input"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          className="login-input"
+          placeholder="Lösenord"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <PillButton onClick={handleLogin} text="Logga in" icon={faUserCircle} />
+      </div>
     </div>
   );
 };
