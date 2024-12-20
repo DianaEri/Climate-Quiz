@@ -16,7 +16,7 @@ body {
 }
 
 .home-view {
-  background-color: #efe4db; /* Light background for Home */
+  background-color: #0a0017; /* Light background for Home */
   width: 100%;
   height: 100%;
   display: flex;
@@ -54,7 +54,7 @@ body {
 
 /* Center the entire login container */
 .login-container {
-  width: 90%; /* Occupy 90% of the viewport width */
+  width: 100%; /* Occupy 90% of the viewport width */
   max-width: 100%; /* Remove fixed width limitations */
   display: flex;
   flex-direction: column;

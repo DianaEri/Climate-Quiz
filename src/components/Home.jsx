@@ -4,6 +4,7 @@ import { auth } from '../firebase';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'; // Import the user circle icon
 import Logo from './Logo';
 import PillButton from './PillButton';
+import mobileBackground from '../assets/mobile-bg.svg';
 
 const Home = ({ setLoggedIn, setUserType }) => {
   const [email, setEmail] = useState('');
@@ -32,7 +33,20 @@ const Home = ({ setLoggedIn, setUserType }) => {
   };
 
   return (
-    <div className="login-container">
+    <div
+      className="login-container"
+      style={{
+        backgroundImage: `url(${mobileBackground})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        height: '100vh',
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
       <Logo />
       <h2>Logga in</h2>
       {error && <p className="error-message">{error}</p>}
