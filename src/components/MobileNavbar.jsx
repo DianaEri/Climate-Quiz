@@ -14,9 +14,9 @@ const MobileNavbar = () => {
       {/* Left Section: Hamburger Icon and Logo */}
       <div className="nav-left">
         <FontAwesomeIcon icon={faBars} className="icon" onClick={toggleMenu} />
-        <div className="logo">
-          <span className="logo-klimat">Klimat</span>
-          <span className="logo-quizet">Quizet</span>
+        <div className="mobile_logo">
+          <span className="mobile_logo-klimat">Klimat</span>
+          <span className="mobile_logo-quizet">Quizet</span>
         </div>
       </div>
 

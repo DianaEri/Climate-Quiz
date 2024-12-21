@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import { faCircleUp } from '@fortawesome/free-solid-svg-icons';
 import MobileNavbar from './MobileNavbar';
 import PillButton from './PillButton';
-import SVGAboveFooter from './SVGAboveFooter';
-import Footer from './Footer';
 import Quiz from './Quiz';
+import studentBackground from '../assets/student_bg.svg';
 import '../index.css';
 
 const StudentDashboard = () => {
@@ -15,7 +14,10 @@ const StudentDashboard = () => {
   };
 
   return (
-    <div className="student-view">
+    <div className="student-view"
+    style={{
+      backgroundImage: `url(${studentBackground})`,
+    }}>
   
       <MobileNavbar />
       
@@ -46,13 +48,6 @@ const StudentDashboard = () => {
       
       {showQuiz && (
         <Quiz onClose={handleCloseQuiz} />
-      )}
-
-      {!showQuiz && (
-        <>
-          <SVGAboveFooter />
-          <Footer />
-        </>
       )}
     </div>
   );

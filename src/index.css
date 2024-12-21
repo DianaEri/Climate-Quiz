@@ -25,13 +25,14 @@ html, body, #root {
 }
 
 .student-view {
-  background-color: #efe4db; /* White background for Student Dashboard */
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  display: flex; /* Enable flexbox */
-  flex-direction: column; /* Stack child elements vertically */
-  min-height: 100vh; /* Make the page take the full height of the viewport */
-  box-sizing: border-box; 
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .teacher-view {
@@ -211,7 +212,7 @@ html, body, #root {
   display: flex; /* Flexbox for layout */
   justify-content: space-between; /* Space out items (left and right) */
   align-items: center; /* Vertically align items */
-  background-color: #efe4db; /* Navbar background */
+  background-color: rgba(13, 23, 31, 0.7); /* Semi-transparent similar to the login box */
   padding: 10px; /* Add consistent padding */
   position: fixed; /* Make the navbar fixed at the top */
   top: 0; /* Position it at the very top */
@@ -253,35 +254,35 @@ html, body, #root {
   align-items: center; /* Center items vertically */
 }
 
-.logo {
+.mobile_logo {
   display: flex; /* Flexbox for the two words */
   flex-direction: column; /* Stack "Klimat" and "Quizet" vertically */
   line-height: 1;
 }
 
-.logo-klimat {
+.mobile_logo-klimat {
   font-size: 18px; /* Adjust size for "Klimat" */
   font-weight: bold;
-  color: black;
+  color: white;
 }
 
 .icon {
   font-size: 32px; /* Increase icon size */
-  color: black;
+  color: white;
   margin-right: 10px; /* Space between icon and logo */
   cursor: pointer;
 }
 
-.logo {
+.mobile_logo {
   font-size: 18px; /* Logo text size */
   font-weight: bold;
-  color: black;
+  color: white;
 }
 
 .user-icon {
   position: relative;
   font-size: 34px; /* User icon size */
-  color: #ef813e;
+  color: white;
   cursor: pointer;
 }
 
@@ -322,15 +323,17 @@ html, body, #root {
 }
 
 .dashboard-container {
-  display: flex; /* Enable flexbox */
-  flex-direction: column; /* Stack buttons vertically */
-  justify-content: center; /* Center buttons vertically */
-  align-items: center; /* Center buttons horizontally */
-  width: 90%; /* Take 90% of the parent width */
-  max-width: 1280px; /* Optional: Limit the maximum width */
-  padding: 16px; /* Add spacing around the container */
-  box-sizing: border-box; /* Include padding in the size calculation */
-  gap: 20px; /* Add space between the buttons */
+  background-color: rgba(13, 23, 31, 1); /* Semi-transparent similar to the login box */
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  padding: 30px; /* Internal padding */
+  width: 70%; /* Width similar to the login box */
+  max-width: 400px; /* Set a maximum width */
+  display: flex; /* Flexbox for layout */
+  flex-direction: column; /* Stack child elements vertically */
+  align-items: center; /* Center items horizontally */
+  gap: 20px; /* Add spacing between buttons */
+  border: 1px solid black; /* Bold border for definition */
 }
 
 .svg-icon {
