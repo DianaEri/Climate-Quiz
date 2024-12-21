@@ -35,7 +35,11 @@ const Home = ({ setLoggedIn, setUserType }) => {
 
   return (
     <div
-      className="login-container">
+      className="login-container"
+      style={{
+        backgroundImage: `url(${mobileBackground})`,
+      }}
+    >
       <div className="login-box">
         <Logo />
         <h2 className="login-title">Logga in</h2>
