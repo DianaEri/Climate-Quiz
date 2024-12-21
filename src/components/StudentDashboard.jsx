@@ -1,5 +1,5 @@
 import React, { useState } from 'react'; 
-import { faCircleUp } from '@fortawesome/free-solid-svg-icons';
+import { faCircleRight } from '@fortawesome/free-solid-svg-icons';
 import MobileNavbar from './MobileNavbar';
 import PillButton from './PillButton';
 import Quiz from './Quiz';
@@ -26,7 +26,7 @@ const StudentDashboard = () => {
           <div className="dashboard-container">
             <PillButton
               text="Veckans Quiz"
-              icon={faCircleUp}
+              icon={faCircleRight}
               onClick={() => {
                 console.log('Clicked Veckans Quiz button');
                 setShowQuiz(true); 
@@ -34,12 +34,12 @@ const StudentDashboard = () => {
             />
             <PillButton
               text="Färdiga Quiz"
-              icon={faCircleUp}
+              icon={faCircleRight}
               onClick={() => console.log('Färdiga Quiz')}
             />
             <PillButton
               text="Total rankning"
-              icon={faCircleUp}
+              icon={faCircleRight}
               onClick={() => console.log('Total rankning')}
             />
           </div>
