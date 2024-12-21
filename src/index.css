@@ -334,6 +334,7 @@ html, body, #root {
   align-items: center; /* Center items horizontally */
   gap: 20px; /* Add spacing between buttons */
   border: 1px solid black; /* Bold border for definition */
+  padding-bottom: 3.5em;
 }
 
 .section-heading-container {
@@ -344,7 +345,7 @@ html, body, #root {
 }
 
 .section-heading-main {
-  font-size: 5rem;
+  font-size: 4rem;
   font-weight: 900;
   margin: 0; /* Remove margin */
   text-align: center;
@@ -370,7 +371,7 @@ html, body, #root {
 }
 
 .section-heading-sub-text {
-  font-size: 4.5rem;
+  font-size: 3.5rem;
   font-weight: 900;
   margin: 0; /* Remove extra margin */
   margin-right: 0.3rem; /* Adjust spacing between text and the icon */
@@ -385,83 +386,6 @@ html, body, #root {
 .svg-icon {
   width: 80px; /* Adjust size */
   height: 80px;
-}
-
-/* Footer Container */
-.footer-container {
-  width: 100%;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  z-index: 1000; /* Ensure it appears above other content */
-}
-
-/* SVG Wrapper */
-.svg-wrapper {
-  width: 100%;
-  background-color: transparent; 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  bottom: -30px; /* Align it to the bottom of its container */
-}
-
-/* Footer */
-.footer {
-  width: 100%;
-  background-color: #adc290; /* Footer background */
-  display: flex;
-  justify-content: space-between; /* Space out icons */
-  align-items: center;
-  padding: 20px;
-  box-sizing: border-box; /* Ensure padding is included in width calculation */
-}
-
-.footer-icons {
-  display: flex;
-  justify-content: space-between; /* Evenly space the icons */
-  align-items: center;
-  width: 100%;
-}
-
-.icon-text-column {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.footer-icon {
-  font-size: 24px;
-  color: black;
-  position: relative;
-  margin-bottom: 5px;
-}
-
-.bell-icon-container {
-  position: relative; /* Enables relative positioning for the notification dot */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.bell-notification-dot {
-  position: absolute;
-  top: -5px;
-  right: 3px;
-  width: 10px;
-  height: 10px;
-  background-color: #e7625f;
-  border: 2px solid white;
-  border-radius: 50%;
-  z-index: 10; /* Ensure it appears above the icon */
-}
-
-.footer-label {
-  font-size: 14px;
-  color: black;
-  text-align: center;
 }
 
 .heading {

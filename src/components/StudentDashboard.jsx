@@ -6,7 +6,7 @@ import Quiz from './Quiz';
 import studentBackground from '../assets/student_bg.svg';
 import '../index.css';
 import girlHeadphone from '../assets/girl_headphone.svg';
-import kWhiteIcon from '../assets/k_white.svg';
+import sWhiteIcon from '../assets/s_white.svg';
 import SectionHeading from './SectionHeading';
 
 const StudentDashboard = () => {
@@ -28,7 +28,7 @@ const StudentDashboard = () => {
         <div className="dashboard-parent">
           <div className="dashboard-container">
             <SectionHeading
-              mainIcon={kWhiteIcon}
+              mainIcon={sWhiteIcon}
               mainText="tudent"
               subText="Hörnan"
               subIcon={girlHeadphone}
