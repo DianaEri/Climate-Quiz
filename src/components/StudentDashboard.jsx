@@ -5,7 +5,7 @@ import PillButton from './PillButton';
 import Quiz from './Quiz';
 import studentBackground from '../assets/student_bg.svg';
 import '../index.css';
-import recycleIcon from '../assets/logo_climate.svg';
+import girlHeadphone from '../assets/girl_headphone.svg';
 import kWhiteIcon from '../assets/k_white.svg';
 import SectionHeading from './SectionHeading';
 
@@ -31,7 +31,7 @@ const StudentDashboard = () => {
               mainIcon={kWhiteIcon}
               mainText="tudent"
               subText="Hörnan"
-              subIcon={recycleIcon}
+              subIcon={girlHeadphone}
             />
             <PillButton
               text="Veckans Quiz"
