@@ -358,6 +358,18 @@ html, body, #root {
   pointer-events: none;
 }
 
+/* Splash SVG Overlay */
+.dashboard-splash {
+  position: absolute;
+  right: 75px; /* Horizontally to the right of .dashboard-container */
+  top: 74%; /* Vertically center */
+  transform: translateY(-50%);
+  z-index: 2; /* Ensure it appears above the dashboard-container */
+  width: 100px; /* Adjust width for visibility */
+  height: 1.5em;
+  pointer-events: none; /* Prevent interaction with the SVG */
+}
+
 .dashboard-container {
   position: relative; /* Keep content relative for z-index stacking */
   z-index: 2; /* Ensure it appears above the lightbulb overlay */
