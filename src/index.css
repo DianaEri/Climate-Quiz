@@ -4,7 +4,7 @@ html, body, #root {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Nunito', sans-serif; 
   overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
@@ -66,7 +66,7 @@ html, body, #root {
 
 /* Box styling */
 .login-box {
-  background-color: rgba(10, 0, 23, 1); 
+  background-color: #0d171f; 
   border-radius: 15px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
   padding: 30px;
@@ -75,6 +75,8 @@ html, body, #root {
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: 1px solid black;
+  padding-bottom: 2em; 
 }
 
 /* Title styling */
@@ -99,12 +101,6 @@ html, body, #root {
   font-size: 1rem;
 }
 
-/* Button styling (if necessary, or leave it in the PillButton component) */
-/* .pill-button {
-  Add specific button styling here, if applicable
-} */
-
-
 /* Form Input Fields */
 .login-container input {
   width: 80%; /* Make inputs responsive to container width */
@@ -125,13 +121,13 @@ html, body, #root {
   width: 90%; /* Match input field width */
   padding: 0.8rem 1rem;
   font-size: 1rem;
-  color: #fff;
-  background-color: #2da4bc;
-  border: none;
+  color: #fff; /* Text color */
+  background: linear-gradient(90deg, #bb8e5d, #77502d); /* Gradient background */
+  border: 2px solid white; /* Bold black border */
   border-radius: 30px; /* Make the button pill-shaped */
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+  box-shadow: 6px 6px black ; /* Non-transparent black shadow */
   margin-top: 1.2rem;
   font-weight: bold;
 }
@@ -159,38 +155,56 @@ html, body, #root {
   transform: scale(0.98); /* Slightly shrink the button on click */
 }
 
-/* "Klimat" styling */
+.logo-container {
+  display: flex;
+  flex-direction: column; /* Stack Klimat and Quizet vertically */
+  align-items: center; /* Center align them horizontally */
+  gap: 0; /* Remove default gap completely */
+}
+
 .logo-klimatet {
-  font-size: 6rem;
-  font-weight: bold;
-  margin: 0 auto; /* Center "Klimat" horizontally */
-  text-align: center; /* Ensure text is centered */
-  width: 100%; /* Ensure it takes the full row width */
+  font-size: 5rem;
+  font-weight: 900;
+  margin: 0; /* Remove margin */
+  text-align: center;
+  display: flex; /* To align "K" with the rest of the text */
+  align-items: baseline; /* Align SVG with text baseline */
+  justify-content: center; /* Center the content horizontally */
+  gap: 0.1rem; /* Adjust spacing between SVG and text */
+  color: white;
+}
+
+.logo-k-icon {
+  width: 0.66em; /* Adjust size to match the text height */
+  height: auto;
+  vertical-align: baseline; /* Align with text baseline */
+}
+
+.logo-limat {
+  position: relative; /* Allows fine-tuning of the position */
 }
 
 /* Container for "Quizet" and SVG */
 .logo-quizet {
   display: flex; /* Flex container to align "Quizet" and the icon */
   align-items: center; /* Align items vertically */
-  justify-content: flex-start; /* Align content to the left */
-  width: 100%; /* Take up the full width of the container */
-  margin: 0;
+  justify-content: center; /* Center align within container */
+  margin-top: -0.9rem; /* Slight overlap to reduce space */
   padding: 0;
 }
 
 /* "Quizet" styling */
 .logo-quiz {
-  font-size: 5.5rem;
-  font-weight: bold;
-  margin: 0;
-  margin-right: 0.5rem; /* Add spacing between "Quizet" and the icon */
+  font-size: 4.5rem;
+  font-weight: 900;
+  margin: 0; /* Remove extra margin */
+  margin-right: 0.3rem; /* Adjust spacing between "Quizet" and the icon */
+  color: white;
 }
 
 /* SVG styling */
 .logo-icon {
-  width: 80px;
-  height: 80px;
-  transform: rotate(30deg) translateY(5px); /* Rotate and slightly adjust position */
+  height: 70px; /* Adjust size to better align with text */
 }
 
 .topnav {
