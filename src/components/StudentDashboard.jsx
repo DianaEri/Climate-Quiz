@@ -7,6 +7,7 @@ import studentBackground from '../assets/student_bg.svg';
 import '../index.css';
 import girlHeadphone from '../assets/girl_headphone.svg';
 import sWhiteIcon from '../assets/s_white.svg';
+import lightbulb from '../assets/lightbulb.svg';
 import SectionHeading from './SectionHeading';
 
 const StudentDashboard = () => {
@@ -17,15 +18,17 @@ const StudentDashboard = () => {
   };
 
   return (
-    <div className="student-view"
-    style={{
-      backgroundImage: `url(${studentBackground})`,
-    }}>
-  
+    <div
+      className="student-view"
+      style={{
+        backgroundImage: `url(${studentBackground})`,
+      }}
+    >
       <MobileNavbar />
       
       {!showQuiz && (
-        <div className="dashboard-parent">
+        <div className="dashboard-wrapper">
+          {/* Dashboard Container */}
           <div className="dashboard-container">
             <SectionHeading
               mainIcon={sWhiteIcon}
@@ -52,9 +55,12 @@ const StudentDashboard = () => {
               onClick={() => console.log('Total rankning')}
             />
           </div>
+
+          {/* Overlay SVG */}
+          <img src={lightbulb} alt="Lightbulb" className="dashboard-lightbulb" />
         </div>
       )}
-      
+
       {showQuiz && (
         <Quiz onClose={handleCloseQuiz} />
       )}
