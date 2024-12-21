@@ -341,9 +341,21 @@ html, body, #root {
   transform: translateY(-50%); /* Adjust to center vertically */
   z-index: 2; /* Ensure it appears above the dashboard-container */
   width: 100px; /* Adjust width as needed */
-  height: 3.5em; /* Maintain aspect ratio */
+  height: 3.5em; 
   opacity: 1; /* Make it fully visible */
   pointer-events: none; /* Prevent interaction with the SVG */
+}
+
+/* Drink SVG Overlay */
+.dashboard-drink {
+  position: absolute;
+  right: 45px; /* Horizontally to the right of .dashboard-container */
+  top: 76%; /* Vertically center */
+  transform: translateY(-50%);
+  z-index: 2; /* Ensure it appears above the dashboard-container */
+  width: 100px;
+  height: 3.5em; 
+  pointer-events: none;
 }
 
 .dashboard-container {
