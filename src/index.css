@@ -12,6 +12,13 @@ html, body, #root {
   overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
+.home-view,
+.student-view,
+.teacher-view {
+  width: 100%;
+  height: 100%;
+}
+
 .login-container {
   width: 100%; /* Ensure full width */
   height: 100%; /* Full height of the viewport */
@@ -20,8 +27,8 @@ html, body, #root {
   align-items: center;
 }
 
-.home-view {
-  background-color: #0a0017; /* Light background for Home */
+.home-view { /* Light background for Home */
+  background-color: #0a0017;
   width: 100%;
   height: 100%;
   display: flex;
