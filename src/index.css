@@ -5,10 +5,6 @@ html, body, #root {
   padding: 0;
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
-  background-image: url('/assets/mobile-bg.svg'); /* Set background image */
-  background-size: cover; /* Make the image cover the entire viewport */
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Prevent tiling */
   overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
@@ -17,14 +13,6 @@ html, body, #root {
 .teacher-view {
   width: 100%;
   height: 100%;
-}
-
-.login-container {
-  width: 100%; /* Ensure full width */
-  height: 100%; /* Full height of the viewport */
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .home-view { /* Light background for Home */
@@ -64,11 +52,12 @@ html, body, #root {
   align-items: center; /* Center children vertically */
 }
 
-/* General container styling */
 .login-container {
-  background-size: cover;
+  background-image: url('../assets/mobile-bg.svg');
+  background-size: 115% 115%; /* Increases both width and height */
   background-position: center;
-  height: 100vh;
+  background-repeat: no-repeat;
+  height: 100vh; /* Full viewport height */
   width: 100%;
   display: flex;
   justify-content: center;
@@ -77,11 +66,11 @@ html, body, #root {
 
 /* Box styling */
 .login-box {
-  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+  background-color: rgba(10, 0, 23, 0.9); /* Semi-transparent shade of #0a0017 */
   border-radius: 15px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
   padding: 30px;
-  width: 80%;
+  width: 70%;
   max-width: 400px;
   display: flex;
   flex-direction: column;
@@ -91,6 +80,7 @@ html, body, #root {
 /* Title styling */
 .login-title {
   margin-bottom: 20px;
+  color: white;
 }
 
 /* Error message styling */
@@ -167,16 +157,6 @@ html, body, #root {
 /* Active button effect */
 .login-button:active {
   transform: scale(0.98); /* Slightly shrink the button on click */
-}
-
-/* Center the entire login container */
-.login-container {
-  width: 90%; /* Occupy 90% of the viewport width */
-  max-width: 100%; /* Remove fixed width limitations */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
 /* "Klimat" styling */
