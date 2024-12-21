@@ -4,7 +4,8 @@ import MobileNavbar from './MobileNavbar';
 import PillButton from './PillButton';
 import SVGAboveFooter from './SVGAboveFooter';
 import Footer from './Footer';
-import Quiz from './Quiz'; 
+import Quiz from './Quiz';
+import '../index.css';
 
 const StudentDashboard = () => {
   const [showQuiz, setShowQuiz] = useState(false); 

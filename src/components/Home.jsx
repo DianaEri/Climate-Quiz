@@ -5,6 +5,7 @@ import { faUserCircle } from '@fortawesome/free-solid-svg-icons'; // Import the 
 import Logo from './Logo';
 import PillButton from './PillButton';
 import mobileBackground from '../assets/mobile-bg.svg';
+import '../index.css';
 
 const Home = ({ setLoggedIn, setUserType }) => {
   const [email, setEmail] = useState('');

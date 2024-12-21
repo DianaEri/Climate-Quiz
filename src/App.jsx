@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Home from './components/Home'; 
 import StudentDashboard from './components/StudentDashboard'; 
 import TeacherDashboard from './components/TeacherDashboard'; 
-import './index.css';
+
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
