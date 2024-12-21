@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons'; // Import the user circle icon
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import Logo from './Logo';
 import PillButton from './PillButton';
 import mobileBackground from '../assets/mobile-bg.svg';
@@ -16,8 +16,6 @@ const Home = ({ setLoggedIn, setUserType }) => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const userEmail = userCredential.user.email;
-
-        // Set user type based on email
         if (userEmail === 'teacher@example.com') {
           setUserType('teacher');
         } else if (userEmail === 'student@example.com') {
@@ -26,8 +24,6 @@ const Home = ({ setLoggedIn, setUserType }) => {
           setError('Unauthorized user');
           return;
         }
-
-        // Set logged in status
         setLoggedIn(true);
       })
       .catch((err) => setError('Login failed: ' + err.message));
@@ -35,7 +31,7 @@ const Home = ({ setLoggedIn, setUserType }) => {
 
   return (
     <div
-      className="login-container"
+      className="home-view"
       style={{
         backgroundImage: `url(${mobileBackground})`,
       }}
