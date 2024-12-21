@@ -61,8 +61,13 @@ html, body, #root {
   height: 100vh; /* Full viewport height */
   width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  margin: 0; /* Remove any default margin */
+  padding: 0; /* Remove padding */
+  box-sizing: border-box; /* Include padding and border in dimensions */
+  overflow: hidden; /* Prevent scrollbars */
+  position: relative; /* Ensure it's positioned relative to the viewport */
 }
 
 /* Box styling */
@@ -76,8 +81,10 @@ html, body, #root {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center; /* Ensure content inside is centered */
   border: 1px solid black;
-  padding-bottom: 2em; 
+  margin: auto; /* Center within its flex container */
+  padding-bottom: 2.5em; 
 }
 
 /* Title styling */
