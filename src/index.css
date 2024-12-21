@@ -336,6 +336,52 @@ html, body, #root {
   border: 1px solid black; /* Bold border for definition */
 }
 
+.section-heading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center align them horizontally */
+  gap: 0; /* Remove default gap completely */
+}
+
+.section-heading-main {
+  font-size: 5rem;
+  font-weight: 900;
+  margin: 0; /* Remove margin */
+  text-align: center;
+  display: flex; /* To align icon with the rest of the text */
+  align-items: baseline; /* Align SVG with text baseline */
+  justify-content: center; /* Center the content horizontally */
+  gap: 0.1rem; /* Adjust spacing between SVG and text */
+  color: white;
+}
+
+.section-heading-main-icon {
+  width: 0.66em; /* Adjust size to match the text height */
+  height: auto;
+  vertical-align: baseline; /* Align with text baseline */
+}
+
+.section-heading-sub {
+  display: flex; /* Flex container to align subtext and the icon */
+  align-items: center; /* Align items vertically */
+  justify-content: center; /* Center align within container */
+  margin-top: -0.9rem; /* Slight overlap to reduce space */
+  padding: 0;
+}
+
+.section-heading-sub-text {
+  font-size: 4.5rem;
+  font-weight: 900;
+  margin: 0; /* Remove extra margin */
+  margin-right: 0.3rem; /* Adjust spacing between text and the icon */
+  color: white;
+}
+
+.section-heading-sub-icon {
+  height: 70px; /* Adjust size to better align with text */
+}
+
+
 .svg-icon {
   width: 80px; /* Adjust size */
   height: 80px;

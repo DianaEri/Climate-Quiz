@@ -6,7 +6,6 @@ import Table from './Table';
 import RoundButton from './RoundButton';
 import GradeButton from './GradeButton';
 import FilterButton from './FilterButton';
-import Footer from './Footer';
 import '../index.css';
 
 // SVGs for Grade Buttons
@@ -225,7 +224,6 @@ const TeacherDashboard = () => {
         ])}
       />
       </div>
-      <Footer />
     </div>
   );
 };
