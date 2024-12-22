@@ -84,6 +84,14 @@ html, body {
   margin-bottom: 40px;
 }
 
+.teacher-container > *:first-child {
+  margin-bottom: 25px; /* Add space after the first child */
+}
+
+.teacher-container > *:nth-child(2) {
+  margin-bottom: 20px; /* Add space after the second child */
+}
+
 .teacher-container::-webkit-scrollbar {
   display: none; /* Hide scrollbar for WebKit browsers */
 }
