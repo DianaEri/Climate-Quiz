@@ -8,6 +8,9 @@ import GradeButton from './GradeButton';
 import FilterButton from './FilterButton';
 import '../index.css';
 import teacherBackground from '../assets/teacher_bg.svg';
+import SectionHeading from './SectionHeading';
+import girlHeadphone from '../assets/girl_headphone.svg';
+import sWhiteIcon from '../assets/s_white.svg';
 
 // SVGs for Grade Buttons
 const gradeSvgs = {
@@ -179,6 +182,12 @@ const TeacherDashboard = () => {
       }}>
       <MobileNavbar />
       <div className="teacher-container">
+      <SectionHeading
+        mainIcon={sWhiteIcon}
+        mainText="tudent"
+        subText="Hörnan"
+        subIcon={girlHeadphone}
+      />
       <Heading text="Student Quiz" />
       <SubHeading text="Senaste fem inskickade Quiz" />
 

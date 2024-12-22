@@ -573,10 +573,10 @@ html, body {
   align-items: center;
   cursor: pointer;
   border: none; /* Remove default border */
-  border-radius: 7px; /* Rounded corners */
+  border-radius: 8px; /* Rounded corners */
   background-color: black; /* Default background color for inactive buttons */
   transition: background-color 0.3s ease; /* Smooth transition */
-  box-shadow: 6px 6px black ; /* Non-transparent black shadow */
+  box-shadow: 8px 8px black ; /* Non-transparent black shadow */
 }
 
 .grade-button.active {
@@ -597,7 +597,7 @@ html, body {
 }
 
 .grade-button.active .grade-svg path {
-  fill: #2da4bc; /* Color for active SVG paths */
+  fill: #986e44; /* Color for active SVG paths */
 }
 
 .filter-container {
