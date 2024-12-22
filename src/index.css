@@ -73,7 +73,7 @@ html, body {
   background-color: #0d171f; /* Matches other box styles */
   border-radius: 15px; /* Rounded corners */
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-  padding: 30px; /* Internal padding */
+  padding: 30px 15px; /* Internal padding */
   display: flex; /* Flexbox for layout */
   flex-direction: column; /* Stack child elements vertically */
   gap: 20px; /* Space between elements */
@@ -81,7 +81,7 @@ html, body {
   overflow-x: hidden; /* Prevent horizontal scrolling */
   border: 1px solid black; /* Add border */
   margin-top: 90px;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
 }
 
 .teacher-container::-webkit-scrollbar {
@@ -485,6 +485,7 @@ html, body {
   justify-content: center;
   margin-top: 20px; /* Space above the table */
   margin-bottom: 15px; /* Space below the table */
+  color: white;
 }
 
 .dashboard-table {
@@ -499,7 +500,7 @@ html, body {
   font-size: 18px;
   font-weight: bold;
   padding: 10px 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.3); /* Bottom border for header */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3); /* Bottom border for header */
   text-align: center; /* Center-align the header content */
 }
 
@@ -531,8 +532,8 @@ html, body {
 
 /* Add lines between rows */
 .data-row:not(:first-child) {
-  border-top: 1px solid rgba(0, 0, 0, 0.2); /* Line above row */
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2); /* Line below row */
+  border-top: 1px solid rgba(255, 255, 255, 0.2); /* Line above row */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Line below row */
 }
 
 .round-button {
