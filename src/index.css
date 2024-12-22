@@ -15,6 +15,10 @@ html, body, #root {
   height: 100%;
 }
 
+html, body {
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
 .home-view {
   display: flex;
   justify-content: center;
@@ -24,6 +28,7 @@ html, body, #root {
   background-size: 115% 115%;
   background-position: center;
   background-repeat: no-repeat;
+  background-attachment: fixed; /* Makes the background sticky */
 }
 
 .student-view {
@@ -35,16 +40,20 @@ html, body, #root {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-repeat: no-repeat; /* Prevent tiling */
+  background-attachment: fixed; /* Makes the background sticky */
 }
 
 .teacher-view {
-  background-color: #efe4db; /* Background color */
-  display: flex; /* Flex container */
-  flex-direction: column; /* Stack child elements vertically */
-  min-height: 100vh; /* Ensure the container takes at least full viewport height */
-  padding-top: 60px; /* Space for any header or top content */
-  padding-bottom: 100px;
-  box-sizing: border-box; /* Include padding in height calculations */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Align content at the top */
+  min-height: 100vh; /* Full viewport height */
+  background-size: cover; /* Cover the entire viewport */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Sticky background */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 .dashboard-parent {
@@ -53,6 +62,30 @@ html, body, #root {
   display: flex; /* Enable flexbox */
   justify-content: center; /* Center children horizontally */
   align-items: center; /* Center children vertically */
+}
+
+.teacher-container {
+  position: relative; /* Relative to the viewport */
+  top: 0;
+  z-index: 2; /* Ensure it stays above the background */
+  width: 80%; /* Responsive width */
+  max-width: 1200px; /* Limit the maximum width */
+  background-color: #0d171f; /* Matches other box styles */
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  padding: 30px; /* Internal padding */
+  display: flex; /* Flexbox for layout */
+  flex-direction: column; /* Stack child elements vertically */
+  gap: 20px; /* Space between elements */
+  overflow-y: auto; /* Allow vertical scrolling */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  border: 1px solid black; /* Add border */
+  margin-top: 90px;
+  margin-bottom: 60px;
+}
+
+.teacher-container::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for WebKit browsers */
 }
 
 .login-box {
@@ -421,7 +454,6 @@ html, body, #root {
   height: 70px; /* Adjust size to better align with text */
 }
 
-
 .svg-icon {
   width: 80px; /* Adjust size */
   height: 80px;
@@ -429,19 +461,19 @@ html, body, #root {
 
 .heading {
   font-size: 24px; /* Slightly larger than the pill button font size */
-  color: black; /* Adjust as needed for your design */
+  color: white; /* Adjust as needed for your design */
   margin: 0; /* Reset default margin for headings */
   padding: 0; /* Reset default padding for headings */
   padding: 0 5%;
   text-align: center; /* Optional: Center-align the text */
   font-weight: 400;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 }
 
 .subheading {
   font-size: 18px; /* Same size as pill buttons */
   font-weight: bold; /* Make the text bold */
-  color: black; /* Adjust color as needed */
+  color: white; /* Adjust color as needed */
   margin: 0; /* Reset default margin */
   padding: 0; /* Reset default padding */
   padding: 0 5%;
@@ -452,14 +484,15 @@ html, body, #root {
   display: flex;
   justify-content: center;
   margin-top: 20px; /* Space above the table */
-  margin-bottom: 50px; /* Space below the table */
-  background-color: #efe4db;
+  margin-bottom: 15px; /* Space below the table */
 }
 
 .dashboard-table {
-  width: 95%;
+  width: 100%; /* Occupy full width of the container */
+  table-layout: auto; /* Let columns size themselves naturally */
   border-collapse: collapse; /* Remove extra spacing */
-  text-align: left; /* Default alignment for table text */
+  text-align: center; /* Center-align table content */
+  word-wrap: break-word; /* Allow text wrapping */
 }
 
 .dashboard-table th {
@@ -475,6 +508,13 @@ html, body, #root {
   font-size: 16px;
   text-align: center; /* Center-align all text horizontally */
   vertical-align: middle; /* Center-align all text vertically */
+}
+
+.dashboard-table td,
+.dashboard-table th {
+  white-space: normal; /* Allow wrapping */
+  word-break: break-word;
+  padding: 10px 0;
 }
 
 .dashboard-table td:first-child,
@@ -550,7 +590,6 @@ html, body, #root {
   fill: black; /* Default color for inactive state */
 }
 
-
 .filter-container {
   display: flex;
   align-items: center; /* Align items vertically */
@@ -583,12 +622,11 @@ html, body, #root {
 }
 
 .dynamic-table-wrapper {
-  flex: 1; /* Allow the dynamic content area to grow and push footer to the bottom */
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Content starts from the top */
-  padding-bottom: 100px; /* Ensure enough space below table to avoid footer overlap */
-  background-color: #efe4db;
+  justify-content: flex-start;
+  padding-bottom: 10px; /* Ensure space for content */
 }
 
 .filter-container .subheading {
@@ -733,7 +771,6 @@ progress.progress-bar::-moz-progress-bar {
   transition: background-color 0.3s, border-color 0.3s; 
   margin: 0 auto; 
 }
-
 
 .radio-label {
   font-size: 1.1em;

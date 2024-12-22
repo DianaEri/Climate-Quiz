@@ -7,6 +7,7 @@ import RoundButton from './RoundButton';
 import GradeButton from './GradeButton';
 import FilterButton from './FilterButton';
 import '../index.css';
+import teacherBackground from '../assets/teacher_bg.svg';
 
 // SVGs for Grade Buttons
 const gradeSvgs = {
@@ -169,8 +170,15 @@ const TeacherDashboard = () => {
   };
 
   return (
-    <div className="teacher-view">
+    <div       
+      className="teacher-view"
+      style={{
+        backgroundImage: `url(${teacherBackground})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}>
       <MobileNavbar />
+      <div className="teacher-container">
       <Heading text="Student Quiz" />
       <SubHeading text="Senaste fem inskickade Quiz" />
 
@@ -223,6 +231,7 @@ const TeacherDashboard = () => {
           row[2], // RoundButton for "Besök"
         ])}
       />
+      </div>
       </div>
     </div>
   );
