@@ -74,9 +74,9 @@ html, body {
   border-radius: 15px; /* Rounded corners */
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
   padding: 30px 15px; /* Internal padding */
+  padding-bottom: 0px;
   display: flex; /* Flexbox for layout */
   flex-direction: column; /* Stack child elements vertically */
-  gap: 20px; /* Space between elements */
   overflow-y: auto; /* Allow vertical scrolling */
   overflow-x: hidden; /* Prevent horizontal scrolling */
   border: 1px solid black; /* Add border */
@@ -486,6 +486,7 @@ html, body {
   margin-top: 20px; /* Space above the table */
   margin-bottom: 15px; /* Space below the table */
   color: white;
+  padding-bottom: 40px;
 }
 
 .dashboard-table {
@@ -559,36 +560,44 @@ html, body {
   justify-content: space-evenly; /* Distribute buttons evenly */
   align-items: center;
   width: 100%;
-  margin: 7px 0; /* Add spacing above and below the buttons */
+  margin: 15px 0; /* Add spacing above and below the buttons */
   position: relative; /* Ensure no overlap with other elements */
   z-index: 1; /* Keep the buttons above background but below filter buttons */
 }
 
 .grade-button {
-  width: 120px; /* Further increase button size */
-  height: 120px; /* Match width */
+  width: 90px; /* Adjust button size */
+  height: 90px; /* Adjust button size */
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  background: none; /* Remove background */
   border: none; /* Remove default border */
+  border-radius: 7px; /* Rounded corners */
+  background-color: black; /* Default background color for inactive buttons */
+  transition: background-color 0.3s ease; /* Smooth transition */
+  box-shadow: 6px 6px black ; /* Non-transparent black shadow */
+}
+
+.grade-button.active {
+  background-color: white; /* Background color for active buttons */
 }
 
 .grade-svg {
-  width: 80%; /* Adjust SVG size relative to the button */
-  height: 80%; /* Maintain aspect ratio */
+  width: 130%; /* Adjust SVG size relative to the button */
+  height: 130%; /* Maintain aspect ratio */
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.grade-button.active .grade-svg path {
-  fill: #2da4bc; /* Active state color */
+.grade-svg path {
+  fill: #8c8c8c; /* Default color for inactive SVG paths */
+  transition: fill 0.3s ease; /* Smooth color transition for SVG */
 }
 
-.grade-svg path {
-  fill: black; /* Default color for inactive state */
+.grade-button.active .grade-svg path {
+  fill: #2da4bc; /* Color for active SVG paths */
 }
 
 .filter-container {
