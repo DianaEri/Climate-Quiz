@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Table = ({ headers, rows, renderCell }) => {
+const Table = ({ headers, rows, renderCell, style }) => {
   return (
-    <div className="table-container">
+    <div className="table-container" style={style}>
       <table className="dashboard-table">
         <thead>
           <tr>

@@ -498,7 +498,6 @@ html, body {
   margin-top: 30px; /* Space above the table */
   margin-bottom: 15px; /* Space below the table */
   color: white;
-  padding-bottom: 40px;
 }
 
 .dashboard-table {
@@ -658,7 +657,6 @@ html, body {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding-bottom: 10px; /* Ensure space for content */
 }
 
 .filter-container .subheading {

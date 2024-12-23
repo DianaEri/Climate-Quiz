@@ -245,6 +245,7 @@ const TeacherDashboard = () => {
 
       {/* First Table */}
       <Table
+        style={{ paddingBottom: '50px' }}
         headers={["Student", "Resultat", "Quiz"]}
         rows={[
           ["Omar Al-Fayez", "9/13", <RoundButton />],
@@ -288,6 +289,7 @@ const TeacherDashboard = () => {
 
       {/* Dynamic Table for Grades */}
       <Table
+        style={{ paddingBottom: '5px' }}
         headers={["Student", "Resultat", "Besök"]}
         rows={rows.map((row) => [
           row[0],
