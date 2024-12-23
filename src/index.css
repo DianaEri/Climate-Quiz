@@ -495,26 +495,27 @@ html, body {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 20px; /* Space above the table */
+  margin-top: 30px; /* Space above the table */
   margin-bottom: 15px; /* Space below the table */
   color: white;
   padding-bottom: 40px;
 }
 
 .dashboard-table {
-  width: 100%; /* Occupy full width of the container */
-  table-layout: auto; /* Let columns size themselves naturally */
-  border-collapse: collapse; /* Remove extra spacing */
-  text-align: center; /* Center-align table content */
-  word-wrap: break-word; /* Allow text wrapping */
+  width: 100%;
+  table-layout: fixed; /* Fit columns within container */
+  border-collapse: collapse; /* Remove gaps between cells */
+  text-align: center; /* Align text in the center */
+  word-wrap: break-word; /* Handle text wrapping */
 }
 
 .dashboard-table th {
   font-size: 18px;
   font-weight: bold;
   padding: 10px 0;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.6); /* Bottom border for header */
   text-align: center; /* Center-align the header content */
+  background-color: #396588; /* Lighter stripe color */
+  color: white; /* Header text color */
 }
 
 .dashboard-table td {
@@ -522,6 +523,20 @@ html, body {
   font-size: 16px;
   text-align: center; /* Center-align all text horizontally */
   vertical-align: middle; /* Center-align all text vertically */
+  color: white; /* Text color for rows */
+}
+
+.dashboard-table tr:nth-child(odd) {
+  background-color: #20394d; /* Stripe color 1 */
+}
+
+.dashboard-table tr:nth-child(even) {
+  background-color: #396588; /* Stripe color 2 */
+}
+
+.dashboard-table tr:hover {
+  background-color: #2da4bc; /* Highlight row on hover */
+  color: white; /* Ensure text is readable */
 }
 
 .dashboard-table td,
@@ -531,11 +546,6 @@ html, body {
   padding: 10px 0;
 }
 
-.dashboard-table td:first-child,
-.dashboard-table th:first-child {
-  text-align: left; /* Keep the first column (Student) left-aligned */
-}
-
 /* Center content inside the "Quiz" column */
 .dashboard-table td:last-child {
   display: flex;
@@ -543,23 +553,22 @@ html, body {
   align-items: center;
 }
 
-/* Add lines between rows */
-.data-row:not(:first-child) {
-  border-top: 1px solid rgba(255, 255, 255, 0.2); /* Line above row */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Line below row */
-}
-
 .round-button {
-  width: 30px; /* Diameter of the circle */
-  height: 30px; /* Diameter of the circle */
-  background-color: #2da4bc; /* Color matching the pill button */
-  border-radius: 50%; /* Make it a perfect circle */
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  background: linear-gradient(90deg, #bb8e5d, #77502d); /* Gradient background to match pill button */
+  width: auto; /* Adjust width to accommodate text and icon */
+  height: 40px; /* Height to maintain consistency */
+  padding: 0 15px; /* Padding for text and icon spacing */
+  color: #fff; /* White text color */
+  border: 2px solid white; /* Bold white border */
+  border-radius: 30px; /* Pill-shaped button */
   cursor: pointer; /* Pointer cursor for interactivity */
-  border: none; /* Remove default border */
-  outline: none; /* Remove focus outline */
+  font-size: 14px; /* Adjust font size */
+  font-weight: bold; /* Bold text */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover and click transitions */
+  box-shadow: 6px 6px black; /* Non-transparent black shadow */
 }
 
 .circle-up-icon {
@@ -619,8 +628,8 @@ html, body {
 .filter-button {
   padding: 10px 10px;
   color: white;
-  background: linear-gradient(90deg, #bb8e5d, #77502d); /* Gradient background */
-  border: 2px solid white; /* Bold black border */
+  background-color: #1A1A1A;
+  border: 2px solid black; /* Bold black border */
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
@@ -630,7 +639,7 @@ html, body {
   gap: 10px; /* Add space between text and icon */
   transition: background-color 0.3s ease;
   margin-right: 15px;
-  box-shadow: 6px 6px black ; /* Non-transparent black shadow */
+  box-shadow: 4px 4px black ; /* Non-transparent black shadow */
 }
 
 .filter-icon {
