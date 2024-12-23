@@ -511,7 +511,7 @@ html, body {
 
 .dashboard-table th {
   font-size: 18px;
-  font-weight: bold;
+  font-weight: 900;
   padding: 10px 0;
   text-align: center; /* Center-align the header content */
   background-color: #396588; /* Lighter stripe color */
