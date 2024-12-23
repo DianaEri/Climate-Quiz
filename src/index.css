@@ -509,7 +509,7 @@ html, body {
   font-size: 18px;
   font-weight: bold;
   padding: 10px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3); /* Bottom border for header */
+  border-bottom: 2px solid rgba(255, 255, 255, 0.6); /* Bottom border for header */
   text-align: center; /* Center-align the header content */
 }
 
@@ -574,8 +574,8 @@ html, body {
 }
 
 .grade-button {
-  width: 90px; /* Adjust button size */
-  height: 90px; /* Adjust button size */
+  width: 80px; /* Adjust button size */
+  height: 80px; /* Adjust button size */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -592,20 +592,12 @@ html, body {
 }
 
 .grade-svg {
-  width: 130%; /* Adjust SVG size relative to the button */
-  height: 130%; /* Maintain aspect ratio */
+  width: 150%; /* Occupy full width of the button */
+  height: 150%; /* Maintain aspect ratio */
+  display: block; /* Ensures proper rendering inside buttons */
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.grade-svg path {
-  fill: #8c8c8c; /* Default color for inactive SVG paths */
-  transition: fill 0.3s ease; /* Smooth color transition for SVG */
-}
-
-.grade-button.active .grade-svg path {
-  fill: #986e44; /* Color for active SVG paths */
 }
 
 .filter-container {
@@ -618,25 +610,34 @@ html, body {
   margin: 7px 0; /* Add spacing above and below the filter button */
   z-index: 2; /* Ensure it is above the grade buttons */
   position: relative; /* Ensure stacking works */
+  gap: 10px;
 }
 
 .filter-button {
-  padding: 10px 20px;
-  background-color: black;
+  padding: 10px 10px;
   color: white;
-  border: none;
+  background: linear-gradient(90deg, #bb8e5d, #77502d); /* Gradient background */
+  border: 2px solid white; /* Bold black border */
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
+  font-weight: bold;
   display: flex;
   align-items: center; /* Align text and icon vertically */
-  gap: 8px; /* Add space between text and icon */
+  gap: 10px; /* Add space between text and icon */
   transition: background-color 0.3s ease;
   margin-right: 10px;
+  box-shadow: 6px 6px black ; /* Non-transparent black shadow */
 }
 
 .filter-icon {
   font-size: 18px;
+}
+
+.instruction {
+  margin: 0;
+  padding-top: 10px;
+  color: white;
 }
 
 .dynamic-table-wrapper {

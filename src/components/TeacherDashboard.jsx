@@ -9,23 +9,59 @@ import FilterButton from './FilterButton';
 import '../index.css';
 import teacherBackground from '../assets/teacher_bg.svg';
 import SectionHeading from './SectionHeading';
-import girlHeadphone from '../assets/girl_headphone.svg';
-import sWhiteIcon from '../assets/s_white.svg';
+import globe from '../assets/globe.svg';
+import lWhiteIcon from '../assets/l_white.svg';
 
 // SVGs for Grade Buttons
 const gradeSvgs = {
-  7: `<?xml version="1.0" encoding="utf-8"?><!-- SVG for Grade 7 -->
-  <svg fill="#000000" width="800px" height="800px" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
-    <path d="M208,32H48A16.01833,16.01833,0,0,0,32,48V208a16.01833,16.01833,0,0,0,16,16H208a16.01833,16.01833,0,0,0,16-16V48A16.01833,16.01833,0,0,0,208,32ZM159.58984,86.53027l-32,96a8.0005,8.0005,0,1,1-15.17968-5.06054L140.90039,92H104a8,8,0,0,1,0-16h48a8.00022,8.00022,0,0,1,7.58984,10.53027Z"/>
-  </svg>`,
-  8: `<?xml version="1.0" encoding="utf-8"?><!-- SVG for Grade 8 -->
-  <svg fill="#000000" width="800px" height="800px" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
-    <path d="M118.09375,111.89063a14,14,0,1,1,19.79687.01562A14.318,14.318,0,0,1,118.09375,111.89063ZM128,132a17.99808,17.99808,0,0,0-12.73438,30.71875,18.43511,18.43511,0,0,0,25.45313.01563A18,18,0,0,0,128,132Zm96-84V208a16.02085,16.02085,0,0,1-16,16H48a16.02085,16.02085,0,0,1-16-16V48A16.02085,16.02085,0,0,1,48,32H208A16.02085,16.02085,0,0,1,224,48ZM162,150a33.71971,33.71971,0,0,0-9.95313-24.03125,30.83637,30.83637,0,0,0-3.12207-2.52148c.08692-.085.19239-.14258.27832-.22852a29.98906,29.98906,0,0,0,.01563-42.42187c-11.32813-11.34375-31.125-11.32813-42.42188-.01563a29.98908,29.98908,0,0,0-.01562,42.42188c.09082.09082.20215.15234.29395.24218a30.89715,30.89715,0,0,0-3.10645,2.50782A33.99637,33.99637,0,1,0,162,150Z"/>
-  </svg>`,
-  9: `<?xml version="1.0" encoding="utf-8"?><!-- SVG for Grade 9 -->
-  <svg fill="#000000" width="800px" height="800px" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
-    <path d="M148,112a20,20,0,1,1-20-20A20.02229,20.02229,0,0,1,148,112Zm76-64V208a16.01833,16.01833,0,0,1-16,16H48a16.01833,16.01833,0,0,1-16-16V48A16.01833,16.01833,0,0,1,48,32H208A16.01833,16.01833,0,0,1,224,48Zm-60,64a36,36,0,1,0-36,36q.91626,0,1.82129-.04614l-16.68945,27.9436a8.00015,8.00015,0,1,0,13.73632,8.20508l32.249-53.99512c.09668-.16162.178-.32812.262-.49341A35.76746,35.76746,0,0,0,164,112Z"/>
-  </svg>`,
+  7: {
+    gradient: `<?xml version="1.0" encoding="utf-8"?><!-- SVG with Gradient -->
+    <svg fill="none" width="800px" height="800px" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="sharedGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:#bb8e5d;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#77502d;stop-opacity:1" />
+        </linearGradient>
+      </defs>
+      <path d="M208,32H48A16.01833,16.01833,0,0,0,32,48V208a16.01833,16.01833,0,0,0,16,16H208a16.01833,16.01833,0,0,0,16-16V48A16.01833,16.01833,0,0,0,208,32ZM159.58984,86.53027l-32,96a8.0005,8.0005,0,1,1-15.17968-5.06054L140.90039,92H104a8,8,0,0,1,0-16h48a8.00022,8.00022,0,0,1,7.58984,10.53027Z" fill="url(#sharedGradient)" />
+    </svg>`,
+    monochrome: `<?xml version="1.0" encoding="utf-8"?><!-- Original Monochrome SVG -->
+    <svg fill="#000000" width="800px" height="800px" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+      <path d="M208,32H48A16.01833,16.01833,0,0,0,32,48V208a16.01833,16.01833,0,0,0,16,16H208a16.01833,16.01833,0,0,0,16-16V48A16.01833,16.01833,0,0,0,208,32ZM159.58984,86.53027l-32,96a8.0005,8.0005,0,1,1-15.17968-5.06054L140.90039,92H104a8,8,0,0,1,0-16h48a8.00022,8.00022,0,0,1,7.58984,10.53027Z" fill="#8c8c8c"/>
+    </svg>`,
+  },
+  8: {
+    gradient: `<?xml version="1.0" encoding="utf-8"?><!-- SVG with Gradient -->
+    <svg fill="none" width="800px" height="800px" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="sharedGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:#bb8e5d;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#77502d;stop-opacity:1" />
+        </linearGradient>
+      </defs>
+      <path d="M118.09375,111.89063a14,14,0,1,1,19.79687.01562A14.318,14.318,0,0,1,118.09375,111.89063ZM128,132a17.99808,17.99808,0,0,0-12.73438,30.71875,18.43511,18.43511,0,0,0,25.45313.01563A18,18,0,0,0,128,132Zm96-84V208a16.02085,16.02085,0,0,1-16,16H48a16.02085,16.02085,0,0,1-16-16V48A16.02085,16.02085,0,0,1,48,32H208A16.02085,16.02085,0,0,1,224,48ZM162,150a33.71971,33.71971,0,0,0-9.95313-24.03125,30.83637,30.83637,0,0,0-3.12207-2.52148c.08692-.085.19239-.14258.27832-.22852a29.98906,29.98906,0,0,0,.01563-42.42187c-11.32813-11.34375-31.125-11.32813-42.42188-.01563a29.98908,29.98908,0,0,0-.01562,42.42188c.09082.09082.20215.15234.29395.24218a30.89715,30.89715,0,0,0-3.10645,2.50782A33.99637,33.99637,0,1,0,162,150Z" fill="url(#sharedGradient)" />
+    </svg>`,
+    monochrome: `<?xml version="1.0" encoding="utf-8"?><!-- Original Monochrome SVG -->
+    <svg fill="#000000" width="800px" height="800px" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+      <path d="M118.09375,111.89063a14,14,0,1,1,19.79687.01562A14.318,14.318,0,0,1,118.09375,111.89063ZM128,132a17.99808,17.99808,0,0,0-12.73438,30.71875,18.43511,18.43511,0,0,0,25.45313.01563A18,18,0,0,0,128,132Zm96-84V208a16.02085,16.02085,0,0,1-16,16H48a16.02085,16.02085,0,0,1-16-16V48A16.02085,16.02085,0,0,1,48,32H208A16.02085,16.02085,0,0,1,224,48ZM162,150a33.71971,33.71971,0,0,0-9.95313-24.03125,30.83637,30.83637,0,0,0-3.12207-2.52148c.08692-.085.19239-.14258.27832-.22852a29.98906,29.98906,0,0,0,.01563-42.42187c-11.32813-11.34375-31.125-11.32813-42.42188-.01563a29.98908,29.98908,0,0,0-.01562,42.42188c.09082.09082.20215.15234.29395.24218a30.89715,30.89715,0,0,0-3.10645,2.50782A33.99637,33.99637,0,1,0,162,150Z"fill="#8c8c8c" />
+    </svg>`,
+  },
+  9: {
+    gradient: `<?xml version="1.0" encoding="utf-8"?><!-- SVG with Gradient -->
+    <svg fill="none" width="800px" height="800px" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="sharedGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:#bb8e5d;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#77502d;stop-opacity:1" />
+        </linearGradient>
+      </defs>
+      <path d="M148,112a20,20,0,1,1-20-20A20.02229,20.02229,0,0,1,148,112Zm76-64V208a16.01833,16.01833,0,0,1-16,16H48a16.01833,16.01833,0,0,1-16-16V48A16.01833,16.01833,0,0,1,48,32H208A16.01833,16.01833,0,0,1,224,48Zm-60,64a36,36,0,1,0-36,36q.91626,0,1.82129-.04614l-16.68945,27.9436a8.00015,8.00015,0,1,0,13.73632,8.20508l32.249-53.99512c.09668-.16162.178-.32812.262-.49341A35.76746,35.76746,0,0,0,164,112Z" fill="url(#sharedGradient)" />
+    </svg>`,
+    monochrome: `<?xml version="1.0" encoding="utf-8"?><!-- Original Monochrome SVG -->
+    <svg fill="#000000" width="800px" height="800px" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+      <path d="M148,112a20,20,0,1,1-20-20A20.02229,20.02229,0,0,1,148,112Zm76-64V208a16.01833,16.01833,0,0,1-16,16H48a16.01833,16.01833,0,0,1-16-16V48A16.01833,16.01833,0,0,1,48,32H208A16.01833,16.01833,0,0,1,224,48Zm-60,64a36,36,0,1,0-36,36q.91626,0,1.82129-.04614l-16.68945,27.9436a8.00015,8.00015,0,1,0,13.73632,8.20508l32.249-53.99512c.09668-.16162.178-.32812.262-.49341A35.76746,35.76746,0,0,0,164,112Z" fill="#8c8c8c"/>
+    </svg>`,
+  },
 };
 
 // Data for Each Grade
@@ -149,7 +185,7 @@ const TeacherDashboard = () => {
 
   const handleGradeClick = (grade) => {
     setActiveGrade(grade);
-    setIsDescending(true); // Reset to default sorting when switching grades
+    setIsDescending(true); // Reset sorting order to default when grade changes
   };
 
   const handleResultFilter = () => {
@@ -172,6 +208,22 @@ const TeacherDashboard = () => {
     setIsNameDescending(!isNameDescending);
   };
 
+  const GradeButton = ({ grade, isActive, onClick }) => {
+    const svgContent = isActive ? gradeSvgs[grade].gradient : gradeSvgs[grade].monochrome;
+  
+    return (
+      <button
+        className={`grade-button ${isActive ? 'active' : ''}`}
+        onClick={onClick}
+      >
+        <div
+          className="grade-svg"
+          dangerouslySetInnerHTML={{ __html: svgContent }}
+        />
+      </button>
+    );
+  };
+
   return (
     <div       
       className="teacher-view"
@@ -183,10 +235,10 @@ const TeacherDashboard = () => {
       <MobileNavbar />
       <div className="teacher-container">
       <SectionHeading
-        mainIcon={sWhiteIcon}
-        mainText="tudent"
+        mainIcon={lWhiteIcon}
+        mainText="ärar"
         subText="Hörnan"
-        subIcon={girlHeadphone}
+        subIcon={globe}
       />
       <Heading text="Student Quiz" />
       <SubHeading text="Senaste fem inskickade Quiz" />
@@ -204,21 +256,24 @@ const TeacherDashboard = () => {
       />
 
       <SubHeading text="Totalt korrekta svar per årskurs" />
+      <p className='instruction'>Välj årskurs</p>
       <div className="dynamic-table-wrapper">
+
       {/* Grade Buttons */}
       <div className="grade-buttons">
         {Object.keys(gradeSvgs).map((grade) => (
           <GradeButton
             key={grade}
-            svg={gradeSvgs[grade]}
+            grade={grade}
             isActive={parseInt(grade) === activeGrade}
             onClick={() => handleGradeClick(parseInt(grade))}
           />
         ))}
       </div>
+
         {/* Filter Buttons */}
         <div className="filter-container">
-          <SubHeading text="Filter" />
+          <SubHeading text="Sortera" />
           <FilterButton
             label="Resultat"
             isDescending={isDescending}
