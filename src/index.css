@@ -568,7 +568,7 @@ html, body {
   font-size: 14px; /* Adjust font size */
   font-weight: bold; /* Bold text */
   transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover and click transitions */
-  box-shadow: 6px 6px black; /* Non-transparent black shadow */
+  box-shadow: 4px 4px black; /* Non-transparent black shadow */
 }
 
 .circle-up-icon {
