@@ -1,4 +1,4 @@
-import React, { useState } from 'react'; 
+import React, { useState } from 'react';  
 import { faCircleRight } from '@fortawesome/free-solid-svg-icons';
 import MobileNavbar from './MobileNavbar';
 import PillButton from './PillButton';
@@ -12,7 +12,7 @@ import drink from '../assets/drink.svg';
 import splash from '../assets/splash.svg';
 import SectionHeading from './SectionHeading';
 
-const StudentDashboard = () => {
+const StudentDashboard = ({ onRankingClick }) => {
   const [showQuiz, setShowQuiz] = useState(false); 
 
   const handleCloseQuiz = () => {
@@ -41,10 +41,7 @@ const StudentDashboard = () => {
             <PillButton
               text="Veckans Quiz"
               icon={faCircleRight}
-              onClick={() => {
-                console.log('Clicked Veckans Quiz button');
-                setShowQuiz(true); 
-              }}
+              onClick={() => setShowQuiz(true)} // Open quiz view
             />
             <PillButton
               text="Färdiga Quiz"
@@ -54,7 +51,7 @@ const StudentDashboard = () => {
             <PillButton
               text="Total rankning"
               icon={faCircleRight}
-              onClick={() => console.log('Total rankning')}
+              onClick={onRankingClick} // Navigate to Ranking view
             />
           </div>
 
