@@ -664,7 +664,9 @@ html, body {
   font-size: 18px; /* Adjust size to match design */
 }
 
-
+.ranking-subheading {
+  color: white;
+}
 
 
 

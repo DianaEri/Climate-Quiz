@@ -1,7 +1,12 @@
 import React from 'react';
 import MobileNavbar from './MobileNavbar';
+import PillButton from './PillButton'; // Import the PillButton component
+import { faCircleLeft } from '@fortawesome/free-solid-svg-icons'; // Import the left arrow icon
 import '../index.css';
 import studentBackground from '../assets/student_bg.svg';
+import SectionHeading from './SectionHeading';
+import girlHeadphone from '../assets/girl_headphone.svg';
+import sWhiteIcon from '../assets/s_white.svg';
 
 const Ranking = ({ onBackClick }) => {
   return (
@@ -16,11 +21,13 @@ const Ranking = ({ onBackClick }) => {
       <MobileNavbar />
       <div className="dashboard-wrapper"> {/* Optional wrapper for consistent spacing */}
         <div className="dashboard-container"> {/* Reuse container styling */}
-          <button className="back-button" onClick={onBackClick}>
-            Tillbaka
-          </button>
-          <h1 className="ranking-heading">Ranking</h1>
-          <p className="ranking-subheading">Här är dina toppresultat och klassjämförelse</p>
+        <SectionHeading
+              mainIcon={sWhiteIcon}
+              mainText="anking"
+              subText="Placering"
+              subIcon={girlHeadphone}
+            />
+          <p className="ranking-subheading">Du har tjänat stjärnbrickan för att konsekvent ha uppnått över 60 % i resultat!</p>
           <table className="ranking-table">
             <thead>
               <tr>
@@ -47,6 +54,12 @@ const Ranking = ({ onBackClick }) => {
               </tr>
             </tbody>
           </table>
+          {/* Back Button with PillButton */}
+          <PillButton
+            text="Tillbaka"
+            icon={faCircleLeft} // Use left-pointing arrow icon
+            onClick={onBackClick} // Attach the click handler
+          />
         </div>
       </div>
     </div>
