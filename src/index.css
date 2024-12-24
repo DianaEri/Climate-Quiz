@@ -498,6 +498,8 @@ html, body {
   margin-top: 30px; /* Space above the table */
   margin-bottom: 15px; /* Space below the table */
   color: white;
+  border-radius: 8px; /* Slight rounding for container edges */
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Optional shadow for the container */
 }
 
 .dashboard-table {
@@ -506,6 +508,9 @@ html, body {
   border-collapse: collapse; /* Remove gaps between cells */
   text-align: center; /* Align text in the center */
   word-wrap: break-word; /* Handle text wrapping */
+  border-radius: 8px; /* Slight rounding for table edges */
+  overflow: hidden; /* Ensure the radius is applied correctly */
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Optional shadow for the table */
 }
 
 .dashboard-table th {
@@ -668,8 +673,41 @@ html, body {
   color: white;
 }
 
+.ranking-row {
+  display: flex;
+  justify-content: center;
+  margin: 15px 0; /* Add space around the row */
+}
 
+.ranking-entry {
+  display: flex;
+  justify-content: space-between;
+  width: 16em; /* Now takes 90% of the parent container */
+  background-color: #20394d; /* Match the table background */
+  padding: 15px 20px; /* Add more padding for better spacing */
+  border-radius: 8px; /* Slight rounding for a table-like appearance */
+  color: white; /* Text color */
+  font-size: 18px; /* Text size for readability */
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Optional shadow */
+}
 
+.ranking-entry span {
+  flex: 1; /* Make all columns equal width */
+  text-align: center; /* Center-align text */
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
+.ranking-position {
+  flex: 0.1; /* Smaller first column */
+}
+
+.ranking-name {
+  flex: 0.8; /* Wider middle column */
+}
+
+.ranking-score {
+  flex: 0.1; /* Smaller last column */
+}
 
 /*Quiz START*/
 

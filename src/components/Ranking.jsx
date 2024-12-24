@@ -27,33 +27,14 @@ const Ranking = ({ onBackClick }) => {
             subText="Placering"
             subIcon={girlHeadphone}
           />
+          <div class="ranking-row">
+            <div class="ranking-entry">
+              <span class="ranking-position">16.</span>
+              <span class="ranking-name">William Danielsson</span>
+              <span class="ranking-score">61%</span>
+            </div>
+          </div>
           <p className="ranking-subheading">Du har tjänat stjärnbrickan för att konsekvent ha uppnått över 60% rätt i resultat!</p>
-          <table className="ranking-table">
-            <thead>
-              <tr>
-                <th>Placering</th>
-                <th>Student</th>
-                <th>Resultat</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>Oliver Ekström</td>
-                <td>98%</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Emma Karlsson</td>
-                <td>96%</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Amir Hassan</td>
-                <td>95%</td>
-              </tr>
-            </tbody>
-          </table>
           {/* Back Button with PillButton */}
           <PillButton
             text="Tillbaka"
