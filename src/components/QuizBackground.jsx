@@ -1,32 +1,60 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import LeafSVG from "./LeafSVG";
 
 const QuizBackground = ({ currentQuestion, children }) => {
   const totalQuestions = 14;
 
-  // Calculate the number of leaves to display
-  const leavesCount = Math.min(currentQuestion + 1, totalQuestions);
+  // Predefined edge positions
+  const edgePositions = [
+    { left: "0%", top: "5%" },
+    { left: "0%", top: "95%" },
+    { left: "5%", top: "0%" },
+    { left: "95%", top: "0%" },
+    { left: "95%", top: "95%" },
+    { left: "5%", top: "95%" },
+    { left: "50%", top: "0%" },
+    { left: "50%", top: "95%" },
+    { left: "0%", top: "50%" },
+    { left: "95%", top: "50%" },
+    { left: "10%", top: "10%" },
+    { left: "90%", top: "10%" },
+    { left: "10%", top: "90%" },
+    { left: "90%", top: "90%" },
+  ];
 
-  // Generate an array of positions for leaves
-  const leaves = Array.from({ length: leavesCount }, (_, index) => ({
-    id: index,
-    left: `${Math.random() * 100}%`, // Random horizontal position
-    top: `${Math.random() * 100}%`, // Random vertical position
-    rotation: `${Math.random() * 360}deg`, // Random rotation
-  }));
+  const [usedPositions, setUsedPositions] = useState([]);
+
+  useEffect(() => {
+    const newPositionIndex = usedPositions.length;
+    if (newPositionIndex < edgePositions.length) {
+      setUsedPositions((prev) => [...prev, edgePositions[newPositionIndex]]);
+    }
+  }, [currentQuestion]);
 
   return (
-    <div className="quiz-background">
+    <div
+      className="quiz-background"
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        position: "relative",
+        height: "100vh",
+        width: "100vw",
+        background: "linear-gradient(to bottom left, #2f4b2f, #4a6b3e, #6f8d4f)",
+        overflow: "hidden",
+      }}
+    >
       {/* Render leaves */}
-      {leaves.map((leaf) => (
+      {usedPositions.map((position, index) => (
         <div
-          key={leaf.id}
+          key={index}
           style={{
             position: "absolute",
-            left: leaf.left,
-            top: leaf.top,
-            transform: `rotate(${leaf.rotation})`,
-            animation: "fadeIn 0.5s ease", // Optional animation
+            left: position.left,
+            top: position.top,
+            transform: `rotate(${Math.random() * 360}deg)`,
+            animation: "fadeIn 0.5s ease",
           }}
         >
           <LeafSVG />
@@ -34,7 +62,7 @@ const QuizBackground = ({ currentQuestion, children }) => {
       ))}
 
       {/* Render children (quiz content) */}
-      <div>{children}</div>
+      <div className="quiz-content">{children}</div>
     </div>
   );
 };
