@@ -7,6 +7,7 @@ import studentBackground from '../assets/student_bg.svg';
 import SectionHeading from './SectionHeading';
 import girlHeadphone from '../assets/girl_headphone.svg';
 import sWhiteIcon from '../assets/s_white.svg';
+import SubHeading from './SubHeading';
 
 const Ranking = ({ onBackClick }) => {
   return (
@@ -23,10 +24,11 @@ const Ranking = ({ onBackClick }) => {
         <div className="dashboard-container"> {/* Reuse container styling */}
           <SectionHeading
             mainIcon={sWhiteIcon}
-            mainText="anking"
-            subText="Placering"
+            mainText="ank"
+            subText="Mästare"
             subIcon={girlHeadphone}
           />
+          <SubHeading text="Din totala ranking och resultat" />
           <div class="ranking-row">
             <div class="ranking-entry">
               <span class="ranking-position">16.</span>
@@ -34,7 +36,11 @@ const Ranking = ({ onBackClick }) => {
               <span class="ranking-score">61%</span>
             </div>
           </div>
-          <p className="ranking-subheading">Du har tjänat stjärnbrickan för att konsekvent ha uppnått över 60% rätt i resultat!</p>
+          <p className="ranking-subheading">
+            Du har tjänat Cykelbrickan för att ha varit en snabb 
+            quizmästare och klarat dina quiz på under 5 minuter! 
+            Satsa på topp tio för att låsa upp en medaljbricka.
+          </p>
           {/* Back Button with PillButton */}
           <PillButton
             text="Tillbaka"
