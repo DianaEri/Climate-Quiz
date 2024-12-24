@@ -11,34 +11,37 @@ const Quiz = ({ onBackToDashboard }) => {
   const [score, setScore] = useState(0);
   const [isQuizFinished, setIsQuizFinished] = useState(false);
 
-  // Shuffle answers function
-  function shuffle(array) {
+  // Function to shuffle array elements
+  const shuffle = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];
     }
     return array;
-  }
+  };
 
+  // Fetch quiz data
   useEffect(() => {
     fetch("/quizData.json")
       .then((response) => response.json())
       .then((data) => {
-        // Combine correct and incorrect answers and shuffle them
-        data.forEach((p) => {
-          p.all_answers = shuffle([p.correct_answer, ...p.incorrect_answers]);
-        });
-        setQuizData(data);
+        const processedData = data.map((question) => ({
+          ...question,
+          all_answers: shuffle([question.correct_answer, ...question.incorrect_answers]),
+        }));
+        setQuizData(processedData);
       });
   }, []);
 
+  // Handle next question
   const handleNext = () => {
     const selectedOption = document.querySelector(
       `input[name="question_${currentIndex}"]:checked`
     );
+
     if (selectedOption) {
       const userAnswer = selectedOption.value;
-      const correctAnswer = quizData[currentIndex].correct_answer;
+      const correctAnswer = quizData[currentIndex]?.correct_answer;
 
       if (userAnswer === correctAnswer) {
         setScore((prevScore) => prevScore + 1);
@@ -46,15 +49,33 @@ const Quiz = ({ onBackToDashboard }) => {
     }
 
     if (currentIndex < quizData.length - 1) {
-      setCurrentIndex(currentIndex + 1);
+      setCurrentIndex((prevIndex) => prevIndex + 1);
     } else {
       setIsQuizFinished(true);
     }
   };
 
   return (
-    <QuizBackground currentQuestion={currentIndex}>
-      <div className="quiz-content">
+    <div style={{ height: "100vh", overflow: "hidden", position: "relative" }}>
+      <QuizBackground currentQuestion={currentIndex} />
+      <div
+        className="quiz-content"
+        style={{
+          position: "relative",
+          zIndex: 2,
+          width: "80%",
+          maxWidth: "1200px",
+          margin: "40px auto",
+          padding: "20px",
+          backgroundColor: "#0d171f",
+          borderRadius: "15px",
+          boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+          display: "flex",
+          flexDirection: "column",
+          gap: "20px",
+          boxSizing: "border-box",
+        }}
+      >
         {isQuizFinished ? (
           <QuizResult
             score={score}
@@ -64,28 +85,14 @@ const Quiz = ({ onBackToDashboard }) => {
         ) : (
           <>
             {quizData.length > 0 && (
-              <>
-                {/* Progress Bar */}
-                <div className="progress-bar">
-                  <div
-                    className="progress"
-                    style={{
-                      width: `${((currentIndex + 1) / quizData.length) * 100}%`,
-                    }}
-                  ></div>
-                </div>
-
-                {/* Question */}
-                <Question
-                  key={currentIndex}
-                  data={quizData[currentIndex]}
-                  index={currentIndex}
-                  numberOfQuestion={quizData.length}
-                />
-              </>
+              <Question
+                key={currentIndex}
+                data={quizData[currentIndex]}
+                index={currentIndex}
+                numberOfQuestion={quizData.length}
+                progress={((currentIndex + 1) / quizData.length) * 100}
+              />
             )}
-
-            {/* Next Question Button */}
             <div className="button-container">
               <PillButton
                 text={
@@ -100,7 +107,7 @@ const Quiz = ({ onBackToDashboard }) => {
           </>
         )}
       </div>
-    </QuizBackground>
+    </div>
   );
 };
 
