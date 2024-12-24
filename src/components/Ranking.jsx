@@ -21,13 +21,13 @@ const Ranking = ({ onBackClick }) => {
       <MobileNavbar />
       <div className="dashboard-wrapper"> {/* Optional wrapper for consistent spacing */}
         <div className="dashboard-container"> {/* Reuse container styling */}
-        <SectionHeading
-              mainIcon={sWhiteIcon}
-              mainText="anking"
-              subText="Placering"
-              subIcon={girlHeadphone}
-            />
-          <p className="ranking-subheading">Du har tjänat stjärnbrickan för att konsekvent ha uppnått över 60 % i resultat!</p>
+          <SectionHeading
+            mainIcon={sWhiteIcon}
+            mainText="anking"
+            subText="Placering"
+            subIcon={girlHeadphone}
+          />
+          <p className="ranking-subheading">Du har tjänat stjärnbrickan för att konsekvent ha uppnått över 60% rätt i resultat!</p>
           <table className="ranking-table">
             <thead>
               <tr>
