@@ -2,39 +2,15 @@ import React, { useState } from 'react';
 import Home from './components/Home'; 
 import StudentDashboard from './components/StudentDashboard'; 
 import TeacherDashboard from './components/TeacherDashboard'; 
-import Ranking from './components/Ranking'; // Import Ranking component
+import Quiz from './components/Quiz'; 
+import Ranking from './components/Ranking'; // Import Ranking
+import './index.css';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userType, setUserType] = useState('');
-  const [view, setView] = useState('home'); // Manage different views
-
-  const renderView = () => {
-    if (!isLoggedIn) {
-      return (
-        <Home
-          setLoggedIn={setIsLoggedIn}
-          setUserType={setUserType}
-          onNavigate={() => setView('home')}
-        />
-      );
-    }
-
-    if (userType === 'student') {
-      switch (view) {
-        case 'studentDashboard':
-          return <StudentDashboard onRankingClick={() => setView('ranking')} />;
-        case 'ranking':
-          return <Ranking onBackClick={() => setView('studentDashboard')} />;
-        default:
-          return <StudentDashboard onRankingClick={() => setView('ranking')} />;
-      }
-    }
-
-    if (userType === 'teacher') {
-      return <TeacherDashboard />;
-    }
-  };
+  const [showQuiz, setShowQuiz] = useState(false);
+  const [showRanking, setShowRanking] = useState(false); // State for Ranking page
 
   return (
     <div
@@ -46,7 +22,24 @@ const App = () => {
           : 'home-view'
       }
     >
-      {renderView()}
+      {isLoggedIn ? (
+        userType === 'student' ? (
+          showQuiz ? (
+            <Quiz onBackToDashboard={() => setShowQuiz(false)} />
+          ) : showRanking ? (
+            <Ranking onBackClick={() => setShowRanking(false)} /> // Handle "Tillbaka" for Ranking
+          ) : (
+            <StudentDashboard 
+              onStartQuiz={() => setShowQuiz(true)} 
+              onViewRanking={() => setShowRanking(true)} // Add navigation for Ranking
+            />
+          )
+        ) : (
+          <TeacherDashboard />
+        )
+      ) : (
+        <Home setLoggedIn={setIsLoggedIn} setUserType={setUserType} />
+      )}
     </div>
   );
 };

@@ -6,17 +6,16 @@ import {
   Tooltip,
   Legend
 } from 'chart.js'; 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleUp } from '@fortawesome/free-solid-svg-icons';
+import { faCircleLeft } from '@fortawesome/free-solid-svg-icons'; // Import the left arrow icon
+import PillButton from './PillButton'; // Import PillButton
 import achievementSmiley from './achievement_smiley.svg'; 
 
 // Register Chart.js components
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const QuizResult = ({ score, totalQuestions }) => {
+const QuizResult = ({ score, totalQuestions, onBackToDashboard }) => { // Add onBackToDashboard prop
   const incorrectAnswers = totalQuestions - score;
 
-  // Data for the Pie Chart
   const pieData = {
     labels: ['Fel', 'Rätt'],
     datasets: [{
@@ -35,7 +34,7 @@ const QuizResult = ({ score, totalQuestions }) => {
     plugins: {
       legend: {
         labels: {
-          color: 'black',
+          color: 'white',
           font: {
             weight: 'bold'
           }
@@ -59,12 +58,9 @@ const QuizResult = ({ score, totalQuestions }) => {
         Fortsätt det fantastiska arbetet och lärandet – du gör ett riktigt bra jobb!
         Du har fått {score} rätt av {totalQuestions} möjliga.
       </p>
-      
+
       {/* Pie Chart to display the percentage of correct and incorrect answers */}
-      <div 
-        className="chart-container" 
-        style={{ width: '300px', height: '300px', margin: '0 auto' }}
-      >
+      <div className="chart-container" style={{ width: '300px', height: '300px', margin: '0 auto' }}>
         <Pie data={pieData} options={pieOptions} />
       </div>
 
@@ -77,9 +73,11 @@ const QuizResult = ({ score, totalQuestions }) => {
 
       {/* Button to go back to the start page */}
       <div className="button-container">
-        <button className="next-button">
-         Tillbaka till startsidan <FontAwesomeIcon icon={faCircleUp} className="button-icon" />
-        </button>
+        <PillButton
+          text="Tillbaka till Student Hörnan"
+          icon={faCircleLeft}
+          onClick={onBackToDashboard} // Call the prop function
+        />
       </div>
     </div>
   );

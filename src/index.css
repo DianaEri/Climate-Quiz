@@ -758,23 +758,6 @@ html, body {
 
 /*Quiz START*/
 
-.quiz-container {
-  width: 80%; /* Responsive width */
-  max-width: 1200px; /* Limit the maximum width */
-  background-color: #0d171f; /* Matches other box styles */
-  border-radius: 15px; /* Rounded corners */
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-  padding: 0px 15px; /* Internal padding */
-  padding-bottom: 0px;
-  display: flex; /* Flexbox for layout */
-  flex-direction: column; /* Stack child elements vertically */
-  overflow-y: auto; /* Allow vertical scrolling */
-  overflow-x: hidden; /* Prevent horizontal scrolling */
-  border: 1px solid black; /* Add border */
-  margin-top: 90px;
-  margin-bottom: 40px;
-}
-
 .progress-bar-container {
   position: relative; 
   width: 100%; 
@@ -939,27 +922,30 @@ progress.progress-bar::-moz-progress-bar {
 }
 
 .motivating-message-quiz{
-  padding-top: 5rem;
+  padding-top: 0.5rem;
   padding-left: 3.8rem;
   padding-right: 3.8rem;
   font-weight: bold;
   font-size: 1.5rem;
+  color: white;
 }
 
 .motivating-message-quiz-result{
   padding-left: 1rem;
   padding-right: 1rem;
   font-size: 1.8rem;
+  color: white;
 }
 
 .achievement-image{
-  padding-left: 20rem;
+  padding-left: 10rem;
 }
 
 .view-answes-link-container{
   padding-left: 1rem;
   padding-right: 1rem;
   font-size: 1.8rem;
+  color: white;
 }
 
 .answer-link{
@@ -969,4 +955,59 @@ progress.progress-bar::-moz-progress-bar {
 }
 /*Quiz END*/
 
+.quiz-background {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #e0f7fa, #80deea);
+  overflow: hidden;
+}
+
+.leaf {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  width: 50px;
+  height: 50px;
+  opacity: 0;
+  animation-fill-mode: forwards; /* Ensure animation persists */
+}
+
+.leaf:nth-child(even) {
+  top: 20%;
+  left: 40%;
+}
+
+.leaf:nth-child(odd) {
+  top: 30%;
+  left: 60%;
+}
+
+.quiz-content {
+  z-index: 2; /* Ensure it appears above the background leaves */
+  width: 80%; /* Responsive width */
+  max-width: 1200px; /* Limit the maximum width */
+  background-color: #0d171f; /* Matches other box styles */
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  padding: 15px; /* Internal padding */
+  display: flex; /* Flexbox for layout */
+  flex-direction: column; /* Stack child elements vertically */
+  overflow-y: auto; /* Allow vertical scrolling */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  border: 1px solid black; /* Add border */
+  margin: auto; /* Center horizontally */
+  position: relative; /* Allow it to be positioned within parent */
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
 
