@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleUp } from '@fortawesome/free-solid-svg-icons'; // Ensure faCircleUp is imported
+import { faCircleRight } from '@fortawesome/free-solid-svg-icons'; // Change to faCircleRight
 import Question from "./Question";
 import QuizResult from "./QuizResult"; 
 import PillButton from './PillButton'; // Import PillButton
@@ -71,7 +71,7 @@ const Quiz = () => {
           <div className="button-container">
             <PillButton
               text={currentIndex < quizData.length - 1 ? 'Nästa fråga' : 'Skicka in'}
-              icon={faCircleUp}
+              icon={faCircleRight} // Updated to faCircleRight
               onClick={handleNext}
             />
           </div>
@@ -79,6 +79,7 @@ const Quiz = () => {
       )}
     </div>
   );
-};
+}
 
 export default Quiz;
+
