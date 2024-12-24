@@ -4,7 +4,7 @@ import LeafSVG from "./LeafSVG";
 const QuizBackground = ({ currentQuestion }) => {
   const totalQuestions = 14;
 
-  // Add more positions to accommodate 28 leaves
+  // Predefined edge positions
   const edgePositions = [
     { left: "0%", top: "5%" },
     { left: "0%", top: "95%" },
@@ -20,24 +20,12 @@ const QuizBackground = ({ currentQuestion }) => {
     { left: "90%", top: "10%" },
     { left: "10%", top: "90%" },
     { left: "90%", top: "90%" },
-    // Add more positions
-    { left: "20%", top: "20%" },
-    { left: "80%", top: "20%" },
-    { left: "20%", top: "80%" },
-    { left: "80%", top: "80%" },
-    { left: "30%", top: "30%" },
-    { left: "70%", top: "30%" },
-    { left: "30%", top: "70%" },
-    { left: "70%", top: "70%" },
-    { left: "40%", top: "40%" },
-    { left: "60%", top: "40%" },
-    { left: "40%", top: "60%" },
-    { left: "60%", top: "60%" },
   ];
 
   const [usedPositions, setUsedPositions] = useState([]);
   const [processedQuestions, setProcessedQuestions] = useState(new Set());
 
+  // Helper to calculate the Euclidean distance between two positions
   const calculateDistance = (pos1, pos2) => {
     const x1 = parseFloat(pos1.left);
     const y1 = parseFloat(pos1.top);
@@ -47,7 +35,7 @@ const QuizBackground = ({ currentQuestion }) => {
   };
 
   const getUniquePositions = (count = 2, minDistance = 10) => {
-    let availablePositions = edgePositions.filter(
+    const availablePositions = edgePositions.filter(
       (pos) =>
         !usedPositions.some(
           (usedPos) => usedPos.left === pos.left && usedPos.top === pos.top
@@ -55,15 +43,11 @@ const QuizBackground = ({ currentQuestion }) => {
     );
 
     const selectedPositions = [];
-    while (selectedPositions.length < count) {
-      if (availablePositions.length === 0) {
-        // If we run out of unique positions, reset available positions
-        availablePositions = [...edgePositions];
-      }
-
+    while (selectedPositions.length < count && availablePositions.length > 0) {
       const randomIndex = Math.floor(Math.random() * availablePositions.length);
       const candidatePosition = availablePositions[randomIndex];
 
+      // Check if the candidate position is far enough from selected and used positions
       const isValid = [...selectedPositions, ...usedPositions].every(
         (pos) => calculateDistance(candidatePosition, pos) >= minDistance
       );
@@ -72,6 +56,7 @@ const QuizBackground = ({ currentQuestion }) => {
         selectedPositions.push(candidatePosition);
       }
 
+      // Remove the candidate position from availablePositions to prevent infinite loops
       availablePositions.splice(randomIndex, 1);
     }
 
@@ -79,15 +64,15 @@ const QuizBackground = ({ currentQuestion }) => {
   };
 
   useEffect(() => {
-    if (usedPositions.length < edgePositions.length) {
-        // Add new positions for two leaves, ensuring they are not too close
-        const nextPositions = edgePositions
-            .filter((_, index) => !usedPositions.some((pos) => pos === edgePositions[index]))
-            .slice(0, 2); // Add 2 positions
- 
-        setUsedPositions((prev) => [...prev, ...nextPositions]);
+    if (
+      !processedQuestions.has(currentQuestion) &&
+      usedPositions.length < edgePositions.length
+    ) {
+      const newPositions = getUniquePositions(2); // Get two unique positions
+      setUsedPositions((prev) => [...prev, ...newPositions]);
+      setProcessedQuestions((prev) => new Set(prev).add(currentQuestion));
     }
- }, [currentQuestion]);
+  }, [currentQuestion, processedQuestions, usedPositions]);
 
   return (
     <div className="quiz-background">
@@ -100,7 +85,7 @@ const QuizBackground = ({ currentQuestion }) => {
             top: position.top,
             transform: `rotate(${Math.random() * 360}deg)`,
             animation: "fadeIn 0.5s ease",
-            pointerEvents: "none",
+            pointerEvents: "none", // Prevent interaction
           }}
         >
           <LeafSVG />
