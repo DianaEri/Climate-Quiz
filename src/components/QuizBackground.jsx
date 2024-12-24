@@ -1,98 +1,41 @@
-import React, { useState, useEffect } from "react";
-import LeafSVG from "./LeafSVG";
+import React from "react";
+
+// Import all backgrounds
+import quiz_bg1 from "../assets/quiz_bg1.svg";
+import quiz_bg2 from "../assets/quiz_bg2.svg";
+import quiz_bg3 from "../assets/quiz_bg3.svg";
+import quiz_bg4 from "../assets/quiz_bg4.svg";
+import quiz_bg5 from "../assets/quiz_bg5.svg";
+import quiz_bg6 from "../assets/quiz_bg6.svg";
+import quiz_bg7 from "../assets/quiz_bg7.svg";
+import quiz_bg8 from "../assets/quiz_bg8.svg";
+import quiz_bg9 from "../assets/quiz_bg9.svg";
+import quiz_bg10 from "../assets/quiz_bg10.svg";
+import quiz_bg11 from "../assets/quiz_bg11.svg";
+import quiz_bg12 from "../assets/quiz_bg12.svg";
+import quiz_bg13 from "../assets/quiz_bg13.svg";
+import quiz_bg14 from "../assets/quiz_bg14.svg";
+
+const backgrounds = [
+    quiz_bg1, quiz_bg2, quiz_bg3, quiz_bg4, quiz_bg5,
+    quiz_bg6, quiz_bg7, quiz_bg8, quiz_bg9, quiz_bg10,
+    quiz_bg11, quiz_bg12, quiz_bg13, quiz_bg14
+];
 
 const QuizBackground = ({ currentQuestion }) => {
-  const totalQuestions = 14;
+    const backgroundIndex = Math.min(currentQuestion, backgrounds.length - 1); // Ensure index is within bounds
+    const currentBackground = backgrounds[backgroundIndex];
 
-  // Predefined edge positions
-  const edgePositions = [
-    { left: "0%", top: "5%" },
-    { left: "0%", top: "95%" },
-    { left: "5%", top: "0%" },
-    { left: "95%", top: "0%" },
-    { left: "95%", top: "95%" },
-    { left: "5%", top: "95%" },
-    { left: "50%", top: "0%" },
-    { left: "50%", top: "95%" },
-    { left: "0%", top: "50%" },
-    { left: "95%", top: "50%" },
-    { left: "10%", top: "10%" },
-    { left: "90%", top: "10%" },
-    { left: "10%", top: "90%" },
-    { left: "90%", top: "90%" },
-  ];
-
-  const [usedPositions, setUsedPositions] = useState([]);
-  const [processedQuestions, setProcessedQuestions] = useState(new Set());
-
-  // Helper to calculate the Euclidean distance between two positions
-  const calculateDistance = (pos1, pos2) => {
-    const x1 = parseFloat(pos1.left);
-    const y1 = parseFloat(pos1.top);
-    const x2 = parseFloat(pos2.left);
-    const y2 = parseFloat(pos2.top);
-    return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
-  };
-
-  const getUniquePositions = (count = 2, minDistance = 10) => {
-    const availablePositions = edgePositions.filter(
-      (pos) =>
-        !usedPositions.some(
-          (usedPos) => usedPos.left === pos.left && usedPos.top === pos.top
-        )
-    );
-
-    const selectedPositions = [];
-    while (selectedPositions.length < count && availablePositions.length > 0) {
-      const randomIndex = Math.floor(Math.random() * availablePositions.length);
-      const candidatePosition = availablePositions[randomIndex];
-
-      // Check if the candidate position is far enough from selected and used positions
-      const isValid = [...selectedPositions, ...usedPositions].every(
-        (pos) => calculateDistance(candidatePosition, pos) >= minDistance
-      );
-
-      if (isValid) {
-        selectedPositions.push(candidatePosition);
-      }
-
-      // Remove the candidate position from availablePositions to prevent infinite loops
-      availablePositions.splice(randomIndex, 1);
-    }
-
-    return selectedPositions;
-  };
-
-  useEffect(() => {
-    if (
-      !processedQuestions.has(currentQuestion) &&
-      usedPositions.length < edgePositions.length
-    ) {
-      const newPositions = getUniquePositions(2); // Get two unique positions
-      setUsedPositions((prev) => [...prev, ...newPositions]);
-      setProcessedQuestions((prev) => new Set(prev).add(currentQuestion));
-    }
-  }, [currentQuestion, processedQuestions, usedPositions]);
-
-  return (
-    <div className="quiz-background">
-      {usedPositions.map((position, index) => (
+    return (
         <div
-          key={index}
-          style={{
-            position: "absolute",
-            left: position.left,
-            top: position.top,
-            transform: `rotate(${Math.random() * 360}deg)`,
-            animation: "fadeIn 0.5s ease",
-            pointerEvents: "none", // Prevent interaction
-          }}
+            className="quiz-background"
+            style={{
+                backgroundImage: `url(${currentBackground})`, // Dynamically set background image
+            }}
         >
-          <LeafSVG />
+            {/* Optional: Add any decorative elements here */}
         </div>
-      ))}
-    </div>
-  );
+    );
 };
 
 export default QuizBackground;

@@ -954,17 +954,16 @@ progress.progress-bar::-moz-progress-bar {
 /*Quiz END*/
 
 .quiz-background {
-  z-index: 0; /* Place gradient at the bottom */
-  position: fixed; /* Fix the background in place */
+  z-index: 0;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(to bottom left, #2f4b2f, #4a6b3e, #6f8d4f); /* Dark green gradient */
-  overflow: hidden; /* Prevent content overflow */
+  overflow: hidden;
   display: flex;
-  justify-content: center; /* Center content horizontally */
-  align-items: flex-start; /* Align content at the top */
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .leaf {
