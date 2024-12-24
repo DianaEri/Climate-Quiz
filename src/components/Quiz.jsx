@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleUp } from '@fortawesome/free-solid-svg-icons';
+import { faCircleUp } from '@fortawesome/free-solid-svg-icons'; // Ensure faCircleUp is imported
 import Question from "./Question";
 import QuizResult from "./QuizResult"; 
-
+import PillButton from './PillButton'; // Import PillButton
 
 const Quiz = () => {
   const [quizData, setQuizData] = useState([]); 
@@ -52,7 +52,6 @@ const Quiz = () => {
 
   return (
     <div className="quiz-container">
-      <FontAwesomeIcon icon={faCircleUp} className="circle-up-icon" />
       {isQuizFinished ? (
         <QuizResult 
           score={score} 
@@ -62,7 +61,7 @@ const Quiz = () => {
         <>
           {quizData.length > 0 && (
             <Question
-              key={currentIndex} // Add a key to force re-mount of the component, resets radio button when going to next page
+              key={currentIndex} // Ensure the key is unique
               data={quizData[currentIndex]} 
               index={currentIndex} 
               numberOfQuestion={quizData.length}
@@ -70,14 +69,16 @@ const Quiz = () => {
             />
           )}
           <div className="button-container">
-            <button className="next-button" onClick={handleNext}>
-              {currentIndex < quizData.length - 1 ? 'Nästa fråga' : 'Skicka in'}  <FontAwesomeIcon icon={faCircleUp} className="button-icon" />
-            </button>
+            <PillButton
+              text={currentIndex < quizData.length - 1 ? 'Nästa fråga' : 'Skicka in'}
+              icon={faCircleUp}
+              onClick={handleNext}
+            />
           </div>
         </>
       )}
     </div>
   );
-}
+};
 
 export default Quiz;
