@@ -878,7 +878,7 @@ progress.progress-bar::-moz-progress-bar {
   justify-content: space-between; 
   background-color: #203010; 
   width: 70%; 
-  height: 4rem; 
+  height: 3.5rem; 
   color: white; 
   border-radius: 3rem; 
   padding-left: 1rem; 
