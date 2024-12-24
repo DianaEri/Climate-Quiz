@@ -116,10 +116,8 @@ const Question = (props) => {
         <h5 className="question-title">{currentQuestion.question}</h5>
         </div>
         {currentQuestion.all_answers.map((answer, index) => (
-          
-          <div className='answer-button'>
-
-          <label className="option-button" key={index} htmlFor={`radio_${props.index}_${index}`}>
+        <div className='answer-button' key={index}> {/* Add the key here */}
+          <label className="option-button" htmlFor={`radio_${props.index}_${index}`}>
             <span className="radio-label">{answer}</span>
             <input
               className="radio-button"
@@ -129,9 +127,8 @@ const Question = (props) => {
               value={answer}
             />
           </label>
-
-          </div>
-        ))}
+        </div>
+      ))}
 
       </div>
     </div>

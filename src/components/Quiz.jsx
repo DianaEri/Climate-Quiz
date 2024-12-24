@@ -71,12 +71,12 @@ const Quiz = ({ onBackToDashboard }) => {
           <>
             {quizData.length > 0 && (
               <Question
-                key={currentIndex}
-                data={quizData[currentIndex]}
-                index={currentIndex}
-                numberOfQuestion={quizData.length}
-                progress={((currentIndex + 1) / quizData.length) * 100}
-              />
+              key={currentIndex} // Unique key for the current question
+              data={quizData[currentIndex]}
+              index={currentIndex}
+              numberOfQuestion={quizData.length}
+              progress={((currentIndex + 1) / quizData.length) * 100}
+            />
             )}
             <div className="button-container">
               <PillButton

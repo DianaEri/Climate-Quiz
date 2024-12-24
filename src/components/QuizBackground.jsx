@@ -1,20 +1,20 @@
 import React from "react";
 
 // Import all backgrounds
-import quiz_bg1 from "../assets/quiz_bg1.svg";
-import quiz_bg2 from "../assets/quiz_bg2.svg";
-import quiz_bg3 from "../assets/quiz_bg3.svg";
-import quiz_bg4 from "../assets/quiz_bg4.svg";
-import quiz_bg5 from "../assets/quiz_bg5.svg";
-import quiz_bg6 from "../assets/quiz_bg6.svg";
-import quiz_bg7 from "../assets/quiz_bg7.svg";
-import quiz_bg8 from "../assets/quiz_bg8.svg";
-import quiz_bg9 from "../assets/quiz_bg9.svg";
-import quiz_bg10 from "../assets/quiz_bg10.svg";
-import quiz_bg11 from "../assets/quiz_bg11.svg";
-import quiz_bg12 from "../assets/quiz_bg12.svg";
-import quiz_bg13 from "../assets/quiz_bg13.svg";
-import quiz_bg14 from "../assets/quiz_bg14.svg";
+import quiz_bg1 from "../assets/quiz_bg1.png";
+import quiz_bg2 from "../assets/quiz_bg2.png";
+import quiz_bg3 from "../assets/quiz_bg3.png";
+import quiz_bg4 from "../assets/quiz_bg4.png";
+import quiz_bg5 from "../assets/quiz_bg5.png";
+import quiz_bg6 from "../assets/quiz_bg6.png";
+import quiz_bg7 from "../assets/quiz_bg7.png";
+import quiz_bg8 from "../assets/quiz_bg8.png";
+import quiz_bg9 from "../assets/quiz_bg9.png";
+import quiz_bg10 from "../assets/quiz_bg10.png";
+import quiz_bg11 from "../assets/quiz_bg11.png";
+import quiz_bg12 from "../assets/quiz_bg12.png";
+import quiz_bg13 from "../assets/quiz_bg13.png";
+import quiz_bg14 from "../assets/quiz_bg14.png";
 
 const backgrounds = [
     quiz_bg1, quiz_bg2, quiz_bg3, quiz_bg4, quiz_bg5,
@@ -23,14 +23,24 @@ const backgrounds = [
 ];
 
 const QuizBackground = ({ currentQuestion }) => {
-    const backgroundIndex = Math.min(currentQuestion, backgrounds.length - 1); // Ensure index is within bounds
-    const currentBackground = backgrounds[backgroundIndex];
+  const backgroundIndex = Math.min(currentQuestion || 0, backgrounds.length - 1);
+  const currentBackground = backgrounds[backgroundIndex] || quiz_bg1;
+  console.log("Current Background URL:", currentBackground);
+
+  console.log("Rendering QuizBackground for Question:", currentQuestion);
 
     return (
         <div
-            className="quiz-background"
             style={{
-                backgroundImage: `url(${currentBackground})`, // Dynamically set background image
+                position: "fixed",
+                top: 0,
+                left: 0,
+                width: "100vw",
+                height: "100vh",
+                backgroundImage: `url(${currentBackground})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                zIndex: -1, // Ensure it stays behind the quiz content
             }}
         >
             {/* Optional: Add any decorative elements here */}
