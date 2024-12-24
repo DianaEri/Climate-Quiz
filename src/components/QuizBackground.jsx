@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import LeafSVG from "./LeafSVG";
 
-const QuizBackground = ({ currentQuestion, children }) => {
+const QuizBackground = ({ currentQuestion }) => {
   const totalQuestions = 14;
 
-  // Predefined edge positions
   const edgePositions = [
     { left: "0%", top: "5%" },
     { left: "0%", top: "95%" },
@@ -35,17 +34,16 @@ const QuizBackground = ({ currentQuestion, children }) => {
     <div
       className="quiz-background"
       style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        position: "relative",
+        position: "fixed",
+        top: 0,
+        left: 0,
         height: "100vh",
         width: "100vw",
         background: "linear-gradient(to bottom left, #2f4b2f, #4a6b3e, #6f8d4f)",
         overflow: "hidden",
+        zIndex: -1, // Stay behind the content
       }}
     >
-      {/* Render leaves */}
       {usedPositions.map((position, index) => (
         <div
           key={index}
@@ -60,9 +58,6 @@ const QuizBackground = ({ currentQuestion, children }) => {
           <LeafSVG />
         </div>
       ))}
-
-      {/* Render children (quiz content) */}
-      <div className="quiz-content">{children}</div>
     </div>
   );
 };

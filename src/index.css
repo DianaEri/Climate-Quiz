@@ -956,16 +956,16 @@ progress.progress-bar::-moz-progress-bar {
 /*Quiz END*/
 
 .quiz-background {
-  position: fixed; /* Make the background sticky */
+  position: fixed; /* Fix the background in place */
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(to bottom left, #2f4b2f, #4a6b3e, #6f8d4f); /* Darker gradient */
-  overflow: hidden;
+  background: linear-gradient(to bottom left, #2f4b2f, #4a6b3e, #6f8d4f); /* Dark green gradient */
+  overflow: hidden; /* Prevent leaf overflow */
   display: flex;
-  justify-content: center; /* Horizontally center quiz-content */
-  align-items: center; /* Vertically center quiz-content */
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
 }
 
 .leaf {
@@ -989,19 +989,20 @@ progress.progress-bar::-moz-progress-bar {
 }
 
 .quiz-content {
-  position: relative; /* Ensure it stays within the context of the quiz-background */
-  z-index: 2; /* Bring it above the leaves */
-  background-color: #0d171f; /* Box color */
+  position: relative; /* For proper stacking context */
+  z-index: 2; /* Bring content above the background */
   width: 80%; /* Responsive width */
   max-width: 1200px; /* Limit maximum width */
-  margin: auto; /* Center horizontally and vertically */
-  padding: 20px; /* Add internal padding */
+  margin: 40px auto; /* Center horizontally and add spacing at top and bottom */
+  padding: 20px; /* Add padding inside the content box */
+  background-color: #0d171f; /* Content box background */
   border-radius: 15px; /* Rounded corners */
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
   display: flex;
-  flex-direction: column; /* Stack child elements */
+  flex-direction: column;
   gap: 20px; /* Space between child elements */
   box-sizing: border-box; /* Include padding in width/height */
+  overflow-y: auto; /* Allow scrolling within the content */
 }
 
 @keyframes fadeIn {

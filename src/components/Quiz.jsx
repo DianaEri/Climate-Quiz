@@ -64,14 +64,28 @@ const Quiz = ({ onBackToDashboard }) => {
         ) : (
           <>
             {quizData.length > 0 && (
-              <Question
-                key={currentIndex}
-                data={quizData[currentIndex]}
-                index={currentIndex}
-                numberOfQuestion={quizData.length}
-                progress={((currentIndex + 1) / quizData.length) * 100}
-              />
+              <>
+                {/* Progress Bar */}
+                <div className="progress-bar">
+                  <div
+                    className="progress"
+                    style={{
+                      width: `${((currentIndex + 1) / quizData.length) * 100}%`,
+                    }}
+                  ></div>
+                </div>
+
+                {/* Question */}
+                <Question
+                  key={currentIndex}
+                  data={quizData[currentIndex]}
+                  index={currentIndex}
+                  numberOfQuestion={quizData.length}
+                />
+              </>
             )}
+
+            {/* Next Question Button */}
             <div className="button-container">
               <PillButton
                 text={
