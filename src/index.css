@@ -709,6 +709,36 @@ html, body {
   flex: 0.1; /* Smaller last column */
 }
 
+/* Ranking Row */
+.ranking-row {
+  margin-top: 5px; /* Reduce the space above the ranking row */
+  margin-bottom: 0px; /* Reduce the space below the ranking row */
+}
+
+/* Ranking Subheading */
+.ranking-subheading {
+  margin-top: 20px; /* Further reduce the space above the subheading */
+  margin-bottom: 0; /* Remove extra space below the subheading if not needed */
+}
+
+.ranking-container {
+  background-color: rgba(13, 23, 31, 1); /* Semi-transparent similar to the login box */
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  padding: 30px; /* Internal padding */
+  width: 70%; /* Width similar to the login box */
+  max-width: 400px; /* Set a maximum width */
+  display: flex; /* Flexbox for layout */
+  flex-direction: column; /* Stack child elements vertically */
+  align-items: center; /* Center items horizontally */
+  gap: 20px; /* Add spacing between elements */
+  border: 1px solid black; /* Bold border for definition */
+}
+
+.ranking-container > :first-child {
+  margin-bottom: 25px; /* Adjust the value as needed */
+}
+
 /*Quiz START*/
 
 .progress-bar-container {

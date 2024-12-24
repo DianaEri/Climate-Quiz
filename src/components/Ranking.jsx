@@ -20,35 +20,31 @@ const Ranking = ({ onBackClick }) => {
       }}
     >
       <MobileNavbar />
-      <div className="dashboard-wrapper"> {/* Optional wrapper for consistent spacing */}
-        <div className="dashboard-container"> {/* Reuse container styling */}
-          <SectionHeading
-            mainIcon={sWhiteIcon}
-            mainText="ank"
-            subText="Mästare"
-            subIcon={girlHeadphone}
-          />
-          <SubHeading text="Din totala ranking och resultat" />
-          <div class="ranking-row">
-            <div class="ranking-entry">
-              <span class="ranking-position">16.</span>
-              <span class="ranking-name">William Danielsson</span>
-              <span class="ranking-score">61%</span>
-            </div>
-          </div>
-          <p className="ranking-subheading">
-            Du har tjänat Cykelbrickan för att ha varit en snabb 
-            quizmästare och klarat dina quiz på under 5 minuter! 
-            Satsa på topp tio för att låsa upp en medaljbricka.
-          </p>
-          {/* Back Button with PillButton */}
-          <PillButton
-            text="Tillbaka"
-            icon={faCircleLeft} // Use left-pointing arrow icon
-            onClick={onBackClick} // Attach the click handler
-          />
+      <div className="ranking-container">
+      <SectionHeading
+        mainIcon={sWhiteIcon}
+        mainText="ank"
+        subText="Mästare"
+        subIcon={girlHeadphone}
+      />
+      <SubHeading text="Din totala ranking och resultat" />
+      <div className="ranking-row">
+        <div className="ranking-entry">
+          <span className="ranking-position">16.</span>
+          <span className="ranking-name">William Danielsson</span>
+          <span className="ranking-score">61%</span>
         </div>
       </div>
+      <p className="ranking-subheading">
+        Du har tjänat Cykelbrickan för att ha varit en snabb quizmästare och klarat dina quiz på under 5 minuter! 
+        Satsa på topp tio för att låsa upp en medaljbricka.
+      </p>
+      <PillButton
+        text="Tillbaka"
+        icon={faCircleLeft}
+        onClick={onBackClick}
+      />
+    </div>
     </div>
   );
 };
