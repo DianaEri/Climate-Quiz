@@ -916,8 +916,6 @@ progress.progress-bar::-moz-progress-bar {
 
 .chart-container{
   padding-top: 1rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
   padding-bottom: 1rem;
 }
 
@@ -956,19 +954,21 @@ progress.progress-bar::-moz-progress-bar {
 /*Quiz END*/
 
 .quiz-background {
+  z-index: 0; /* Place gradient at the bottom */
   position: fixed; /* Fix the background in place */
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
   background: linear-gradient(to bottom left, #2f4b2f, #4a6b3e, #6f8d4f); /* Dark green gradient */
-  overflow: hidden; /* Prevent leaf overflow */
+  overflow: hidden; /* Prevent content overflow */
   display: flex;
   justify-content: center; /* Center content horizontally */
-  align-items: center; /* Center content vertically */
+  align-items: flex-start; /* Align content at the top */
 }
 
 .leaf {
+  z-index: 1;
   position: absolute;
   top: 10%;
   left: 10%;
@@ -1002,7 +1002,8 @@ progress.progress-bar::-moz-progress-bar {
   flex-direction: column;
   gap: 20px; /* Space between child elements */
   box-sizing: border-box; /* Include padding in width/height */
-  overflow-y: auto; /* Allow scrolling within the content */
+  overflow-y: auto; /* Ensure content within scrolls */
+  max-height: 90vh; /* Prevent quiz-content from exceeding the viewport */
 }
 
 @keyframes fadeIn {

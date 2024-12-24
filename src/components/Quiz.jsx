@@ -56,25 +56,10 @@ const Quiz = ({ onBackToDashboard }) => {
   };
 
   return (
-    <div style={{ height: "100vh", overflow: "hidden", position: "relative" }}>
+    <div className="quiz-background" style={{ height: "100vh", overflow: "hidden", position: "relative" }}>
       <QuizBackground currentQuestion={currentIndex} />
       <div
         className="quiz-content"
-        style={{
-          position: "relative",
-          zIndex: 2,
-          width: "80%",
-          maxWidth: "1200px",
-          margin: "40px auto",
-          padding: "20px",
-          backgroundColor: "#0d171f",
-          borderRadius: "15px",
-          boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
-          display: "flex",
-          flexDirection: "column",
-          gap: "20px",
-          boxSizing: "border-box",
-        }}
       >
         {isQuizFinished ? (
           <QuizResult
