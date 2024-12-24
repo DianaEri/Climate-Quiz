@@ -5,9 +5,10 @@ import { faCircleLeft } from '@fortawesome/free-solid-svg-icons'; // Import the 
 import '../index.css';
 import studentBackground from '../assets/student_bg.svg';
 import SectionHeading from './SectionHeading';
-import girlHeadphone from '../assets/girl_headphone.svg';
+import medal from '../assets/medal.svg';
 import sWhiteIcon from '../assets/s_white.svg';
 import SubHeading from './SubHeading';
+import bicycleSvg from '../assets/bicycle.svg';
 
 const Ranking = ({ onBackClick }) => {
   return (
@@ -25,7 +26,7 @@ const Ranking = ({ onBackClick }) => {
         mainIcon={sWhiteIcon}
         mainText="ank"
         subText="Mästare"
-        subIcon={girlHeadphone}
+        subIcon={medal}
       />
       <SubHeading text="Din totala ranking och resultat" />
       <div className="ranking-row">
@@ -39,6 +40,9 @@ const Ranking = ({ onBackClick }) => {
         Du har tjänat Cykelbrickan för att ha varit en snabb quizmästare och klarat dina quiz på under 5 minuter! 
         Satsa på topp tio för att låsa upp en medaljbricka.
       </p>
+      <div className="ranking-svg-row">
+        <img src={bicycleSvg} alt="Bicycle Icon" className="bicycle-svg" />
+      </div>
       <PillButton
         text="Tillbaka"
         icon={faCircleLeft}
