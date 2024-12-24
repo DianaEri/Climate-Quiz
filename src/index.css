@@ -765,7 +765,7 @@ html, body {
   height: 2.2rem; 
   margin: 0 auto; 
   margin-bottom: 1rem; 
-  padding-top: 2rem;
+  padding-top: 1rem;
 }
 
 .progress-bar {
@@ -806,13 +806,14 @@ progress.progress-bar::-moz-progress-bar {
   font-weight: bold; 
   color: black; 
   font-size: 1rem; 
-  padding-top: 2rem;
+  padding-top: 1rem;
 }
 
 .question-container{
   padding-top: 1rem;
   padding-left: 1rem;
   padding-right: 1rem;
+  color: white;
 }
 
 .question-info{
@@ -821,13 +822,14 @@ progress.progress-bar::-moz-progress-bar {
 }
 
 .question-title{
+  margin-top: 15px;
   font-size: large;
   font-weight: normal;
 }
 
 .answer-button {
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .next-button {

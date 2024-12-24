@@ -74,7 +74,7 @@ const QuizResult = ({ score, totalQuestions, onBackToDashboard }) => { // Add on
       {/* Button to go back to the start page */}
       <div className="button-container">
         <PillButton
-          text="Tillbaka till Student Hörnan"
+          text="Tillbaka till Startsida"
           icon={faCircleLeft}
           onClick={onBackToDashboard} // Call the prop function
         />
