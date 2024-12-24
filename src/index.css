@@ -961,7 +961,7 @@ progress.progress-bar::-moz-progress-bar {
   align-items: center; /* Center vertically */
   height: 100vh; /* Full viewport height */
   width: 100vw; /* Full viewport width */
-  background: linear-gradient(to right, #6a994e, #a7c957, #f2e8cf); /* Nature-themed gradient */
+  background: linear-gradient(to bottom right, #2f4b2f, #4a6b3e, #6f8d4f); 
   position: relative; /* Necessary for child positioning */
   overflow: hidden; /* Prevent leaves from overflowing */
 }

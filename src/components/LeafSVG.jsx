@@ -5,7 +5,7 @@ const LeafSVG = () => (
     height="50"
     viewBox="0 0 24 24"
     fill="none"
-    stroke="green"
+    stroke="white"
     strokeWidth="2"
     strokeLinecap="round"
     strokeLinejoin="round"
