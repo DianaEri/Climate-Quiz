@@ -828,7 +828,7 @@ progress.progress-bar::-moz-progress-bar {
 }
 
 .answer-button {
-  padding-top: 1rem;
+  padding-top: 0.6rem;
   padding-bottom: 1rem;
 }
 
@@ -876,8 +876,8 @@ progress.progress-bar::-moz-progress-bar {
   display: flex; 
   align-items: center; 
   justify-content: space-between; 
-  background-color: #203010; 
-  width: 70%; 
+  background-color: #396588; 
+  width: 80%; 
   height: 3.5rem; 
   color: white; 
   border-radius: 3rem; 
@@ -905,14 +905,14 @@ progress.progress-bar::-moz-progress-bar {
   appearance: none; 
   border: 0.3rem solid white; 
   border-radius: 50%; 
-  background-color: #789B60; 
+  background-color: white; 
   cursor: pointer; 
   position: relative; 
   transition: background-color 0.3s, border-color 0.3s; 
 }
 
 .radio-button:checked {
-  background-color: #2DA4BC; 
+  background-color: #20394d; 
   border-color: white; 
 }
 
