@@ -823,13 +823,14 @@ progress.progress-bar::-moz-progress-bar {
 
 .question-title{
   margin-top: 15px;
+  margin-bottom: 15px;
   font-size: large;
   font-weight: normal;
 }
 
 .answer-button {
-  padding-top: 0.6rem;
-  padding-bottom: 1rem;
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
 }
 
 .next-button {
@@ -846,7 +847,7 @@ progress.progress-bar::-moz-progress-bar {
   transition: background-color 0.3s; 
   margin: 0 auto; 
   font-weight: bold;
-  border: none; 
+  border: none;
 }
 
 
@@ -864,7 +865,8 @@ progress.progress-bar::-moz-progress-bar {
   padding-bottom: 2rem;
   width: 100%;
   display: flex;
-  justify-content: center; 
+  justify-content: center;
+  margin-top: -5px;
 }
 
 .question-body {
@@ -964,9 +966,27 @@ progress.progress-bar::-moz-progress-bar {
   height: 100vh;
   overflow: hidden;
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
 }
+
+.quiz-content {
+  position: relative; /* For proper stacking context */
+  z-index: 2; /* Bring content above the background */
+  width: 80%; /* Responsive width */
+  max-width: 1200px; /* Limit maximum width */
+  padding: 20px; /* Add padding inside the content box */
+  background-color: #0d171f; /* Content box background */
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Space between child elements */
+  box-sizing: border-box; /* Include padding in width/height */
+  overflow-y: auto; /* Ensure content within scrolls */
+  max-height: 90vh; /* Prevent quiz-content from exceeding the viewport */
+}
+
 
 .leaf {
   z-index: 1;
@@ -987,24 +1007,6 @@ progress.progress-bar::-moz-progress-bar {
 .leaf:nth-child(odd) {
   top: 30%;
   left: 60%;
-}
-
-.quiz-content {
-  position: relative; /* For proper stacking context */
-  z-index: 2; /* Bring content above the background */
-  width: 80%; /* Responsive width */
-  max-width: 1200px; /* Limit maximum width */
-  margin: 40px auto; /* Center horizontally and add spacing at top and bottom */
-  padding: 20px; /* Add padding inside the content box */
-  background-color: #0d171f; /* Content box background */
-  border-radius: 15px; /* Rounded corners */
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-  display: flex;
-  flex-direction: column;
-  gap: 20px; /* Space between child elements */
-  box-sizing: border-box; /* Include padding in width/height */
-  overflow-y: auto; /* Ensure content within scrolls */
-  max-height: 90vh; /* Prevent quiz-content from exceeding the viewport */
 }
 
 @keyframes fadeIn {
