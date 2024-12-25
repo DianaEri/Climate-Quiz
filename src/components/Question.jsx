@@ -74,7 +74,7 @@ const Question = (props) => {
                       display: false 
                     },
                     ticks: {
-                      color: 'black',
+                      color: 'white',
                       font: {
                         weight: 'bold'
                       }
@@ -86,7 +86,7 @@ const Question = (props) => {
                       display: false 
                     },
                     ticks: {
-                      color: 'black',
+                      color: 'white',
                       font: {
                         weight: 'bold'
                       }
@@ -99,7 +99,7 @@ const Question = (props) => {
                       font: {
                         weight: 'bold'
                       },
-                      color: 'black'
+                      color: 'white'
                     }
                   }
                 }

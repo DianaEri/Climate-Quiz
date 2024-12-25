@@ -8,8 +8,9 @@ import {
 } from 'chart.js'; 
 import { faCircleLeft } from '@fortawesome/free-solid-svg-icons'; // Import the left arrow icon
 import PillButton from './PillButton'; // Import PillButton
-import achievementSmiley from './achievement_smiley.svg';
-import SubHeading from './SubHeading';
+import heart from '../assets/heart.svg';
+import sWhiteIcon from '../assets/s_white.svg';
+import SectionHeading from './SectionHeading';
 
 // Register Chart.js components
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -46,13 +47,11 @@ const QuizResult = ({ score, totalQuestions, onBackToDashboard }) => { // Add on
 
   return (
     <div className="quiz-result-container">
-      <SubHeading text="Bra jobbat med att slutföra quizen!" />
-
-      {/* achievement smiley image */}
-      <img className='achievement-image'
-        src={achievementSmiley}
-        alt="Achievement Smiley"
-        style={{ display: 'block', margin: '0 auto', width: '100px' }}
+      <SectionHeading
+        mainIcon={sWhiteIcon}
+        mainText="ra"
+        subText="Jobbat"
+        subIcon={heart}
       />
 
       <p className='motivating-message-quiz-result'>
