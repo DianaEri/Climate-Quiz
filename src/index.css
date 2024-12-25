@@ -923,19 +923,7 @@ progress.progress-bar::-moz-progress-bar {
   padding-bottom: 1rem;
 }
 
-.motivating-message-quiz{
-  padding-top: 0.5rem;
-  padding-left: 3.8rem;
-  padding-right: 3.8rem;
-  font-weight: bold;
-  font-size: 1.5rem;
-  color: white;
-}
-
 .motivating-message-quiz-result{
-  padding-left: 1rem;
-  padding-right: 1rem;
-  font-size: 1.8rem;
   color: white;
 }
 
@@ -944,9 +932,6 @@ progress.progress-bar::-moz-progress-bar {
 }
 
 .view-answes-link-container{
-  padding-left: 1rem;
-  padding-right: 1rem;
-  font-size: 1.8rem;
   color: white;
 }
 

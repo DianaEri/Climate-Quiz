@@ -8,7 +8,8 @@ import {
 } from 'chart.js'; 
 import { faCircleLeft } from '@fortawesome/free-solid-svg-icons'; // Import the left arrow icon
 import PillButton from './PillButton'; // Import PillButton
-import achievementSmiley from './achievement_smiley.svg'; 
+import achievementSmiley from './achievement_smiley.svg';
+import SubHeading from './SubHeading';
 
 // Register Chart.js components
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -45,7 +46,7 @@ const QuizResult = ({ score, totalQuestions, onBackToDashboard }) => { // Add on
 
   return (
     <div className="quiz-result-container">
-      <p className='motivating-message-quiz'>Bra jobbat med att slutföra quizen!</p>
+      <SubHeading text="Bra jobbat med att slutföra quizen!" />
 
       {/* achievement smiley image */}
       <img className='achievement-image'
@@ -60,7 +61,7 @@ const QuizResult = ({ score, totalQuestions, onBackToDashboard }) => { // Add on
       </p>
 
       {/* Pie Chart to display the percentage of correct and incorrect answers */}
-      <div className="chart-container" style={{ width: '300px', height: '300px', margin: '0 auto' }}>
+      <div className="chart-container" style={{ width: '250px', height: '250px', margin: '0 auto' }}>
         <Pie data={pieData} options={pieOptions} />
       </div>
 
