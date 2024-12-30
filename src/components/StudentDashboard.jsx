@@ -32,7 +32,7 @@ const StudentDashboard = ({ onStartQuiz, onViewRanking, onViewCompletedQuizzes }
           <PillButton
             text="Veckans Quiz"
             icon={faCircleRight}
-            onClick={() => onStartQuiz("quiz1")}// Navigate to Quiz
+            onClick={onStartWeeklyQuiz} // Navigate to Quiz
           />
           <PillButton
             text="Avklarade Quiz"

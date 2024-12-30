@@ -4,16 +4,18 @@ import StudentDashboard from './components/StudentDashboard';
 import TeacherDashboard from './components/TeacherDashboard'; 
 import Quiz from './components/Quiz'; 
 import Ranking from './components/Ranking'; 
-import CompletedQuizzes from './components/CompletedQuizzes'; // Ensure this is imported
+import CompletedQuizzes from './components/CompletedQuizzes'; 
+import WeeklyQuizSelection from './components/WeeklyQuizSelection'; // Import the new component
 import './index.css';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userType, setUserType] = useState('');
   const [showQuiz, setShowQuiz] = useState(false);
-  const [showRanking, setShowRanking] = useState(false); // State for Ranking page
-  const [currentQuizId, setCurrentQuizId] = useState(null); // Track which quiz is selected
-  const [showCompletedQuizzes, setShowCompletedQuizzes] = useState(false); // State for "Avklarade Quiz" page
+  const [showRanking, setShowRanking] = useState(false);
+  const [showWeeklyQuizzes, setShowWeeklyQuizzes] = useState(false); // State for Weekly Quiz page
+  const [currentQuizId, setCurrentQuizId] = useState(null); 
+  const [showCompletedQuizzes, setShowCompletedQuizzes] = useState(false);
 
   // Example user data (replace with actual user management/authentication logic)
   const userId = "i69gyRz2uDNTrvt5gYDeJOQaIlt1"; // Replace with logic to fetch authenticated user's ID
@@ -38,6 +40,14 @@ const App = () => {
             />
           ) : showRanking ? (
             <Ranking onBackClick={() => setShowRanking(false)} />
+          ) : showWeeklyQuizzes ? ( // Navigate to Weekly Quiz page
+            <WeeklyQuizSelection
+              onSelectQuiz={(quizId) => {
+                setCurrentQuizId(quizId); // Set the selected quiz ID
+                setShowQuiz(true); // Navigate to Quiz component
+              }}
+              onBackToDashboard={() => setShowWeeklyQuizzes(false)} // Back to dashboard
+            />
           ) : showCompletedQuizzes ? (
             <CompletedQuizzes 
               userId={userId} 
@@ -49,6 +59,7 @@ const App = () => {
                 setCurrentQuizId(quizId);
                 setShowQuiz(true);
               }} 
+              onStartWeeklyQuiz={() => setShowWeeklyQuizzes(true)} // Navigate to Weekly Quiz page
               onViewRanking={() => setShowRanking(true)} 
               onViewCompletedQuizzes={() => setShowCompletedQuizzes(true)}
             />
@@ -64,4 +75,3 @@ const App = () => {
 };
 
 export default App;
-
