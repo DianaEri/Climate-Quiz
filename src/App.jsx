@@ -12,6 +12,8 @@ const App = () => {
   const [showQuiz, setShowQuiz] = useState(false);
   const [showRanking, setShowRanking] = useState(false); // State for Ranking page
   const [currentQuizId, setCurrentQuizId] = useState(null); // Track which quiz is selected
+  const [showCompletedQuizzes, setShowCompletedQuizzes] = useState(false); // State for "Avklarade Quiz" page
+
 
   // Example user data (replace with actual user management/authentication logic)
   const userId = "i69gyRz2uDNTrvt5gYDeJOQaIlt1"; // Replace with logic to fetch authenticated user's ID
@@ -36,14 +38,20 @@ const App = () => {
             />
           ) : showRanking ? (
             <Ranking onBackClick={() => setShowRanking(false)} /> // Handle "Tillbaka" for Ranking
-          ) : (
-            <StudentDashboard 
-              onStartQuiz={(quizId) => {
-                setCurrentQuizId(quizId); // Set the quiz ID when starting a quiz
-                setShowQuiz(true); // Show the quiz
-              }} 
-              onViewRanking={() => setShowRanking(true)} // Add navigation for Ranking
+          ) : showCompletedQuizzes ? (
+            <CompletedQuizzes 
+              userId={userId} 
+              onBackToDashboard={() => setShowCompletedQuizzes(false)} // Navigate back to dashboard
             />
+          ) : (
+          <StudentDashboard 
+            onStartQuiz={(quizId) => {
+              setCurrentQuizId(quizId); // Set the quiz ID when starting a quiz
+              setShowQuiz(true); // Show the quiz
+            }} 
+            onViewRanking={() => setShowRanking(true)} // Add navigation for Ranking
+            onViewCompletedQuizzes={() => setShowCompletedQuizzes(true)} // Add navigation for "Avklarade Quiz"
+          />
           )
         ) : (
           <TeacherDashboard />
