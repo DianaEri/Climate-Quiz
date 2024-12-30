@@ -9,7 +9,7 @@ import {
 import { faCircleLeft } from '@fortawesome/free-solid-svg-icons'; // Import the left arrow icon
 import PillButton from './PillButton'; // Import PillButton
 import heart from '../assets/heart.svg';
-import sWhiteIcon from '../assets/s_white.svg';
+import bWhiteIcon from '../assets/b_white.svg';
 import SectionHeading from './SectionHeading';
 
 // Register Chart.js components
@@ -48,7 +48,7 @@ const QuizResult = ({ score, totalQuestions, onBackToDashboard }) => { // Add on
   return (
     <div className="quiz-result-container">
       <SectionHeading
-        mainIcon={sWhiteIcon}
+        mainIcon={bWhiteIcon}
         mainText="ra"
         subText="Jobbat"
         subIcon={heart}
