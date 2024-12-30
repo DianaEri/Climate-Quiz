@@ -74,7 +74,7 @@ const QuizResult = ({ score, totalQuestions, onBackToDashboard, onCompleteQuiz }
         {/* Button to go back to the start page */}
         <div className="button-container">
         <PillButton
-          text="Tillbaka till Startsida"
+          text="Skicka in Quiz"
           icon={faCircleLeft}
           onClick={onCompleteQuiz} // Call the prop function
         />
