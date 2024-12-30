@@ -4,6 +4,7 @@ import Question from "./Question";
 import QuizResult from "./QuizResult";
 import PillButton from "./PillButton";
 import QuizBackground from "./QuizBackground";
+import { saveCompletedQuiz } from "../firebaseHelpers";
 
 const Quiz = ({ onBackToDashboard }) => {
   const [quizData, setQuizData] = useState([]);

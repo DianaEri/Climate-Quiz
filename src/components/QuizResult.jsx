@@ -15,7 +15,7 @@ import SectionHeading from './SectionHeading';
 // Register Chart.js components
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const QuizResult = ({ score, totalQuestions, onBackToDashboard }) => { // Add onBackToDashboard prop
+const QuizResult = ({ score, totalQuestions, onBackToDashboard, onCompleteQuiz }) => { // Add onBackToDashboard prop
   const incorrectAnswers = totalQuestions - score;
 
   const pieData = {
@@ -69,6 +69,15 @@ const QuizResult = ({ score, totalQuestions, onBackToDashboard }) => { // Add on
       <p className="view-answers-link">
         Se alla <a href="#" className="answer-link">dina svar</a> med rätta lösningar.
       </p>
+      </div>
+
+        {/* Button to go back to the start page */}
+        <div className="button-container">
+        <PillButton
+          text="Tillbaka till Startsida"
+          icon={faCircleLeft}
+          onClick={onCompleteQuiz} // Call the prop function
+        />
       </div>
 
       {/* Button to go back to the start page */}
