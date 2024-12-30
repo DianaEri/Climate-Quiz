@@ -11,6 +11,10 @@ const App = () => {
   const [userType, setUserType] = useState('');
   const [showQuiz, setShowQuiz] = useState(false);
   const [showRanking, setShowRanking] = useState(false); // State for Ranking page
+  const [currentQuizId, setCurrentQuizId] = useState(null); // Track which quiz is selected
+
+  // Example user data (replace with actual user management/authentication logic)
+  const userId = "i69gyRz2uDNTrvt5gYDeJOQaIlt1"; // Replace with logic to fetch authenticated user's ID
 
   return (
     <div
@@ -25,12 +29,19 @@ const App = () => {
       {isLoggedIn ? (
         userType === 'student' ? (
           showQuiz ? (
-            <Quiz onBackToDashboard={() => setShowQuiz(false)} />
+            <Quiz
+              onBackToDashboard={() => setShowQuiz(false)} 
+              userId={userId} 
+              quizId={currentQuizId} // Pass the selected quiz ID
+            />
           ) : showRanking ? (
             <Ranking onBackClick={() => setShowRanking(false)} /> // Handle "Tillbaka" for Ranking
           ) : (
             <StudentDashboard 
-              onStartQuiz={() => setShowQuiz(true)} 
+              onStartQuiz={(quizId) => {
+                setCurrentQuizId(quizId); // Set the quiz ID when starting a quiz
+                setShowQuiz(true); // Show the quiz
+              }} 
               onViewRanking={() => setShowRanking(true)} // Add navigation for Ranking
             />
           )
