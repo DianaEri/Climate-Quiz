@@ -6,7 +6,7 @@ import PillButton from "./PillButton";
 import QuizBackground from "./QuizBackground";
 import { saveCompletedQuiz } from "../firebaseHelpers";
 
-const Quiz = ({ onBackToDashboard }) => {
+const Quiz = ({ onBackToDashboard, userId, quizId }) => {
   const [quizData, setQuizData] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
@@ -22,9 +22,14 @@ const Quiz = ({ onBackToDashboard }) => {
   };
 
   const handleCompleteQuiz = async () => {
-    await saveCompletedQuiz(userId, quizId);
-    alert("Quiz saved as completed!");
-    onBackToDashboard(); // Navigate back to the dashboard
+    try {
+      console.log("Saving quiz with userId:", userId, "and quizId:", quizId);
+      await saveCompletedQuiz(userId, quizId); // Ensure correct parameters
+      alert("Quiz saved as completed!");
+      onBackToDashboard(); // Navigate back to the dashboard
+    } catch (error) {
+      console.error("Error saving quiz:", error.message);
+    }
   };
 
   // Fetch quiz data
