@@ -21,6 +21,12 @@ const Quiz = ({ onBackToDashboard }) => {
     return array;
   };
 
+  const handleCompleteQuiz = async () => {
+    await saveCompletedQuiz(userId, quizId);
+    alert("Quiz saved as completed!");
+    onBackToDashboard(); // Navigate back to the dashboard
+  };
+
   // Fetch quiz data
   useEffect(() => {
     fetch("/quizData.json")
@@ -67,6 +73,7 @@ const Quiz = ({ onBackToDashboard }) => {
             score={score}
             totalQuestions={quizData.length}
             onBackToDashboard={onBackToDashboard}
+            onCompleteQuiz={handleCompleteQuiz}
           />
         ) : (
           <>
