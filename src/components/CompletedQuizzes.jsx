@@ -14,19 +14,19 @@ function CompletedQuizzes({ userId, onBackToDashboard }) {
 
   return (
     <div>
-      <h1>Completed Quizzes</h1>
+      <h1>Avklarade Quiz</h1>
       {quizzes.length > 0 ? (
         <ul>
           {quizzes.map((quiz, index) => (
             <li key={index}>
-              Quiz ID: {quiz.quizId} - Completed At: {quiz.completedAt}
+              Quiz ID: {quiz.quizId} - Avklarad den: {quiz.completedAt}
             </li>
           ))}
         </ul>
       ) : (
-        <p>No completed quizzes yet.</p>
+        <p>Du har inte gjort några Quiz än, börja nu för att få en rank bland mästarna.</p>
       )}
-      <button onClick={onBackToDashboard}>Back to Dashboard</button> {/* Go back */}
+      <button onClick={onBackToDashboard}>Tillbaka till Dashboard</button> {/* Go back */}
     </div>
   );
 }
