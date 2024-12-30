@@ -12,7 +12,7 @@ import drink from '../assets/drink.svg';
 import splash from '../assets/splash.svg';
 import SectionHeading from './SectionHeading';
 
-const StudentDashboard = ({ onStartQuiz, onViewRanking }) => { // Accept new prop
+const StudentDashboard = ({ onStartQuiz, onViewRanking, onViewCompletedQuizzes }) => { // Accept new prop
   return (
     <div
       className="student-view"
@@ -37,7 +37,7 @@ const StudentDashboard = ({ onStartQuiz, onViewRanking }) => { // Accept new pro
           <PillButton
             text="Avklarade Quiz"
             icon={faCircleRight}
-            onClick={() => console.log('Färdiga Quiz')}
+            onClick={onViewCompletedQuizzes}
           />
           <PillButton
             text="Rank Mästare"
