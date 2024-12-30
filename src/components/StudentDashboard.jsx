@@ -40,7 +40,7 @@ const StudentDashboard = ({ onStartQuiz, onViewRanking }) => { // Accept new pro
             onClick={() => console.log('Färdiga Quiz')}
           />
           <PillButton
-            text="Rank mästare"
+            text="Rank Mästare"
             icon={faCircleRight}
             onClick={onViewRanking} // Navigate to Ranking
           />
