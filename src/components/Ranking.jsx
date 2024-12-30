@@ -6,7 +6,7 @@ import '../index.css';
 import studentBackground from '../assets/student_bg.svg';
 import SectionHeading from './SectionHeading';
 import medal from '../assets/medal.svg';
-import sWhiteIcon from '../assets/s_white.svg';
+import rWhiteIcon from '../assets/r_white.svg';
 import SubHeading from './SubHeading';
 import bicycleSvg from '../assets/bicycle.svg';
 
@@ -23,7 +23,7 @@ const Ranking = ({ onBackClick }) => {
       <MobileNavbar />
       <div className="ranking-container">
       <SectionHeading
-        mainIcon={sWhiteIcon}
+        mainIcon={rWhiteIcon}
         mainText="ank"
         subText="Mästare"
         subIcon={medal}
