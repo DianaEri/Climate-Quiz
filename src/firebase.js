@@ -1,5 +1,6 @@
 // Importing functions from the SDKs we need
 import { initializeApp } from 'firebase/app';
+import { getFirestore } from "firebase/firestore";
 import { getAuth } from 'firebase/auth'; // Import authentication
 import { getAnalytics } from 'firebase/analytics';
 
@@ -16,9 +17,14 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app); // Initialize Analytics
+
+// Initialize Firestore
+export const db = getFirestore(app); // Export Firestore instance
 
 // Initialize Authentication
 export const auth = getAuth(app); // Export the auth object
+
+// Initialize Analytics
+export const analytics = getAnalytics(app); // Export Analytics if needed
 
 export default app;
