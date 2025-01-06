@@ -47,11 +47,18 @@ const QuizResult = ({ score, totalQuestions, onBackToDashboard, onCompleteQuiz }
   };
 
   const handleCompleteQuiz = () => {
-    if (isSubmitting) return; // Prevent double submission
+    if (isSubmitting) return;
     setIsSubmitting(true);
-    onCompleteQuiz(); // Call the provided function
+  
+    // Collect user answers from your quiz state
+    const userAnswers = quizData.map((question, index) => ({
+      questionId: question.id,
+      userAnswer: selectedAnswers[index] || null, // Replace with actual state for selected answers
+    }));
+  
+    onCompleteQuiz(userAnswers); // Pass user answers
   };
-
+  
   return (
     <div className="quiz-result-container">
       <SectionHeading
