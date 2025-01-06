@@ -36,7 +36,6 @@ export async function saveCompletedQuiz(userId, quizId, userAnswers) {
   }
 }
 
-
 // Get completed quizzes
 export async function getCompletedQuizzes(userId) {
   const userRef = doc(db, 'users', userId);
@@ -56,35 +55,56 @@ export async function getCompletedQuizzes(userId) {
 }
 
 // Get quiz details from quizData.json
-export async function getQuizDetails(quizId) {
+export async function getQuizDetails(quizId, userId) {
   try {
     console.log("Fetching details for quizId:", quizId); // Debugging log
 
-    // Filter questions by quizId
-    const questions = quizData.filter(
-      (question) => question.quizId === quizId
-    );
+    if (!userId) {
+      throw new Error("Invalid userId provided. Ensure userId is passed correctly.");
+    }
 
+    // Fetch questions from quizData.json
+    const questions = quizData.filter((question) => question.quizId === quizId);
     console.log("Filtered questions:", questions); // Log filtered result
 
     if (questions.length === 0) {
       throw new Error("Quiz not found");
     }
 
-    // Format and return the quiz details
+    // Fetch userAnswers from Firestore
+    const userRef = doc(db, 'users', userId);
+    const userSnap = await getDoc(userRef);
+
+    let userAnswers = [];
+    if (userSnap.exists()) {
+      const completedQuiz = userSnap
+        .data()
+        .completedQuizzes?.find((quiz) => quiz.quizId === quizId);
+
+      if (completedQuiz) {
+        userAnswers = completedQuiz.userAnswers || [];
+      } else {
+        console.warn("No matching completed quiz found for quizId:", quizId);
+      }
+    } else {
+      console.warn("User not found or no completed quizzes available.");
+    }
+
+    console.log("User Answers:", userAnswers);
+
     return {
       quizId,
       questions: questions.map((question) => ({
+        id: question.id, // Ensure question IDs are included
         text: question.question,
         correctAnswer: question.correct_answer,
         incorrectAnswers: question.incorrect_answers,
         chartData: question.chart_data || null,
       })),
+      userAnswers, // Include user answers or fallback to an empty array
     };
   } catch (error) {
     console.error("Error fetching quiz details:", error.message);
     throw error;
   }
 }
-
-

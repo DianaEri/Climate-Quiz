@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getQuizDetails } from '../firebaseHelpers'; // Import the function from helpers
+import { getQuizDetails } from '../firebaseHelpers'; // A helper function to fetch quiz details
 
 function QuizDetails({ userId, quizId, onBackToCompletedQuizzes }) {
     const [quizDetails, setQuizDetails] = useState(null);
@@ -47,4 +47,3 @@ function QuizDetails({ userId, quizId, onBackToCompletedQuizzes }) {
 }
 
 export default QuizDetails;
-
