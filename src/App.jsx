@@ -5,7 +5,8 @@ import TeacherDashboard from './components/TeacherDashboard';
 import Quiz from './components/Quiz'; 
 import Ranking from './components/Ranking'; 
 import CompletedQuizzes from './components/CompletedQuizzes'; 
-import WeeklyQuizSelection from './components/WeeklyQuizSelection'; // Import the new component
+import WeeklyQuizSelection from './components/WeeklyQuizSelection'; // Import weekly quiz selection
+import QuizDetails from './components/QuizDetails'; // Import quiz details
 import './index.css';
 
 const App = () => {
@@ -14,6 +15,7 @@ const App = () => {
   const [showQuiz, setShowQuiz] = useState(false);
   const [showRanking, setShowRanking] = useState(false);
   const [showWeeklyQuizzes, setShowWeeklyQuizzes] = useState(false); // State for Weekly Quiz page
+  const [showQuizDetails, setShowQuizDetails] = useState(false);
   const [currentQuizId, setCurrentQuizId] = useState(null); 
   const [showCompletedQuizzes, setShowCompletedQuizzes] = useState(false);
 
@@ -31,7 +33,13 @@ const App = () => {
     >
       {isLoggedIn ? (
         userType === 'student' ? (
-          showQuiz ? (
+          showQuizDetails ? (
+            <QuizDetails
+              userId={userId}
+              quizId={currentQuizId}
+              onBackToCompletedQuizzes={() => setShowQuizDetails(false)}
+            />
+          ) : showQuiz ? (
             <Quiz
               onBackToDashboard={() => setShowQuiz(false)} 
               userId={userId} 
