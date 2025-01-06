@@ -35,7 +35,7 @@ const StudentDashboard = ({ onStartQuiz, onStartWeeklyQuiz, onViewRanking, onVie
             onClick={onStartWeeklyQuiz} // Navigate to Quiz
           />
           <PillButton
-            text="Avklarade Quiz"
+            text="Färdiga Quiz"
             icon={faCircleRight}
             onClick={onViewCompletedQuizzes}
           />
