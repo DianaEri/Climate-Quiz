@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react'; // Include useState
 import { Pie } from 'react-chartjs-2'; 
 import {
   Chart as ChartJS,
@@ -6,7 +6,7 @@ import {
   Tooltip,
   Legend
 } from 'chart.js'; 
-import { faCircleLeft , faCircleRight } from '@fortawesome/free-solid-svg-icons'; // Import the left arrow icon
+import { faCircleLeft, faCircleRight } from '@fortawesome/free-solid-svg-icons'; // Import the left arrow icon
 import PillButton from './PillButton'; // Import PillButton
 import heart from '../assets/heart.svg';
 import bWhiteIcon from '../assets/b_white.svg';
@@ -16,8 +16,8 @@ import SectionHeading from './SectionHeading';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const QuizResult = ({ score, totalQuestions, onBackToDashboard, onCompleteQuiz }) => { // Add onBackToDashboard prop
-  const incorrectAnswers = totalQuestions - score;
   const [isSubmitting, setIsSubmitting] = useState(false); // Track submission state
+  const incorrectAnswers = totalQuestions - score;
 
   const pieData = {
     labels: ['Fel', 'Rätt'],
