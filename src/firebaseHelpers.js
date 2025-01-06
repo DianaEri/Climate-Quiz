@@ -59,9 +59,9 @@ export async function getQuizDetails(quizId) {
   try {
     console.log("Fetching details for quizId:", quizId); // Debugging log
 
-    // Convert quizId to integer and filter questions
+    // Filter questions by quizId
     const questions = quizData.filter(
-      (question) => question.id === parseInt(quizId, 10)
+      (question) => question.quizId === quizId
     );
 
     console.log("Filtered questions:", questions); // Log filtered result
@@ -85,4 +85,5 @@ export async function getQuizDetails(quizId) {
     throw error;
   }
 }
+
 

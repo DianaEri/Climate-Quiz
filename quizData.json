@@ -1,59 +1,69 @@
 [
-    {
+    { 
+      "quizId": "quiz1",
       "id": 0,
       "question": "Vilken gas är den största bidragaren till den globala uppvärmningen?",
       "correct_answer": "Koldioxid (CO2)",
       "incorrect_answers": ["Syre (O2)", "Metan (CH4)", "Väte (H2)"]
     },
     {
+      "quizId": "quiz1",
       "id": 1,
       "question": "Hur mycket har den globala medeltemperaturen ökat sedan förindustriell tid?",
       "correct_answer": "Cirka 1°C",
       "incorrect_answers": ["Cirka 0,5°C", "Cirka 2°C", "Cirka 3°C"]
     },
     {
+      "quizId": "quiz1",
       "id": 2,
       "question": "Vilket av följande är en förnybar energikälla?",
       "correct_answer": "Solenergi",
       "incorrect_answers": ["Kol", "Naturgas", "Kärnkraft"]
     },
     {
+      "quizId": "quiz1",
       "id": 3,
       "question": "Vilket djur är en symbol för klimatförändringarnas effekter?",
       "correct_answer": "Isbjörn",
       "incorrect_answers": ["Delfin", "Pingvin", "Grizzlybjörn"]
     },
     {
+      "quizId": "quiz1",
       "id": 4,
       "question": "Vilket land släpper ut mest koldioxid totalt sett i världen?",
       "correct_answer": "Kina",
       "incorrect_answers": ["USA", "Indien", "Ryssland"]
     },
     {
+      "quizId": "quiz1",
       "id": 5,
       "question": "Vilket av följande är ett exempel på en växthusgas?",
       "correct_answer": "Koldioxid (CO₂)",
       "incorrect_answers": ["Syre (O₂)", "Kväve (N₂)", "Helium (He)"]
     },
     {
+      "quizId": "quiz1",
       "id": 6,
       "question": "Vad är 'havsnivåhöjning' en konsekvens av?",
       "correct_answer": "Is- och glaciärsmältning",
       "incorrect_answers": ["Mindre regn", "Färre fossila bränslen", "Fler naturkatastrofer"]
     },
     {
+      "quizId": "quiz1",
       "id": 7,
       "question": "Vilket av följande är ett exempel på en lösning för att bekämpa klimatförändringar?",
       "correct_answer": "Trädplantering",
       "incorrect_answers": ["Mer plastanvändning", "Fler fossila bränslen", "Mindre kollektivtrafik"]
     },
     {
+      "quizId": "quiz1",
       "id": 8,
       "question": "Vad kan du göra för att minska ditt koldioxidavtryck?",
       "correct_answer": "Alla ovanstående",
       "incorrect_answers": ["Kollektivtrafik före bil", "Minska köttkonsumtion", "Släcka oanvända lampor"]
     },
     {
+      "quizId": "quiz1",
       "id": 9,
       "question": "Vad visar grafen?",
       "correct_answer": "Havsnivåer",
@@ -79,24 +89,28 @@
       }
     },
     {
+      "quizId": "quiz1",
       "id": 10,
       "question": "Vilken sektor släpper ut mest växthusgaser globalt?",
       "correct_answer": "Energi",
       "incorrect_answers": ["Transport", "Jordbruk", "Industri"]
     },
     {
+      "quizId": "quiz1",
       "id": 11,
       "question": "Vad är havsförsurning och vad orsakar det?",
       "correct_answer": "Sura hav",
       "incorrect_answers": ["Varmare hav", "Havsföroreningar", "Höjd havsnivå"]
     },
     {
+      "quizId": "quiz1",
       "id": 12,
       "question": "Vad är den huvudsakliga orsaken till den globala uppvärmningen?",
       "correct_answer": "Växthusgasutsläpp",
       "incorrect_answers": ["Vulkaner", "Solaktivitet", "Klimatcykler"]
     },
     {
+      "quizId": "quiz1",
       "id": 13,
       "question": "Vad visar grafen?",
       "correct_answer": "Temperaturavikelser",
