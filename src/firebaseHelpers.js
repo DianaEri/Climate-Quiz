@@ -54,10 +54,10 @@ export async function getCompletedQuizzes(userId) {
   }
 }
 
-// Get quiz details from quizData.json
+// Get quiz details from quizData.json and Firestore
 export async function getQuizDetails(quizId, userId) {
   try {
-    console.log("Fetching details for quizId:", quizId); // Debugging log
+    console.log("Fetching details for quizId:", quizId, "userId:", userId);
 
     if (!userId) {
       throw new Error("Invalid userId provided. Ensure userId is passed correctly.");
@@ -65,7 +65,7 @@ export async function getQuizDetails(quizId, userId) {
 
     // Fetch questions from quizData.json
     const questions = quizData.filter((question) => question.quizId === quizId);
-    console.log("Filtered questions:", questions); // Log filtered result
+    console.log("Filtered questions:", questions);
 
     if (questions.length === 0) {
       throw new Error("Quiz not found");
@@ -77,9 +77,9 @@ export async function getQuizDetails(quizId, userId) {
 
     let userAnswers = [];
     if (userSnap.exists()) {
-      const completedQuiz = userSnap
-        .data()
-        .completedQuizzes?.find((quiz) => quiz.quizId === quizId);
+      const completedQuiz = userSnap.data().completedQuizzes?.find(
+        (quiz) => quiz.quizId === quizId
+      );
 
       if (completedQuiz) {
         userAnswers = completedQuiz.userAnswers || [];
@@ -90,18 +90,18 @@ export async function getQuizDetails(quizId, userId) {
       console.warn("User not found or no completed quizzes available.");
     }
 
-    console.log("User Answers:", userAnswers);
+    console.log("User Answers Retrieved:", userAnswers);
 
     return {
       quizId,
       questions: questions.map((question) => ({
-        id: question.id, // Ensure question IDs are included
+        id: question.id,
         text: question.question,
         correctAnswer: question.correct_answer,
         incorrectAnswers: question.incorrect_answers,
         chartData: question.chart_data || null,
       })),
-      userAnswers, // Include user answers or fallback to an empty array
+      userAnswers, // Include user answers
     };
   } catch (error) {
     console.error("Error fetching quiz details:", error.message);
