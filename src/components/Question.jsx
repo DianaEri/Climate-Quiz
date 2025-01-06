@@ -21,12 +21,10 @@ ChartJS.register(
 const Question = (props) => {
   const data = props.data;
 
-  if (data === undefined) return <p>There is no data</p>;
+  if (!data) return <p>There is no data</p>;
 
   const currentQuestion = data;
 
-  
- 
   if (currentQuestion.id === 13 && currentQuestion.chart_data?.datasets) {
     currentQuestion.chart_data.datasets = currentQuestion.chart_data.datasets.map(dataset => {
       if (dataset.label === "GISTEMP (°C)") {
@@ -34,26 +32,29 @@ const Question = (props) => {
           ...dataset,
           backgroundColor: "#EF813E",
           borderColor: "#EF813E"
-        }
+        };
       } else if (dataset.label === "GCAG (°C)") {
         return {
           ...dataset,
           backgroundColor: "#E6B451",
           borderColor: "#E6B451"
-        }
+        };
       }
       return dataset;
     });
   }
 
+  const handleAnswerChange = (e) => {
+    props.onSelectAnswer(currentQuestion.id, e.target.value); // Notify the parent about the selected answer
+  };
+
   return (
     <div className="question-card">
       <div className="question-body">
-
         {/* Progress Bar with Percentage */}
         <div className="progress-bar-container">
           <progress className="progress-bar" value={props.progress} max="100"></progress>
-          <div className="progress-text">{Math.round(props.progress)}%</div> 
+          <div className="progress-text">{Math.round(props.progress)}%</div>
         </div>
 
         {/* Render Chart only if chart_data exists */}
@@ -70,35 +71,25 @@ const Question = (props) => {
                 scales: {
                   x: {
                     beginAtZero: true,
-                    grid: {
-                      display: false 
-                    },
+                    grid: { display: false },
                     ticks: {
                       color: 'white',
-                      font: {
-                        weight: 'bold'
-                      }
+                      font: { weight: 'bold' }
                     }
                   },
                   y: {
                     beginAtZero: true,
-                    grid: {
-                      display: false 
-                    },
+                    grid: { display: false },
                     ticks: {
                       color: 'white',
-                      font: {
-                        weight: 'bold'
-                      }
+                      font: { weight: 'bold' }
                     }
                   }
                 },
                 plugins: {
                   legend: {
                     labels: {
-                      font: {
-                        weight: 'bold'
-                      },
+                      font: { weight: 'bold' },
                       color: 'white'
                     }
                   }
@@ -109,27 +100,27 @@ const Question = (props) => {
         )}
 
         {/* Question Info */}
-
-        <div className='question-container'>
-        <div className="question-info">Fråga {props.index + 1} / {props.numberOfQuestion}</div>
-
-        <h5 className="question-title">{currentQuestion.question}</h5>
+        <div className="question-container">
+          <div className="question-info">Fråga {props.index + 1} / {props.numberOfQuestion}</div>
+          <h5 className="question-title">{currentQuestion.question}</h5>
         </div>
+
+        {/* Render Answers */}
         {currentQuestion.all_answers.map((answer, index) => (
-        <div className='answer-button' key={index}> {/* Add the key here */}
-          <label className="option-button" htmlFor={`radio_${props.index}_${index}`}>
-            <span className="radio-label">{answer}</span>
-            <input
-              className="radio-button"
-              type="radio"
-              name={`question_${props.index}`}
-              id={`radio_${props.index}_${index}`}
-              value={answer}
-            />
-          </label>
-        </div>
-      ))}
-
+          <div className="answer-button" key={index}>
+            <label className="option-button" htmlFor={`radio_${props.index}_${index}`}>
+              <span className="radio-label">{answer}</span>
+              <input
+                className="radio-button"
+                type="radio"
+                name={`question_${props.index}`}
+                id={`radio_${props.index}_${index}`}
+                value={String(answer)} // Ensure the value is a string
+                onChange={(e) => props.onSelectAnswer(e.target.value)} // Pass the selected value to onSelectAnswer
+              />
+            </label>
+          </div>
+        ))}
       </div>
     </div>
   );

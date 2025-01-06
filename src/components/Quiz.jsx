@@ -40,11 +40,17 @@ const Quiz = ({ onBackToDashboard, userId, quizId }) => {
   }, [quizId]);
 
   const handleAnswerSelect = (questionId, answer) => {
+    if (typeof answer !== "string") {
+      console.error(`Invalid answer type for question ${questionId}:`, answer);
+      return;
+    }
+  
+    console.log(`Question ID: ${questionId}, Selected Answer: ${answer}`); // Debugging log
     setSelectedAnswers((prevAnswers) => ({
       ...prevAnswers,
-      [questionId]: answer.trim(),
+      [questionId]: answer.trim(), // Ensure answers are trimmed
     }));
-  };
+  };  
 
   const handleNext = () => {
     const currentQuestion = quizData[currentIndex];
