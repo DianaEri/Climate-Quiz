@@ -11,6 +11,7 @@ const Quiz = ({ onBackToDashboard, userId, quizId }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [isQuizFinished, setIsQuizFinished] = useState(false);
+  const [selectedAnswers, setSelectedAnswers] = useState({}); // Track user's selected answers
 
   // Shuffle array utility
   const shuffle = (array) => {
@@ -35,31 +36,41 @@ const Quiz = ({ onBackToDashboard, userId, quizId }) => {
       });
   }, [quizId]);
 
+  const handleAnswerSelect = (questionId, answer) => {
+    console.log(`Question ID: ${questionId}, Selected Answer: ${answer}`); // Debugging log
+    setSelectedAnswers((prevAnswers) => ({
+      ...prevAnswers,
+      [questionId]: answer.trim(),
+    }));
+  };
+  
+
   const handleNext = () => {
-    const selectedOption = document.querySelector(
-      `input[name="question_${currentIndex}"]:checked`
+    const currentQuestion = quizData[currentIndex];
+    const userAnswer = selectedAnswers[currentQuestion.id];
+    const correctAnswer = currentQuestion.correct_answer.trim();
+  
+    console.log(
+      `Question ${currentQuestion.id}: User Answer = ${userAnswer}, Correct Answer = ${correctAnswer}`
     );
-    if (selectedOption) {
-      const userAnswer = selectedOption.value;
-      const correctAnswer = quizData[currentIndex].correct_answer;
-
-      if (userAnswer === correctAnswer) {
-        setScore((prevScore) => prevScore + 1);
-      }
+  
+    if (userAnswer === correctAnswer) {
+      setScore((prevScore) => prevScore + 1);
     }
-
+  
     if (currentIndex < quizData.length - 1) {
       setCurrentIndex((prevIndex) => prevIndex + 1);
     } else {
+      console.log("Final Selected Answers:", selectedAnswers); // Debugging log
       setIsQuizFinished(true);
     }
   };
 
   const handleCompleteQuiz = async () => {
     try {
-      const userAnswers = quizData.map((question, index) => ({
+      const userAnswers = quizData.map((question) => ({
         questionId: question.id,
-        userAnswer: document.querySelector(`input[name="question_${index}"]:checked`)?.value || null,
+        userAnswer: selectedAnswers[question.id] || null,
       }));
       await saveCompletedQuiz(userId, quizId, userAnswers);
       alert("Quiz saved as completed!");
@@ -78,6 +89,7 @@ const Quiz = ({ onBackToDashboard, userId, quizId }) => {
             score={score}
             totalQuestions={quizData.length}
             quizData={quizData}
+            selectedAnswers={selectedAnswers} // Pass selectedAnswers correctly
             onCompleteQuiz={handleCompleteQuiz}
             onBackToDashboard={onBackToDashboard}
           />
@@ -90,6 +102,7 @@ const Quiz = ({ onBackToDashboard, userId, quizId }) => {
                 index={currentIndex}
                 numberOfQuestion={quizData.length}
                 progress={((currentIndex + 1) / quizData.length) * 100}
+                onSelectAnswer={(answer) => handleAnswerSelect(quizData[currentIndex].id, answer)}
               />
             )}
             <div className="button-container">
