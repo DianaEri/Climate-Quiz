@@ -15,7 +15,14 @@ import SectionHeading from './SectionHeading';
 // Register Chart.js components
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const QuizResult = ({ score, totalQuestions, onBackToDashboard, onCompleteQuiz }) => { // Add onBackToDashboard prop
+const QuizResult = ({ 
+  score, 
+  totalQuestions, 
+  quizData, // Add quizData as a prop
+  selectedAnswers, // Add selectedAnswers as a prop
+  onBackToDashboard, 
+  onCompleteQuiz 
+}) => { 
   const [isSubmitting, setIsSubmitting] = useState(false); // Track submission state
   const incorrectAnswers = totalQuestions - score;
 
@@ -50,10 +57,10 @@ const QuizResult = ({ score, totalQuestions, onBackToDashboard, onCompleteQuiz }
     if (isSubmitting) return;
     setIsSubmitting(true);
   
-    // Collect user answers from your quiz state
+    // Collect user answers
     const userAnswers = quizData.map((question, index) => ({
       questionId: question.id,
-      userAnswer: selectedAnswers[index] || null, // Replace with actual state for selected answers
+      userAnswer: selectedAnswers[index] || null, // Use passed selectedAnswers prop
     }));
   
     onCompleteQuiz(userAnswers); // Pass user answers
