@@ -1,5 +1,5 @@
 import { db } from './firebase'; // Firebase initialization file
-import { doc, setDoc, getDoc, updateDoc, arrayUnion } from "firebase/firestore";
+import { doc, setDoc, updateDoc, arrayUnion, getDoc } from "firebase/firestore";
 import quizData from '../quizData.json'; // Path to your JSON file
 
 // Save completed quizzes
@@ -19,7 +19,10 @@ export async function saveCompletedQuiz(userId, quizId) {
     if (!userSnap.exists()) {
       console.log("User document does not exist. Creating a new one...");
       await setDoc(userRef, { completedQuizzes: [] }); // Initialize with an empty array
-    } else {
+    }
+
+    // If the document exists, check for duplicates
+    if (userSnap.exists()) {
       const userData = userSnap.data();
       const alreadyCompleted = userData.completedQuizzes?.some(
         (quiz) => quiz.quizId === quizId
@@ -38,6 +41,7 @@ export async function saveCompletedQuiz(userId, quizId) {
         completedAt: new Date().toISOString(),
       }),
     });
+
     console.log('Quiz saved successfully!');
   } catch (error) {
     console.error('Error saving quiz:', error.message);
