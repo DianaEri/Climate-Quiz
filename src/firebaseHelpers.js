@@ -21,20 +21,7 @@ export async function saveCompletedQuiz(userId, quizId) {
       await setDoc(userRef, { completedQuizzes: [] }); // Initialize with an empty array
     }
 
-    // If the document exists, check for duplicates
-    if (userSnap.exists()) {
-      const userData = userSnap.data();
-      const alreadyCompleted = userData.completedQuizzes?.some(
-        (quiz) => quiz.quizId === quizId
-      );
-
-      if (alreadyCompleted) {
-        console.log("Quiz already saved.");
-        return; // Prevent duplicate save
-      }
-    }
-
-    // Update the completedQuizzes array
+    // Add the completed quiz to the array without duplicate checks
     await updateDoc(userRef, {
       completedQuizzes: arrayUnion({
         quizId: quizId,
@@ -45,7 +32,7 @@ export async function saveCompletedQuiz(userId, quizId) {
     console.log('Quiz saved successfully!');
   } catch (error) {
     console.error('Error saving quiz:', error.message);
-    throw error; // Re-throw for higher-level error handling
+    throw error;
   }
 }
 
