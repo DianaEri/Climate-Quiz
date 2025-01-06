@@ -17,6 +17,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 const QuizResult = ({ score, totalQuestions, onBackToDashboard, onCompleteQuiz }) => { // Add onBackToDashboard prop
   const incorrectAnswers = totalQuestions - score;
+  const [isSubmitting, setIsSubmitting] = useState(false); // Track submission state
 
   const pieData = {
     labels: ['Fel', 'Rätt'],
@@ -45,6 +46,12 @@ const QuizResult = ({ score, totalQuestions, onBackToDashboard, onCompleteQuiz }
     }
   };
 
+  const handleCompleteQuiz = () => {
+    if (isSubmitting) return; // Prevent double submission
+    setIsSubmitting(true);
+    onCompleteQuiz(); // Call the provided function
+  };
+
   return (
     <div className="quiz-result-container">
       <SectionHeading
@@ -71,12 +78,13 @@ const QuizResult = ({ score, totalQuestions, onBackToDashboard, onCompleteQuiz }
       </p>
       </div>
 
-        {/* Button to go back to the start page */}
-        <div className="button-container">
+      {/* Button to go back to the start page */}
+      <div className="button-container">
         <PillButton
-          text="Skicka in Quiz"
+          text={isSubmitting ? "Skickar..." : "Skicka in Quiz"}
           icon={faCircleRight}
-          onClick={onCompleteQuiz} // Call the prop function
+          onClick={handleCompleteQuiz} // Use the local handler
+          disabled={isSubmitting} // Disable button while submitting
         />
       </div>
 
