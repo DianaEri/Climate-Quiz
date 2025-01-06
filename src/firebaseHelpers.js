@@ -57,14 +57,17 @@ export async function getCompletedQuizzes(userId) {
 // Get quiz details from quizData.json
 export async function getQuizDetails(quizId) {
   try {
-    // Simulate a delay (optional, for asynchronous behavior)
-    await new Promise((resolve) => setTimeout(resolve, 500));
+    console.log("Fetching details for quizId:", quizId); // Debugging log
 
-    // Filter the questions for the given quizId
-    const questions = quizData.filter((question) => question.id === parseInt(quizId, 10));
+    // Convert quizId to integer and filter questions
+    const questions = quizData.filter(
+      (question) => question.id === parseInt(quizId, 10)
+    );
+
+    console.log("Filtered questions:", questions); // Log filtered result
 
     if (questions.length === 0) {
-      throw new Error('Quiz not found');
+      throw new Error("Quiz not found");
     }
 
     // Format and return the quiz details
@@ -74,11 +77,12 @@ export async function getQuizDetails(quizId) {
         text: question.question,
         correctAnswer: question.correct_answer,
         incorrectAnswers: question.incorrect_answers,
-        chartData: question.chart_data || null, // Include chart data if available
+        chartData: question.chart_data || null,
       })),
     };
   } catch (error) {
-    console.error('Error fetching quiz details:', error.message);
+    console.error("Error fetching quiz details:", error.message);
     throw error;
   }
 }
+

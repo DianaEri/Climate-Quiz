@@ -1,20 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { getQuizDetails } from '../firebaseHelpers'; // A helper function to fetch quiz details
 
-function QuizDetails({ userId, quizId, onBackToCompletedQuizzes }) {
-  const [quizDetails, setQuizDetails] = useState(null);
-
-  useEffect(() => {
-    async function fetchDetails() {
-      const data = await getQuizDetails(userId, quizId);
-      setQuizDetails(data);
+function QuizDetails({ quizId, onBackToCompletedQuizzes }) {
+    const [quizDetails, setQuizDetails] = useState(null);
+  
+    useEffect(() => {
+      async function fetchDetails() {
+        try {
+          console.log("Fetching quiz details for quizId:", quizId); // Debugging log
+          const data = await getQuizDetails(quizId); // Pass only quizId
+          setQuizDetails(data);
+        } catch (error) {
+          console.error("Error fetching quiz details:", error.message);
+        }
+      }
+      fetchDetails();
+    }, [quizId]);
+  
+    if (!quizDetails) {
+      return <p>Laddar quizdetaljer...</p>;
     }
-    fetchDetails();
-  }, [userId, quizId]);
-
-  if (!quizDetails) {
-    return <p>Laddar quizdetaljer...</p>;
-  }
 
   return (
     <div>
