@@ -3,29 +3,29 @@ import { doc, setDoc, updateDoc, arrayUnion, getDoc } from "firebase/firestore";
 import quizData from '../quizData.json'; // Path to your JSON file
 
 // Save completed quizzes
-export async function saveCompletedQuiz(userId, quizId) {
-  console.log("Attempting to save quiz:", { userId, quizId });
+export async function saveCompletedQuiz(userId, quizId, userAnswers) {
+  console.log("Attempting to save quiz:", { userId, quizId, userAnswers });
 
-  if (!userId || !quizId) {
-    throw new Error("Invalid userId or quizId provided.");
+  if (!userId || !quizId || !userAnswers) {
+    throw new Error("Invalid userId, quizId, or userAnswers provided.");
   }
 
   const userRef = doc(db, 'users', userId);
 
   try {
-    // Check if user document exists
     const userSnap = await getDoc(userRef);
 
     if (!userSnap.exists()) {
       console.log("User document does not exist. Creating a new one...");
-      await setDoc(userRef, { completedQuizzes: [] }); // Initialize with an empty array
+      await setDoc(userRef, { completedQuizzes: [] });
     }
 
-    // Add the completed quiz to the array without duplicate checks
+    // Save the quiz with user answers
     await updateDoc(userRef, {
       completedQuizzes: arrayUnion({
         quizId: quizId,
         completedAt: new Date().toISOString(),
+        userAnswers: userAnswers,
       }),
     });
 
@@ -35,6 +35,7 @@ export async function saveCompletedQuiz(userId, quizId) {
     throw error;
   }
 }
+
 
 // Get completed quizzes
 export async function getCompletedQuizzes(userId) {
