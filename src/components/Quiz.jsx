@@ -11,9 +11,9 @@ const Quiz = ({ onBackToDashboard, userId, quizId }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [isQuizFinished, setIsQuizFinished] = useState(false);
-  const [selectedAnswers, setSelectedAnswers] = useState({}); // Track user's selected answers
+  const [selectedAnswers, setSelectedAnswers] = useState({});
 
-  // Shuffle array utility
+  // Shuffle utility
   const shuffle = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -27,41 +27,37 @@ const Quiz = ({ onBackToDashboard, userId, quizId }) => {
       .then((response) => response.json())
       .then((data) => {
         const processedData = data
-          .filter((question) => question.quizId === quizId) // Filter by quiz ID
+          .filter((question) => question.quizId === quizId)
           .map((question) => ({
             ...question,
-            all_answers: shuffle([question.correct_answer, ...question.incorrect_answers]),
+            all_answers: shuffle([
+              question.correct_answer.trim(),
+              ...question.incorrect_answers.map((ans) => ans.trim()),
+            ]),
           }));
         setQuizData(processedData);
       });
   }, [quizId]);
 
   const handleAnswerSelect = (questionId, answer) => {
-    console.log(`Question ID: ${questionId}, Selected Answer: ${answer}`); // Debugging log
     setSelectedAnswers((prevAnswers) => ({
       ...prevAnswers,
       [questionId]: answer.trim(),
     }));
   };
-  
 
   const handleNext = () => {
     const currentQuestion = quizData[currentIndex];
     const userAnswer = selectedAnswers[currentQuestion.id];
     const correctAnswer = currentQuestion.correct_answer.trim();
-  
-    console.log(
-      `Question ${currentQuestion.id}: User Answer = ${userAnswer}, Correct Answer = ${correctAnswer}`
-    );
-  
+
     if (userAnswer === correctAnswer) {
       setScore((prevScore) => prevScore + 1);
     }
-  
+
     if (currentIndex < quizData.length - 1) {
       setCurrentIndex((prevIndex) => prevIndex + 1);
     } else {
-      console.log("Final Selected Answers:", selectedAnswers); // Debugging log
       setIsQuizFinished(true);
     }
   };
@@ -89,7 +85,7 @@ const Quiz = ({ onBackToDashboard, userId, quizId }) => {
             score={score}
             totalQuestions={quizData.length}
             quizData={quizData}
-            selectedAnswers={selectedAnswers} // Pass selectedAnswers correctly
+            selectedAnswers={selectedAnswers}
             onCompleteQuiz={handleCompleteQuiz}
             onBackToDashboard={onBackToDashboard}
           />
