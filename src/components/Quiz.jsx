@@ -11,8 +11,8 @@ const Quiz = ({ onBackToDashboard, userId, quizId }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [isQuizFinished, setIsQuizFinished] = useState(false);
-  const [selectedAnswers, setSelectedAnswers] = useState({}); // Track user's selected answers
 
+  // Shuffle array utility
   const shuffle = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -21,34 +21,12 @@ const Quiz = ({ onBackToDashboard, userId, quizId }) => {
     return array;
   };
 
-  const handleAnswerSelect = (questionId, answer) => {
-    setSelectedAnswers((prevAnswers) => ({
-      ...prevAnswers,
-      [questionId]: answer, // Update the answer for the specific question
-    }));
-  };
-
-  const handleCompleteQuiz = async () => {
-    try {
-      console.log("Saving quiz with userId:", userId, "and quizId:", quizId);
-      const userAnswers = quizData.map((question) => ({
-        questionId: question.id,
-        userAnswer: selectedAnswers[question.id] || null,
-      }));
-      await saveCompletedQuiz(userId, quizId, userAnswers); // Save quiz with answers
-      alert("Quiz saved as completed!");
-      onBackToDashboard();
-    } catch (error) {
-      console.error("Error saving quiz:", error.message);
-    }
-  };
-
   useEffect(() => {
     fetch("/quizData.json")
       .then((response) => response.json())
       .then((data) => {
         const processedData = data
-          .filter((question) => question.quizId === quizId) // Filter by quizId
+          .filter((question) => question.quizId === quizId) // Filter by quiz ID
           .map((question) => ({
             ...question,
             all_answers: shuffle([question.correct_answer, ...question.incorrect_answers]),
@@ -58,14 +36,36 @@ const Quiz = ({ onBackToDashboard, userId, quizId }) => {
   }, [quizId]);
 
   const handleNext = () => {
-    const currentQuestion = quizData[currentIndex];
-    if (selectedAnswers[currentQuestion.id] === currentQuestion.correct_answer) {
-      setScore((prevScore) => prevScore + 1);
+    const selectedOption = document.querySelector(
+      `input[name="question_${currentIndex}"]:checked`
+    );
+    if (selectedOption) {
+      const userAnswer = selectedOption.value;
+      const correctAnswer = quizData[currentIndex].correct_answer;
+
+      if (userAnswer === correctAnswer) {
+        setScore((prevScore) => prevScore + 1);
+      }
     }
+
     if (currentIndex < quizData.length - 1) {
       setCurrentIndex((prevIndex) => prevIndex + 1);
     } else {
       setIsQuizFinished(true);
+    }
+  };
+
+  const handleCompleteQuiz = async () => {
+    try {
+      const userAnswers = quizData.map((question, index) => ({
+        questionId: question.id,
+        userAnswer: document.querySelector(`input[name="question_${index}"]:checked`)?.value || null,
+      }));
+      await saveCompletedQuiz(userId, quizId, userAnswers);
+      alert("Quiz saved as completed!");
+      onBackToDashboard();
+    } catch (error) {
+      console.error("Error saving quiz:", error.message);
     }
   };
 
@@ -78,7 +78,6 @@ const Quiz = ({ onBackToDashboard, userId, quizId }) => {
             score={score}
             totalQuestions={quizData.length}
             quizData={quizData}
-            selectedAnswers={selectedAnswers}
             onCompleteQuiz={handleCompleteQuiz}
             onBackToDashboard={onBackToDashboard}
           />
@@ -91,7 +90,6 @@ const Quiz = ({ onBackToDashboard, userId, quizId }) => {
                 index={currentIndex}
                 numberOfQuestion={quizData.length}
                 progress={((currentIndex + 1) / quizData.length) * 100}
-                onSelectAnswer={(answer) => handleAnswerSelect(quizData[currentIndex].id, answer)}
               />
             )}
             <div className="button-container">

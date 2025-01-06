@@ -1,12 +1,6 @@
 import React, { useState } from "react";
 import { Pie } from "react-chartjs-2";
-import {
-  Chart as ChartJS,
-  ArcElement,
-  Tooltip,
-  Legend,
-} from "chart.js";
-import { faCircleLeft, faCircleRight } from "@fortawesome/free-solid-svg-icons";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import PillButton from "./PillButton";
 import heart from "../assets/heart.svg";
 import bWhiteIcon from "../assets/b_white.svg";
@@ -25,15 +19,14 @@ const QuizResult = ({
 }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Correct and Incorrect Answers Calculation
-  const results = quizData.map((question, index) => {
-    const userAnswer = selectedAnswers[question.id] || null;
-    const isCorrect =
-      userAnswer?.trim().toLowerCase() ===
-      question.correct_answer?.trim().toLowerCase();
-
-    return { questionId: question.id, isCorrect, userAnswer };
-  });
+  // Generate detailed results
+  const results = quizData.map((question) => ({
+    questionId: question.id,
+    questionText: question.question,
+    userAnswer: selectedAnswers[question.id] || null,
+    correctAnswer: question.correct_answer,
+    isCorrect: selectedAnswers[question.id]?.trim().toLowerCase() === question.correct_answer.trim().toLowerCase(),
+  }));
 
   const incorrectAnswers = results.filter((result) => !result.isCorrect).length;
 
@@ -70,12 +63,7 @@ const QuizResult = ({
     if (isSubmitting) return;
     setIsSubmitting(true);
 
-    const userAnswers = results.map(({ questionId, userAnswer }) => ({
-      questionId,
-      userAnswer,
-    }));
-
-    onCompleteQuiz(userAnswers);
+    onCompleteQuiz(results); // Pass detailed results to save
   };
 
   return (
