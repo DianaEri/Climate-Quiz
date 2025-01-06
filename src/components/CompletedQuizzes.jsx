@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getCompletedQuizzes } from '../firebaseHelpers';
 
-function CompletedQuizzes({ userId, onBackToDashboard }) {
+function CompletedQuizzes({ userId, onBackToDashboard, onViewQuizDetails }) {
   const [quizzes, setQuizzes] = useState([]);
 
   useEffect(() => {
@@ -19,7 +19,9 @@ function CompletedQuizzes({ userId, onBackToDashboard }) {
         <ul>
           {quizzes.map((quiz, index) => (
             <li key={index}>
-              Quiz ID: {quiz.quizId} - Avklarad den: {quiz.completedAt}
+              <button onClick={() => onViewQuizDetails(quiz.quizId)}>
+                Quiz ID: {quiz.quizId} - Avklarad den: {quiz.completedAt}
+              </button>
             </li>
           ))}
         </ul>
