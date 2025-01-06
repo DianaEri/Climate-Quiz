@@ -6,7 +6,7 @@ import {
   Tooltip,
   Legend
 } from 'chart.js'; 
-import { faCircleLeft } from '@fortawesome/free-solid-svg-icons'; // Import the left arrow icon
+import { faCircleLeft , faCircleRight } from '@fortawesome/free-solid-svg-icons'; // Import the left arrow icon
 import PillButton from './PillButton'; // Import PillButton
 import heart from '../assets/heart.svg';
 import bWhiteIcon from '../assets/b_white.svg';
@@ -75,7 +75,7 @@ const QuizResult = ({ score, totalQuestions, onBackToDashboard, onCompleteQuiz }
         <div className="button-container">
         <PillButton
           text="Skicka in Quiz"
-          icon={faCircleLeft}
+          icon={faCircleRight}
           onClick={onCompleteQuiz} // Call the prop function
         />
       </div>
