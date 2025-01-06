@@ -994,6 +994,10 @@ progress.progress-bar::-moz-progress-bar {
   left: 60%;
 }
 
+.view-answers-link-container {
+  color: white;
+}
+
 @keyframes fadeIn {
   0% {
     opacity: 0;

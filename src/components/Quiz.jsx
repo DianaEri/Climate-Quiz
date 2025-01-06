@@ -11,8 +11,8 @@ const Quiz = ({ onBackToDashboard, userId, quizId }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [isQuizFinished, setIsQuizFinished] = useState(false);
+  const [selectedAnswers, setSelectedAnswers] = useState({}); // Track user's selected answers
 
-  // Function to shuffle array elements
   const shuffle = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -21,45 +21,47 @@ const Quiz = ({ onBackToDashboard, userId, quizId }) => {
     return array;
   };
 
+  const handleAnswerSelect = (questionId, answer) => {
+    setSelectedAnswers((prevAnswers) => ({
+      ...prevAnswers,
+      [questionId]: answer, // Update the answer for the specific question
+    }));
+  };
+
   const handleCompleteQuiz = async () => {
     try {
       console.log("Saving quiz with userId:", userId, "and quizId:", quizId);
-      await saveCompletedQuiz(userId, quizId); // Ensure correct parameters
+      const userAnswers = quizData.map((question) => ({
+        questionId: question.id,
+        userAnswer: selectedAnswers[question.id] || null,
+      }));
+      await saveCompletedQuiz(userId, quizId, userAnswers); // Save quiz with answers
       alert("Quiz saved as completed!");
-      onBackToDashboard(); // Navigate back to the dashboard
+      onBackToDashboard();
     } catch (error) {
       console.error("Error saving quiz:", error.message);
     }
   };
 
-  // Fetch quiz data
   useEffect(() => {
     fetch("/quizData.json")
       .then((response) => response.json())
       .then((data) => {
-        const processedData = data.map((question) => ({
-          ...question,
-          all_answers: shuffle([question.correct_answer, ...question.incorrect_answers]),
-        }));
+        const processedData = data
+          .filter((question) => question.quizId === quizId) // Filter by quizId
+          .map((question) => ({
+            ...question,
+            all_answers: shuffle([question.correct_answer, ...question.incorrect_answers]),
+          }));
         setQuizData(processedData);
       });
-  }, []);
+  }, [quizId]);
 
-  // Handle next question
   const handleNext = () => {
-    const selectedOption = document.querySelector(
-      `input[name="question_${currentIndex}"]:checked`
-    );
-
-    if (selectedOption) {
-      const userAnswer = selectedOption.value;
-      const correctAnswer = quizData[currentIndex]?.correct_answer;
-
-      if (userAnswer === correctAnswer) {
-        setScore((prevScore) => prevScore + 1);
-      }
+    const currentQuestion = quizData[currentIndex];
+    if (selectedAnswers[currentQuestion.id] === currentQuestion.correct_answer) {
+      setScore((prevScore) => prevScore + 1);
     }
-
     if (currentIndex < quizData.length - 1) {
       setCurrentIndex((prevIndex) => prevIndex + 1);
     } else {
@@ -70,34 +72,31 @@ const Quiz = ({ onBackToDashboard, userId, quizId }) => {
   return (
     <div className="quiz-background" style={{ height: "100vh", overflow: "hidden", position: "relative" }}>
       <QuizBackground currentQuestion={currentIndex} />
-      <div
-        className="quiz-content"
-      >
+      <div className="quiz-content">
         {isQuizFinished ? (
           <QuizResult
             score={score}
             totalQuestions={quizData.length}
-            onBackToDashboard={onBackToDashboard}
+            quizData={quizData}
+            selectedAnswers={selectedAnswers}
             onCompleteQuiz={handleCompleteQuiz}
+            onBackToDashboard={onBackToDashboard}
           />
         ) : (
           <>
             {quizData.length > 0 && (
               <Question
-              key={currentIndex} // Unique key for the current question
-              data={quizData[currentIndex]}
-              index={currentIndex}
-              numberOfQuestion={quizData.length}
-              progress={((currentIndex + 1) / quizData.length) * 100}
-            />
+                key={currentIndex}
+                data={quizData[currentIndex]}
+                index={currentIndex}
+                numberOfQuestion={quizData.length}
+                progress={((currentIndex + 1) / quizData.length) * 100}
+                onSelectAnswer={(answer) => handleAnswerSelect(quizData[currentIndex].id, answer)}
+              />
             )}
             <div className="button-container">
               <PillButton
-                text={
-                  currentIndex < quizData.length - 1
-                    ? "Nästa fråga"
-                    : "Skicka in"
-                }
+                text={currentIndex < quizData.length - 1 ? "Nästa fråga" : "Skicka in"}
                 icon={faCircleRight}
                 onClick={handleNext}
               />
