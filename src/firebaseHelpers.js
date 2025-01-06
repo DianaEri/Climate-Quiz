@@ -1,5 +1,6 @@
 import { db } from './firebase'; // Firebase initialization file
 import { doc, setDoc, getDoc, updateDoc, arrayUnion } from "firebase/firestore";
+import quizData from '../quizData.json'; // Path to your JSON file
 
 // Save completed quizzes
 export async function saveCompletedQuiz(userId, quizId) {
@@ -59,5 +60,34 @@ export async function getCompletedQuizzes(userId) {
   } catch (error) {
     console.error('Error fetching completed quizzes:', error);
     return [];
+  }
+}
+
+// Get quiz details from quizData.json
+export async function getQuizDetails(quizId) {
+  try {
+    // Simulate a delay (optional, for asynchronous behavior)
+    await new Promise((resolve) => setTimeout(resolve, 500));
+
+    // Filter the questions for the given quizId
+    const questions = quizData.filter((question) => question.id === parseInt(quizId, 10));
+
+    if (questions.length === 0) {
+      throw new Error('Quiz not found');
+    }
+
+    // Format and return the quiz details
+    return {
+      quizId,
+      questions: questions.map((question) => ({
+        text: question.question,
+        correctAnswer: question.correct_answer,
+        incorrectAnswers: question.incorrect_answers,
+        chartData: question.chart_data || null, // Include chart data if available
+      })),
+    };
+  } catch (error) {
+    console.error('Error fetching quiz details:', error.message);
+    throw error;
   }
 }
