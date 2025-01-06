@@ -47,3 +47,4 @@ function QuizDetails({ userId, quizId, onBackToCompletedQuizzes }) {
 }
 
 export default QuizDetails;
+
