@@ -56,9 +56,13 @@ const App = () => {
               onBackToDashboard={() => setShowWeeklyQuizzes(false)}
             />
           ) : showCompletedQuizzes ? (
-            <CompletedQuizzes 
-              userId={userId} 
+            <CompletedQuizzes
+              userId={userId}
               onBackToDashboard={() => setShowCompletedQuizzes(false)}
+              onViewQuizDetails={(quizId) => {
+                setCurrentQuizId(quizId); // Set the selected quiz ID
+                setShowQuizDetails(true); // Navigate to the quiz details page
+              }}
             />
           ) : (
             <StudentDashboard
