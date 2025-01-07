@@ -79,7 +79,7 @@
             "borderWidth": 1
           },
           {
-            "label": "GMSL Uncertainty (mm)",
+            "label": "GMSL Osäkerhet (mm)",
             "data": [6.8, 6.8, 7.1],
             "backgroundColor": "#2DA4BC",
             "borderColor": "#2DA4BC",
