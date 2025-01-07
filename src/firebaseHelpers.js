@@ -1,5 +1,6 @@
 import { db } from './firebase'; // Firebase initialization file
 import { doc, setDoc, updateDoc, arrayUnion, getDoc } from "firebase/firestore";
+import { v4 as uuidv4 } from "uuid"; // For generating unique identifiers
 import quizData from '../quizData.json'; // Path to your JSON file
 
 // Save completed quizzes
@@ -20,16 +21,20 @@ export async function saveCompletedQuiz(userId, quizId, userAnswers) {
       await setDoc(userRef, { completedQuizzes: [] });
     }
 
+    const completedQuizId = uuidv4(); // Generate a unique ID for this completed quiz
+
     // Save the quiz with user answers
     await updateDoc(userRef, {
       completedQuizzes: arrayUnion({
-        quizId: quizId,
+        completedQuizId, // Unique ID for this completed quiz
+        quizId,
         completedAt: new Date().toISOString(),
-        userAnswers: userAnswers,
+        userAnswers,
       }),
     });
 
-    console.log('Quiz saved successfully!');
+    console.log('Quiz saved successfully with ID:', completedQuizId);
+    return completedQuizId; // Return the unique ID for further use
   } catch (error) {
     console.error('Error saving quiz:', error.message);
     throw error;
@@ -38,29 +43,35 @@ export async function saveCompletedQuiz(userId, quizId, userAnswers) {
 
 // Get completed quizzes
 export async function getCompletedQuizzes(userId) {
+  if (!userId) {
+    throw new Error("Invalid userId provided.");
+  }
+
   const userRef = doc(db, 'users', userId);
 
   try {
     const userSnap = await getDoc(userRef);
     if (userSnap.exists()) {
-      return userSnap.data().completedQuizzes || [];
+      const completedQuizzes = userSnap.data().completedQuizzes || [];
+      console.log(`Completed quizzes for user ${userId}:`, completedQuizzes);
+      return completedQuizzes;
     } else {
-      console.log('No such user!');
+      console.log('No user document found in Firestore.');
       return [];
     }
   } catch (error) {
-    console.error('Error fetching completed quizzes:', error);
+    console.error('Error fetching completed quizzes:', error.message);
     return [];
   }
 }
 
 // Get quiz details from quizData.json and Firestore
-export async function getQuizDetails(quizId, userId) {
+export async function getQuizDetails(quizId, userId, completedQuizId) {
   try {
-    console.log("Fetching details for quizId:", quizId, "userId:", userId);
+    console.log("Fetching details for quizId:", quizId, "userId:", userId, "completedQuizId:", completedQuizId);
 
-    if (!userId) {
-      throw new Error("Invalid userId provided. Ensure userId is passed correctly.");
+    if (!userId || !completedQuizId) {
+      throw new Error("Invalid userId or completedQuizId provided.");
     }
 
     // Fetch questions from quizData.json
@@ -68,7 +79,7 @@ export async function getQuizDetails(quizId, userId) {
     console.log("Filtered questions:", questions);
 
     if (questions.length === 0) {
-      throw new Error("Quiz not found");
+      throw new Error(`Quiz with ID ${quizId} not found in quizData.json.`);
     }
 
     // Fetch userAnswers from Firestore
@@ -77,20 +88,24 @@ export async function getQuizDetails(quizId, userId) {
 
     let userAnswers = [];
     if (userSnap.exists()) {
-      const completedQuiz = userSnap.data().completedQuizzes?.find(
-        (quiz) => quiz.quizId === quizId
+      const completedQuizzes = userSnap.data().completedQuizzes || [];
+      console.log(`Completed quizzes for user ${userId}:`, completedQuizzes);
+
+      // Match quiz using quizId and completedQuizId
+      const completedQuiz = completedQuizzes.find(
+        (quiz) => quiz.quizId === quizId && quiz.completedQuizId === completedQuizId
       );
 
       if (completedQuiz) {
+        console.log("Matching completed quiz found:", completedQuiz);
         userAnswers = completedQuiz.userAnswers || [];
+        console.log("User Answers Retrieved:", userAnswers);
       } else {
-        console.warn("No matching completed quiz found for quizId:", quizId);
+        console.warn(`No matching completed quiz found for completedQuizId: ${completedQuizId}`);
       }
     } else {
-      console.warn("User not found or no completed quizzes available.");
+      console.warn(`User document not found in Firestore for userId: ${userId}`);
     }
-
-    console.log("User Answers Retrieved:", userAnswers);
 
     return {
       quizId,

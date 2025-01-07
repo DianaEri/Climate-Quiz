@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
-import { faCircleRight } from '@fortawesome/free-solid-svg-icons';
-import Question from './Question';
-import QuizResult from './QuizResult';
-import PillButton from './PillButton';
-import QuizBackground from './QuizBackground';
-import { saveCompletedQuiz } from '../firebaseHelpers';
+import { useEffect, useState } from "react";
+import { faCircleRight } from "@fortawesome/free-solid-svg-icons";
+import Question from "./Question";
+import QuizResult from "./QuizResult";
+import PillButton from "./PillButton";
+import QuizBackground from "./QuizBackground";
+import { saveCompletedQuiz } from "../firebaseHelpers";
 
 const Quiz = ({ onBackToDashboard, userId, quizId }) => {
   const [quizData, setQuizData] = useState([]);
@@ -12,16 +12,8 @@ const Quiz = ({ onBackToDashboard, userId, quizId }) => {
   const [score, setScore] = useState(0);
   const [isQuizFinished, setIsQuizFinished] = useState(false);
   const [selectedAnswers, setSelectedAnswers] = useState({});
+  const [isQuizSaved, setIsQuizSaved] = useState(false);
 
-  // Map quizId to JSON file
-  const quizFileMap = {
-    quiz1: '/quizData.json',
-    quiz2: '/quizDataTwo.json',
-    quiz3: '/quizDataThree.json',
-    quiz4: '/quizDataFour.json',
-  };
-
-  // Shuffle utility
   const shuffle = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -32,30 +24,38 @@ const Quiz = ({ onBackToDashboard, userId, quizId }) => {
 
   useEffect(() => {
     const fetchQuizData = async () => {
-      const filePath = quizFileMap[quizId];
-      if (!filePath) {
-        console.error(`Invalid quizId: ${quizId}`);
-        return;
-      }
-
       try {
-        const response = await fetch(filePath);
-        const data = await response.json();
-        const processedData = data.map((question) => ({
+        const response = await fetch("/quizData.json"); // Single JSON file
+        const allQuestions = await response.json();
+  
+        // Filter questions by quizId
+        const filteredQuestions = allQuestions.filter(
+          (question) => question.quizId === quizId
+        );
+  
+        if (filteredQuestions.length === 0) {
+          console.error(`No questions found for quizId: ${quizId}`);
+          return;
+        }
+  
+        // Shuffle answers for each question
+        const processedData = filteredQuestions.map((question) => ({
           ...question,
           all_answers: shuffle([
             question.correct_answer.trim(),
             ...question.incorrect_answers.map((ans) => ans.trim()),
           ]),
         }));
+  
         setQuizData(processedData);
       } catch (error) {
-        console.error('Error fetching quiz data:', error.message);
+        console.error("Error fetching quiz data:", error.message);
       }
     };
-
+  
     fetchQuizData();
   }, [quizId]);
+  
 
   const handleAnswerSelect = (questionId, answer) => {
     setSelectedAnswers((prevAnswers) => ({
@@ -86,18 +86,25 @@ const Quiz = ({ onBackToDashboard, userId, quizId }) => {
         questionId: question.id,
         userAnswer: selectedAnswers[question.id] || null,
       }));
-      await saveCompletedQuiz(userId, quizId, userAnswers);
-      alert('Quiz saved as completed!');
+  
+      console.log("Submitting user answers:", userAnswers);
+      console.log("For quizId:", quizId);
+  
+      const completedQuizId = await saveCompletedQuiz(userId, quizId, userAnswers);
+      console.log("CompletedQuizId:", completedQuizId);
+  
+      alert(`Quiz ${quizId} saved as completed!`);
       onBackToDashboard();
     } catch (error) {
-      console.error('Error saving quiz:', error.message);
+      console.error("Error saving quiz:", error.message);
+      alert("Failed to save the quiz. Please try again.");
     }
   };
 
   return (
     <div
       className="quiz-background"
-      style={{ height: '100vh', overflow: 'hidden', position: 'relative' }}
+      style={{ height: "100vh", overflow: "hidden", position: "relative" }}
     >
       <QuizBackground currentQuestion={currentIndex} />
       <div className="quiz-content">
@@ -108,7 +115,13 @@ const Quiz = ({ onBackToDashboard, userId, quizId }) => {
             quizData={quizData}
             selectedAnswers={selectedAnswers}
             onCompleteQuiz={handleCompleteQuiz}
-            onBackToDashboard={onBackToDashboard}
+            onBackToDashboard={() => {
+              if (isQuizSaved) {
+                onBackToDashboard();
+              } else {
+                alert("Please save the quiz before exiting.");
+              }
+            }}
           />
         ) : (
           <>
@@ -128,8 +141,8 @@ const Quiz = ({ onBackToDashboard, userId, quizId }) => {
               <PillButton
                 text={
                   currentIndex < quizData.length - 1
-                    ? 'Nästa fråga'
-                    : 'Skicka in'
+                    ? "Nästa fråga"
+                    : "Visa resultat"
                 }
                 icon={faCircleRight}
                 onClick={handleNext}

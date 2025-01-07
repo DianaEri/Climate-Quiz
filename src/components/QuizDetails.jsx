@@ -1,28 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import { getQuizDetails } from '../firebaseHelpers';
 
-function QuizDetails({ userId, quizId, onBackToCompletedQuizzes }) {
+function QuizDetails({ userId, quizId, completedQuizId, onBackToCompletedQuizzes }) {
   const [quizDetails, setQuizDetails] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchDetails() {
       try {
-        const data = await getQuizDetails(quizId, userId);
+        const data = await getQuizDetails(quizId, userId, completedQuizId);
         console.log("Fetched quiz details:", data);
         setQuizDetails(data);
       } catch (error) {
         console.error("Error fetching quiz details:", error.message);
+      } finally {
+        setLoading(false);
       }
     }
     fetchDetails();
-  }, [quizId, userId]);
+  }, [quizId, userId, completedQuizId]);
 
-  if (!quizDetails) {
+  if (loading) {
     return <p>Laddar quizdetaljer...</p>;
   }
 
-  if (!quizDetails.userAnswers || !Array.isArray(quizDetails.userAnswers)) {
-    console.warn("userAnswers is missing or not an array:", quizDetails.userAnswers);
+  if (!quizDetails || !quizDetails.userAnswers || !Array.isArray(quizDetails.userAnswers)) {
     return <p>Inga användarsvar tillgängliga för detta quiz.</p>;
   }
 
@@ -32,15 +34,22 @@ function QuizDetails({ userId, quizId, onBackToCompletedQuizzes }) {
       <p>Quiz ID: {quizId}</p>
       <ul>
         {quizDetails.questions.map((question, index) => {
-          const userAnswer = quizDetails.userAnswers.find(
+          const userAnswerDetails = quizDetails.userAnswers.find(
             (ans) => ans.questionId === question.id
-          )?.userAnswer || "Ingen svar";
+          );
+
+          const userAnswer = userAnswerDetails?.userAnswer || "Ingen svar";
 
           return (
             <li key={index}>
               <p>{question.text}</p>
               <p><strong>Rätt svar:</strong> {question.correctAnswer}</p>
               <p><strong>Ditt svar:</strong> {userAnswer}</p>
+              <p>
+                {userAnswer === question.correctAnswer
+                  ? "✔️ Korrekt!"
+                  : "❌ Fel."}
+              </p>
             </li>
           );
         })}
