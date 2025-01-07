@@ -38,7 +38,7 @@ function QuizDetails({ userId, quizId, completedQuizId, onBackToCompletedQuizzes
     <div>
       <h1>Quizdetaljer</h1>
       <p>Quiz ID: {quizId}</p>
-      <ul>
+      <ol>
         {quizDetails.questions.map((question, index) => {
           const userAnswerDetails = quizDetails.userAnswers.find(
             (ans) => ans.questionId === question.id
@@ -59,7 +59,7 @@ function QuizDetails({ userId, quizId, completedQuizId, onBackToCompletedQuizzes
             </li>
           );
         })}
-      </ul>
+      </ol>
       <button onClick={onBackToCompletedQuizzes}>Tillbaka till Avklarade Quiz</button>
     </div>
   );
