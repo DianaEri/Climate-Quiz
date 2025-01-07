@@ -86,14 +86,9 @@ const Quiz = ({ onBackToDashboard, userId, quizId }) => {
         questionId: question.id,
         userAnswer: selectedAnswers[question.id] || null,
       }));
-  
-      console.log("Submitting user answers:", userAnswers);
-      console.log("For quizId:", quizId);
-  
       const completedQuizId = await saveCompletedQuiz(userId, quizId, userAnswers);
-      console.log("CompletedQuizId:", completedQuizId);
-  
-      alert(`Quiz ${quizId} saved as completed!`);
+      console.log("Completed quiz saved with ID:", completedQuizId);
+      alert("Quiz saved as completed!");
       onBackToDashboard();
     } catch (error) {
       console.error("Error saving quiz:", error.message);

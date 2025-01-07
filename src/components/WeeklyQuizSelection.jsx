@@ -35,7 +35,7 @@ const WeeklyQuizSelection = ({ onSelectQuiz, onBackToDashboard }) => {
       <p>Välj en quiz att starta:</p>
       <div>
         {uniqueQuizzes.map((quiz) => (
-          <button key={quiz.quizId} onClick={() => onSelectQuiz(quiz.quizId)}>
+          <button onClick={() => onViewQuizDetails(quiz.quizId, quiz.completedQuizId)}>
             {quiz.name}
           </button>
         ))}
