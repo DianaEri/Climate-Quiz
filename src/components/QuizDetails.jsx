@@ -4,6 +4,7 @@ import { getQuizDetails } from '../firebaseHelpers';
 function QuizDetails({ userId, quizId, completedQuizId, onBackToCompletedQuizzes }) {
   const [quizDetails, setQuizDetails] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null); // Add an error state for better error handling
 
   useEffect(() => {
     async function fetchDetails() {
@@ -13,6 +14,7 @@ function QuizDetails({ userId, quizId, completedQuizId, onBackToCompletedQuizzes
         setQuizDetails(data);
       } catch (error) {
         console.error("Error fetching quiz details:", error.message);
+        setError(error.message); // Set the error message
       } finally {
         setLoading(false);
       }
@@ -24,8 +26,12 @@ function QuizDetails({ userId, quizId, completedQuizId, onBackToCompletedQuizzes
     return <p>Laddar quizdetaljer...</p>;
   }
 
-  if (!quizDetails || !quizDetails.userAnswers || !Array.isArray(quizDetails.userAnswers)) {
-    return <p>Inga användarsvar tillgängliga för detta quiz.</p>;
+  if (error) {
+    return <p>Error loading quiz details: {error}</p>;
+  }
+
+  if (!quizDetails || !quizDetails.questions) {
+    return <p>Quizdetaljer kunde inte laddas. Kontrollera dina valda uppgifter.</p>;
   }
 
   return (

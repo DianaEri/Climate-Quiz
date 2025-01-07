@@ -7,6 +7,7 @@ import Ranking from './components/Ranking';
 import CompletedQuizzes from './components/CompletedQuizzes'; 
 import WeeklyQuizSelection from './components/WeeklyQuizSelection'; 
 import QuizDetails from './components/QuizDetails'; 
+import CompletedQuiz from './components/CompletedQuiz';
 import './index.css';
 
 const App = () => {
@@ -66,13 +67,13 @@ const App = () => {
               }}
             />
           ) : showCompletedQuizzes ? (
-            <CompletedQuizzes
+            <CompletedQuiz
               userId={userId}
               onBackToDashboard={() => setShowCompletedQuizzes(false)}
               onViewQuizDetails={(quizId, completedQuizId) => {
-                setCurrentQuizId(quizId); // Set the selected quiz ID
-                setSelectedCompletedQuizId(completedQuizId); // Set the unique completed quiz ID
-                setShowQuizDetails(true); // Navigate to the quiz details page
+                setCurrentQuizId(quizId);
+                setSelectedCompletedQuizId(completedQuizId);
+                setShowQuizDetails(true);
               }}
             />
           ) : (

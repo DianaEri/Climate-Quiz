@@ -13,7 +13,6 @@ const WeeklyQuizSelection = ({ onSelectQuiz, onBackToDashboard }) => {
         }
         const data = await response.json();
 
-        // Extract unique quizzes by `quizId`
         const uniqueQuizIds = Array.from(new Set(data.map((quiz) => quiz.quizId)));
         const uniqueQuizObjects = uniqueQuizIds.map((id) => ({
           quizId: id,
@@ -35,7 +34,7 @@ const WeeklyQuizSelection = ({ onSelectQuiz, onBackToDashboard }) => {
       <p>Välj en quiz att starta:</p>
       <div>
         {uniqueQuizzes.map((quiz) => (
-          <button onClick={() => onViewQuizDetails(quiz.quizId, quiz.completedQuizId)}>
+          <button onClick={() => onSelectQuiz(quiz.quizId)} key={quiz.quizId}>
             {quiz.name}
           </button>
         ))}
@@ -46,3 +45,4 @@ const WeeklyQuizSelection = ({ onSelectQuiz, onBackToDashboard }) => {
 };
 
 export default WeeklyQuizSelection;
+
