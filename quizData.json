@@ -138,22 +138,346 @@
   {
     "quizId": "quiz2",
     "id": 0,
-    "question": "Här är en fråga för Quiz 2?",
-    "correct_answer": "Korrekt svar för Quiz 2",
-    "incorrect_answers": ["Fel svar 1", "Fel svar 2", "Fel svar 3"]
+    "question": "Vilken process bidrar mest till stigande havsnivåer?",
+    "correct_answer": "Glaciärsmältning",
+    "incorrect_answers": ["Minskad regn", "Ökad fotosyntes", "Färre stormar"]
+  },
+  {
+    "quizId": "quiz2",
+    "id": 1,
+    "question": "Hur mycket har havsnivån ökat globalt sedan 1900-talet?",
+    "correct_answer": "Cirka 20 cm",
+    "incorrect_answers": ["Cirka 5 cm", "Cirka 50 cm", "Cirka 1 meter"]
+  },
+  {
+    "quizId": "quiz2",
+    "id": 2,
+    "question": "Vad orsakar termisk expansion i haven?",
+    "correct_answer": "Varmare havstemperaturer",
+    "incorrect_answers": [
+      "Ökad isbildning",
+      "Havsförsurning",
+      "Minskad salthalt"
+    ]
+  },
+  {
+    "quizId": "quiz2",
+    "id": 3,
+    "question": "Vilken region är mest sårbar för stigande havsnivåer?",
+    "correct_answer": "Lågt liggande ö-nationer",
+    "incorrect_answers": ["Bergsområden", "Inlandsregioner", "Öknar"]
+  },
+  {
+    "quizId": "quiz2",
+    "id": 4,
+    "question": "Hur påverkar stigande havsnivåer jordbruksmark nära kusten?",
+    "correct_answer": "Saltvatteninträngning skadar grödor",
+    "incorrect_answers": [
+      "Förbättrar avkastningen",
+      "Ökar grödornas motståndskraft",
+      "Reducerar erosion"
+    ]
+  },
+  { 
+    "quizId": "quiz2",
+    "id": 5,
+    "question": "Vilket av följande är en lösning för att skydda kustområden från stigande havsnivåer?",
+    "correct_answer": "Bygga skyddsvallar",
+    "incorrect_answers": [
+      "Avverka fler träd",
+      "Bygga fler vägar",
+      "Öka plastproduktionen"
+    ]
+  },
+  {
+    "quizId": "quiz2",
+    "id": 6,
+    "question": "Vad är en konsekvens av stigande havsnivåer?",
+    "correct_answer": "Översvämningar av kuststäder",
+    "incorrect_answers": [
+      "Minskad havstemperatur",
+      "Färre stormar",
+      "Stabilare klimat"
+    ]
+  },
+  {
+    "quizId": "quiz2",
+    "id": 7,
+    "question": "Vilken lösning kan minska effekterna av havsnivåhöjning?",
+    "correct_answer": "Återställa våtmarker",
+    "incorrect_answers": [
+      "Minska grönområden",
+      "Öka jordbruksmark",
+      "Bygga fler städer vid kusten"
+    ]
+  },
+  {
+    "quizId": "quiz2",
+    "id": 8,
+    "question": "Vilken faktor påverkar havsnivåhöjningen mest?",
+    "correct_answer": "Smältande glaciärer och isar",
+    "incorrect_answers": [
+      "Minskad regnaktivitet",
+      "Fler naturkatastrofer",
+      "Ökad växttillväxt"
+    ]
+  },
+  {
+    "quizId": "quiz2",
+    "id": 9,
+    "question": "Vad visar trenden i grafen för global medelhavsnivå (GMSL)?",
+    "correct_answer": "Havsnivån har stigit över tid",
+    "incorrect_answers": [
+      "Havsnivån har sjunkit över tid",
+      "Havsnivån har varit stabil",
+      "Havsnivån följer ett slumpmässigt mönster"
+    ],
+    "chart_data": {
+      "labels": ["1880", "1900", "1920", "1940", "1960", "1980", "2000", "2010"],
+      "datasets": [
+        {
+          "label": "GMSL (mm)",
+          "data": [-158.7, -130.1, -108.2, -80.0, -38.1, -4.1, 20.5, 67.3],
+          "backgroundColor": "#307786",
+          "borderColor": "#307786",
+          "borderWidth": 1
+        },
+        {
+          "label": "GMSL Osäkerhet (mm)",
+          "data": [24.2, 18.3, 13.1, 10.8, 6.6, 6.5, 6.8, 7.5],
+          "backgroundColor": "#2DA4BC",
+          "borderColor": "#2DA4BC",
+          "borderWidth": 1
+        }
+      ]
+    }
+  },
+  {
+    "quizId": "quiz2",
+    "id": 10,
+    "question": "Vilken långsiktig risk medför stigande havsnivåer för kuststäder?",
+    "correct_answer": "Förlust av bostadsområden",
+    "incorrect_answers": [
+      "Ökad lufttryck",
+      "Minskad havstemperatur",
+      "Färre naturkatastrofer"
+    ]
+  },
+  {
+    "quizId": "quiz2",
+    "id": 11,
+    "question": "Hur påverkar stigande havsnivåer ekosystemen?",
+    "correct_answer": "Förstör habitat för kustlevande arter",
+    "incorrect_answers": [
+      "Ökar biologisk mångfald",
+      "Minskar algtillväxt",
+      "Stabiliserar havsströmmar"
+    ]
+  },
+  {
+    "quizId": "quiz2",
+    "id": 12,
+    "question": "Vad orsakar den största delen av havsnivåhöjningen?",
+    "correct_answer": "Växthusgasutsläpp",
+    "incorrect_answers": ["Solaktivitet", "Minskad nederbörd", "Vulkanutbrott"]
+  },
+  {
+    "quizId": "quiz2",
+    "id": 13,
+    "question": "Vad visar grafen om osäkerhet i global medelhavsnivå (GMSL)?",
+    "correct_answer": "Osäkerheten minskade över tid men steg något på senare år",
+    "incorrect_answers": [
+      "Osäkerheten ökade konstant över tid",
+      "Osäkerheten förblev densamma",
+      "Osäkerheten minskade konstant över tid"
+    ],
+    "chart_data": {
+      "labels": ["1880", "1900", "1920", "1940", "1960", "1980", "2000", "2010"],
+      "datasets": [
+        {
+          "label": "GMSL Osäkerhet (mm)",
+          "data": [24.2, 18.3, 13.1, 10.8, 6.6, 6.5, 6.8, 7.5],
+          "backgroundColor": "#2DA4BC",
+          "borderColor": "#2DA4BC",
+          "borderWidth": 1
+        }
+      ]
+    }
   },
   {
     "quizId": "quiz3",
     "id": 0,
-    "question": "Här är en fråga för Quiz 3?",
-    "correct_answer": "Korrekt svar för Quiz 3",
-    "incorrect_answers": ["Fel svar 1", "Fel svar 2", "Fel svar 3"]
+    "question": "Vilken process bidrar mest till minskning av glaciärstorlek?",
+    "correct_answer": "Ökad global uppvärmning",
+    "incorrect_answers": [
+      "Ökad nederbörd",
+      "Minskad avdunstning",
+      "Stabilare klimat"
+    ]
   },
   {
-    "quizId": "quiz4",
-    "id": 0,
-    "question": "Här är en fråga för Quiz 4?",
-    "correct_answer": "Korrekt svar för Quiz 4",
-    "incorrect_answers": ["Fel svar 1", "Fel svar 2", "Fel svar 3"]
+    "quizId": "quiz3",
+    "id": 1,
+    "question": "Hur mycket har den genomsnittliga glaciärstorleken minskat globalt de senaste 50 åren?",
+    "correct_answer": "Cirka 20–30 %",
+    "incorrect_answers": [
+      "Cirka 5 %",
+      "Cirka 50 %",
+      "Ingen signifikant förändring"
+    ]
+  },
+  {
+    "quizId": "quiz3",
+    "id": 2,
+    "question": "Vad orsakar att glaciärer smälter snabbare under sommaren?",
+    "correct_answer": "Högre temperaturer och solstrålning",
+    "incorrect_answers": [
+      "Minskad salthalt",
+      "Färre moln",
+      "Lägre luftfuktighet"
+    ]
+  },
+  {
+    "quizId": "quiz3",
+    "id": 3,
+    "question": "Vilken region har förlorat den största delen av sina glaciärer?",
+    "correct_answer": "Alperna",
+    "incorrect_answers": ["Antarktis", "Grönland", "Himalaya"]
+  },
+  {
+    "quizId": "quiz3",
+    "id": 4,
+    "question": "Hur påverkar smältande glaciärer sötvattensresurser?",
+    "correct_answer": "Minskar långsiktigt tillgången på sötvatten",
+    "incorrect_answers": [
+      "Ökar direkt tillgången",
+      "Förbättrar vattenkvalitet",
+      "Stabiliserar flödet"
+    ]
   }
+  ,{
+    "quizId": "quiz3",
+    "id": 5,
+    "question": "Vilket av följande är en lösning för att minska glaciärsmältning?",
+    "correct_answer": "Minska växthusgasutsläpp",
+    "incorrect_answers": [
+      "Öka industriproduktion",
+      "Avverka fler skogar",
+      "Bygga fler städer"
+    ]
+  }
+  ,{
+    "quizId": "quiz3",
+    "id": 6,
+    "question": "Vad är en konsekvens av minskade glaciärstorlekar?",
+    "correct_answer": "Stigande havsnivåer",
+    "incorrect_answers": [
+      "Minskad vattenförbrukning",
+      "Ökad isbildning",
+      "Stabilare klimat"
+    ]
+  }
+  ,{
+    "quizId": "quiz3",
+    "id": 7,
+    "question": "Vilken lösning kan bevara glaciärstorlek på lång sikt?",
+    "correct_answer": "Plantera fler träd",
+    "incorrect_answers": [
+      "Öka avskogning",
+      "Minska naturreservat",
+      "Bygga fler motorvägar"
+    ]
+  }
+  ,{
+    "quizId": "quiz3",
+    "id": 8,
+    "question": "Vilken region har de största glaciärerna?",
+    "correct_answer": "Antarktis",
+    "incorrect_answers": [
+      "Himalaya",
+      "Alperna",
+      "Grönland"
+    ]
+  },
+  {
+    "quizId": "quiz3",
+    "id": 9,
+    "question": "Vad visar grafen om observationer av glaciärers massbalans?",
+    "correct_answer": "Antal observationer av glaciärers massbalans",
+    "incorrect_answers": [
+      "Temperaturer i Arktis",
+      "Isens tjocklek",
+      "Havsnivåer"
+    ],
+    "chart_data": {
+      "labels": ["1945", "1950", "1955", "1960", "1965", "1970"],
+      "datasets": [
+        {
+          "label": "Antal observationer",
+          "data": [0, 3.0, 7.0, 14.0, 24.0, 32.0],
+          "backgroundColor": "#2DA4BC",
+          "borderColor": "#2DA4BC",
+          "borderWidth": 1
+        }
+      ]
+    }
+  }
+  ,{
+    "quizId": "quiz3",
+    "id": 10,
+    "question": "Hur påverkar minskande glaciärstorlekar floder som matas av glaciärvatten?",
+    "correct_answer": "Orsakar oförutsägbara flöden",
+    "incorrect_answers": [
+      "Stabiliserar vattenflöden",
+      "Ökar vattentillgången långsiktigt",
+      "Minskar sedimenttransport"
+    ]
+  }
+  ,{
+    "quizId": "quiz3",
+    "id": 11,
+    "question": "Vad orsakar huvudsakligen den minskade storleken på glaciärer globalt?",
+    "correct_answer": "Klimatförändringar",
+    "incorrect_answers": [
+      "Minskat regnfall",
+      "Vulkanisk aktivitet",
+      "Ökad albedoeffekt"
+    ]
+  }
+  ,{
+    "quizId": "quiz3",
+    "id": 12,
+    "question": "Hur påverkar glaciärsmältning det globala klimatet?",
+    "correct_answer": "Minskar jordens albedo",
+    "incorrect_answers": [
+      "Ökar isbildning",
+      "Stabiliserar klimatet",
+      "Minskar havsnivåer"
+    ]
+  }
+  ,{
+    "quizId": "quiz3",
+    "id": 13,
+    "question": "Vad visar grafen om kumulativ glaciärmassbalans över tid?",
+    "correct_answer": "Kumulativ massbalans för glaciärer över tid",
+    "incorrect_answers": [
+      "Havsnivåförändringar",
+      "Temperaturtrender",
+      "Antal glaciärer"
+    ],
+    "chart_data": {
+      "labels": ["1945", "1950", "1955", "1960", "1965", "1970"],
+      "datasets": [
+        {
+          "label": "Medel kumulativ massbalans (m)",
+          "data": [0, -4.887, -6.575, -8.688, -9.298, -10.128],
+          "backgroundColor": "#2DA4BC",
+          "borderColor": "#2DA4BC",
+          "borderWidth": 1
+        }
+      ]
+    }
+  }
+ 
+
 ]
