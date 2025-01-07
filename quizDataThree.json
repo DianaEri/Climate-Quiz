@@ -152,8 +152,8 @@
         {
           "label": "Medel kumulativ massbalans (m)",
           "data": [0, -4.887, -6.575, -8.688, -9.298, -10.128],
-          "backgroundColor": "#307786",
-          "borderColor": "#307786",
+          "backgroundColor": "#2DA4BC",
+          "borderColor": "#2DA4BC",
           "borderWidth": 1
         }
       ]
