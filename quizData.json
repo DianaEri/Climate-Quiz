@@ -135,5 +135,26 @@
         ]
       }
     }
+    {
+      "quizId": "quiz2",
+      "id": 0,
+      "question": "Här är en fråga för Quiz 2?",
+      "correct_answer": "Korrekt svar för Quiz 2",
+      "incorrect_answers": ["Fel svar 1", "Fel svar 2", "Fel svar 3"]
+    },
+    {
+      "quizId": "quiz3",
+      "id": 0,
+      "question": "Här är en fråga för Quiz 3?",
+      "correct_answer": "Korrekt svar för Quiz 3",
+      "incorrect_answers": ["Fel svar 1", "Fel svar 2", "Fel svar 3"]
+    },
+    {
+      "quizId": "quiz4",
+      "id": 0,
+      "question": "Här är en fråga för Quiz 4?",
+      "correct_answer": "Korrekt svar för Quiz 4",
+      "incorrect_answers": ["Fel svar 1", "Fel svar 2", "Fel svar 3"]
+    }
   ]
   
