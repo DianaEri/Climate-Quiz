@@ -20,28 +20,28 @@ const CompletedQuiz = ({ userId, onBackToDashboard, onViewQuizDetails }) => {
 
   return (
     <div>
-      <h1>Completed Quizzes</h1>
+      <h1>Färdiga Quiz</h1>
       {/* Check if there are any completed quizzes */}
       {completedQuizzes.length === 0 ? (
-        <p>No completed quizzes found.</p>
+        <p>Du har inte gjort några Quiz än, börja nu för att få en rank bland mästarna.</p>
       ) : (
         <ul>
           {/* Loop through the completed quizzes and display them */}
           {completedQuizzes.map((quiz) => (
             <li key={quiz.completedQuizId}>
               <p>
-                Quiz ID: {quiz.quizId} <br />
-                Completed At: {new Date(quiz.completedAt).toLocaleString()} {/* Formatting completed date */}
+                Quiz namn: {quiz.quizId} <br />
+                Avklarad den: {new Date(quiz.completedAt).toLocaleString()} {/* Formatting completed date */}
               </p>
               {/* Button to view quiz details */}
               <button onClick={() => onViewQuizDetails(quiz.quizId, quiz.completedQuizId)}>
-                View Details
+                Visa Detajer
               </button>
             </li>
           ))}
         </ul>
       )}
-      <button onClick={onBackToDashboard}>Back to Dashboard</button>
+      <button onClick={onBackToDashboard}>Tillbaka till Startsida</button>
     </div>
   );
 };

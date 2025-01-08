@@ -20,7 +20,7 @@ function CompletedQuizzes({ userId, onBackToDashboard, onViewQuizDetails }) {
           {quizzes.map((quiz, index) => (
             <li key={index}>
               <button onClick={() => onViewQuizDetails(quiz.quizId)}>
-                Quiz ID: {quiz.quizId} - Avklarad den: {quiz.completedAt}
+                Quiz namn: {quiz.quizId} - Avklarad den: {quiz.completedAt}
               </button>
             </li>
           ))}
