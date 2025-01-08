@@ -23,13 +23,19 @@ export async function saveCompletedQuiz(userId, quizId, userAnswers) {
 
     const completedQuizId = uuidv4(); // Generate a unique ID for this completed quiz
 
-    // Save the quiz with user answers
+    // Calculate score and total questions
+    const totalQuestions = userAnswers.length;
+    const score = userAnswers.filter(ans => ans.isCorrect).length; // Assuming `isCorrect` is a boolean in the answer object
+
+    // Save the quiz with user answers, score, and total questions
     await updateDoc(userRef, {
       completedQuizzes: arrayUnion({
         completedQuizId, // Unique ID for this completed quiz
         quizId,
         completedAt: new Date().toISOString(),
         userAnswers,
+        score, // Save the score
+        totalQuestions // Save the total number of questions
       }),
     });
 
@@ -117,6 +123,8 @@ export async function getQuizDetails(quizId, userId, completedQuizId) {
         chartData: question.chart_data || null,
       })),
       userAnswers, // Include user answers
+      score: completedQuiz?.score || 0, // Include score if available
+      totalQuestions: completedQuiz?.totalQuestions || 0, // Include total questions if available
     };
   } catch (error) {
     console.error("Error fetching quiz details:", error.message);

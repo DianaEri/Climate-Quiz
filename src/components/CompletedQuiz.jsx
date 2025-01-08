@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getCompletedQuizzes } from '../firebaseHelpers'; // Make sure this is imported correctly
+import { getCompletedQuizzes } from '../firebaseHelpers'; // Ensure this is imported correctly
 
 const CompletedQuiz = ({ userId, onBackToDashboard, onViewQuizDetails }) => {
   const [completedQuizzes, setCompletedQuizzes] = useState([]);

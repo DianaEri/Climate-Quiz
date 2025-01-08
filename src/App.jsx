@@ -4,7 +4,6 @@ import StudentDashboard from './components/StudentDashboard';
 import TeacherDashboard from './components/TeacherDashboard'; 
 import Quiz from './components/Quiz'; 
 import Ranking from './components/Ranking'; 
-import CompletedQuizzes from './components/CompletedQuizzes'; 
 import WeeklyQuizSelection from './components/WeeklyQuizSelection'; 
 import QuizDetails from './components/QuizDetails'; 
 import CompletedQuiz from './components/CompletedQuiz';
