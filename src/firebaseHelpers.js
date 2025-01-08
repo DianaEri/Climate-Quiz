@@ -84,17 +84,19 @@ export async function getQuizDetails(quizId, userId, completedQuizId) {
       throw new Error(`Quiz with ID ${quizId} not found in quizData.json.`);
     }
 
-    // Fetch userAnswers from Firestore
+    // Fetch completed quizzes from Firestore
     const userRef = doc(db, 'users', userId);
     const userSnap = await getDoc(userRef);
 
     let userAnswers = [];
+    let completedQuiz = null; // Make sure completedQuiz is initially null
+
     if (userSnap.exists()) {
       const completedQuizzes = userSnap.data().completedQuizzes || [];
       console.log(`Completed quizzes for user ${userId}:`, completedQuizzes);
 
       // Match quiz using quizId and completedQuizId
-      const completedQuiz = completedQuizzes.find(
+      completedQuiz = completedQuizzes.find(
         (quiz) => quiz.quizId === quizId && quiz.completedQuizId === completedQuizId
       );
 
@@ -109,6 +111,12 @@ export async function getQuizDetails(quizId, userId, completedQuizId) {
       console.warn(`User document not found in Firestore for userId: ${userId}`);
     }
 
+    // If completedQuiz is not found, throw an error
+    if (!completedQuiz) {
+      throw new Error(`Completed quiz with ID ${completedQuizId} not found.`);
+    }
+
+    // Return the quiz details along with user answers, score, and totalQuestions
     return {
       quizId,
       questions: questions.map((question) => ({
@@ -118,9 +126,9 @@ export async function getQuizDetails(quizId, userId, completedQuizId) {
         incorrectAnswers: question.incorrect_answers,
         chartData: question.chart_data || null,
       })),
-      userAnswers, // Include user answers
-      score: completedQuiz?.score || 0, // Include score if available
-      totalQuestions: completedQuiz?.totalQuestions || 0, // Include total questions if available
+      userAnswers,
+      score: completedQuiz.score || 0,
+      totalQuestions: completedQuiz.totalQuestions || 0,
     };
   } catch (error) {
     console.error("Error fetching quiz details:", error.message);
