@@ -1042,6 +1042,11 @@ progress.progress-bar::-moz-progress-bar {
   transform: scale(1);
 }
 
+/* Aligns SubHeading text to the left */
+.subheading-left {
+  text-align: left; /* Aligns the text to the left */
+}
+
 
 @keyframes fadeIn {
   0% {

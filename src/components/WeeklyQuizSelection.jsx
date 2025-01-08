@@ -55,7 +55,7 @@ const WeeklyQuizSelection = ({ onSelectQuiz, onBackToDashboard }) => {
           subText="Quiz"
           subIcon={medal}
         />
-        <SubHeading text="Välj en quiz att spela:" />
+        <SubHeading text="Välj en quiz att spela:" className="subheading-left" />
         <div className="quizchoice-container"> {/* Added class to the parent div */}
           {uniqueQuizzes.map((quiz) => (
             <button
