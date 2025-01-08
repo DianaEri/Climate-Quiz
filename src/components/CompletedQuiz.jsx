@@ -45,7 +45,7 @@ const CompletedQuiz = ({ userId, onBackToDashboard, onViewQuizDetails }) => {
                 <strong>Avklarad den:</strong> {new Date(quiz.completedAt).toLocaleString()} {/* Display the date */}
               </p>
               <p>
-                <strong>Antal rätt svar:</strong> {quiz.score}/{quiz.totalQuestions} {/* Display correct answers */}
+              <p><strong>Antal rätt svar:</strong> {quiz.score}/{quiz.totalQuestions}</p> {/* Display correct answers */}
               </p>
 
               {/* Button to view quiz details */}

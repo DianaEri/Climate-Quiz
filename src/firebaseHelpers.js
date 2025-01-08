@@ -4,11 +4,11 @@ import { v4 as uuidv4 } from "uuid"; // For generating unique identifiers
 import quizData from '../quizData.json'; // Path to your JSON file
 
 // Save completed quizzes
-export async function saveCompletedQuiz(userId, quizId, userAnswers) {
-  console.log("Attempting to save quiz:", { userId, quizId, userAnswers });
+export async function saveCompletedQuiz(userId, quizId, userAnswers, score, totalQuestions) {
+  console.log("Attempting to save quiz:", { userId, quizId, userAnswers, score, totalQuestions });
 
-  if (!userId || !quizId || !userAnswers) {
-    throw new Error("Invalid userId, quizId, or userAnswers provided.");
+  if (!userId || !quizId || !userAnswers || score === undefined || totalQuestions === undefined) {
+    throw new Error("Invalid userId, quizId, userAnswers, score, or totalQuestions provided.");
   }
 
   const userRef = doc(db, 'users', userId);
@@ -22,10 +22,6 @@ export async function saveCompletedQuiz(userId, quizId, userAnswers) {
     }
 
     const completedQuizId = uuidv4(); // Generate a unique ID for this completed quiz
-
-    // Calculate score and total questions
-    const totalQuestions = userAnswers.length;
-    const score = userAnswers.filter(ans => ans.isCorrect).length; // Assuming `isCorrect` is a boolean in the answer object
 
     // Save the quiz with user answers, score, and total questions
     await updateDoc(userRef, {

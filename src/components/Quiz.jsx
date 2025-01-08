@@ -82,11 +82,29 @@ const Quiz = ({ onBackToDashboard, userId, quizId }) => {
 
   const handleCompleteQuiz = async () => {
     try {
+      // Calculate the user answers
       const userAnswers = quizData.map((question) => ({
         questionId: question.id,
         userAnswer: selectedAnswers[question.id] || null,
       }));
-      const completedQuizId = await saveCompletedQuiz(userId, quizId, userAnswers);
+  
+      // Calculate the number of correct answers
+      const correctAnswers = quizData.filter((question) => {
+        const userAnswer = selectedAnswers[question.id] || null;
+        return userAnswer === question.correct_answer.trim(); // Compare the answer
+      }).length;
+  
+      const totalQuestions = quizData.length;
+  
+      // Save the quiz with score and total questions
+      const completedQuizId = await saveCompletedQuiz(
+        userId,
+        quizId,
+        userAnswers,
+        correctAnswers, // Pass correct answers
+        totalQuestions  // Pass total questions
+      );
+  
       console.log("Completed quiz saved with ID:", completedQuizId);
       alert("Quiz saved as completed!");
       onBackToDashboard();
