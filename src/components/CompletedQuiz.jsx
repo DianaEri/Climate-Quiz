@@ -1,8 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { getCompletedQuizzes } from '../firebaseHelpers'; // Ensure this is correctly imported from your firebase helpers
+import { getCompletedQuizzes } from '../firebaseHelpers'; // Make sure this is imported correctly
 
 const CompletedQuiz = ({ userId, onBackToDashboard, onViewQuizDetails }) => {
   const [completedQuizzes, setCompletedQuizzes] = useState([]);
+
+  // Map quizId to actual quiz names
+  const quizNames = {
+    quiz1: "Klimatkaos: Vad Vet Du Om Världens Förändring?",
+    quiz2: "Havet Uteblir: Kan Du Rädda Stränderna?",
+    quiz3: "Isjakt: Hur Mycket Vet Du Om Glaciärer?",
+    quiz4: "CO2-Utmaningen: Vad Kan Du Om Fossila Bränslen?"
+  };
 
   // Fetch completed quizzes from Firestore when the component mounts
   useEffect(() => {
@@ -29,13 +37,23 @@ const CompletedQuiz = ({ userId, onBackToDashboard, onViewQuizDetails }) => {
           {/* Loop through the completed quizzes and display them */}
           {completedQuizzes.map((quiz) => (
             <li key={quiz.completedQuizId}>
+              {/* Display quiz name and completion date outside the button */}
               <p>
-                Quiz namn: {quiz.quizId} <br />
-                Avklarad den: {new Date(quiz.completedAt).toLocaleString()} {/* Formatting completed date */}
+                <strong>Quiz namn:</strong> {quizNames[quiz.quizId]} {/* Display the quiz name */}
               </p>
+              <p>
+                <strong>Avklarad den:</strong> {new Date(quiz.completedAt).toLocaleString()} {/* Display the date */}
+              </p>
+              <p>
+                <strong>Antal rätt svar:</strong> {quiz.score}/{quiz.totalQuestions} {/* Display correct answers */}
+              </p>
+
               {/* Button to view quiz details */}
-              <button onClick={() => onViewQuizDetails(quiz.quizId, quiz.completedQuizId)}>
-                Visa Detajer
+              <button 
+                onClick={() => onViewQuizDetails(quiz.quizId, quiz.completedQuizId)} 
+                className="quiz-details-button"
+              >
+                Visa Detaljer
               </button>
             </li>
           ))}

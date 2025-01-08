@@ -285,7 +285,7 @@
     "quizId": "quiz2",
     "id": 13,
     "question": "Vad visar grafen om osäkerhet i global medelhavsnivå (GMSL)?",
-    "correct_answer": "Osäkerheten minskade över tid men steg något på senare år",
+    "correct_answer": "Osäkerheten minskade över tid men sedan steg",
     "incorrect_answers": [
       "Osäkerheten ökade konstant över tid",
       "Osäkerheten förblev densamma",
@@ -403,7 +403,7 @@
     "quizId": "quiz3",
     "id": 9,
     "question": "Vad visar grafen om observationer av glaciärers massbalans?",
-    "correct_answer": "Antal observationer av glaciärers massbalans",
+    "correct_answer": "Antal observationer av massbalans",
     "incorrect_answers": [
       "Temperaturer i Arktis",
       "Isens tjocklek",
