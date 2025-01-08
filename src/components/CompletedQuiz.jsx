@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getCompletedQuizzes } from '../firebaseHelpers'; // Ensure this is imported correctly
+import studentBackground from '../assets/student_bg.svg';
+import MobileNavbar from './MobileNavbar';
 
 const CompletedQuiz = ({ userId, onBackToDashboard, onViewQuizDetails }) => {
   const [completedQuizzes, setCompletedQuizzes] = useState([]);
@@ -27,39 +29,49 @@ const CompletedQuiz = ({ userId, onBackToDashboard, onViewQuizDetails }) => {
   }, [userId]);
 
   return (
-    <div>
+    <div       
+      className="teacher-view"
+      style={{
+        backgroundImage: `url(${studentBackground})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}>
+      <MobileNavbar />
+      <div className="finishedquiz-container">
       <h1>Färdiga Quiz</h1>
       {/* Check if there are any completed quizzes */}
       {completedQuizzes.length === 0 ? (
         <p>Du har inte gjort några Quiz än, börja nu för att få en rank bland mästarna.</p>
       ) : (
-        <ul>
-          {/* Loop through the completed quizzes and display them */}
-          {completedQuizzes.map((quiz) => (
-            <li key={quiz.completedQuizId}>
-              {/* Display quiz name and completion date outside the button */}
-              <p>
-                <strong>Quiz namn:</strong> {quizNames[quiz.quizId]} {/* Display the quiz name */}
-              </p>
-              <p>
-                <strong>Avklarad den:</strong> {new Date(quiz.completedAt).toLocaleString()} {/* Display the date */}
-              </p>
-              <p>
-              <p><strong>Antal rätt svar:</strong> {quiz.score}/{quiz.totalQuestions}</p> {/* Display correct answers */}
-              </p>
+      <ul className="completed-quizzes-list">
+        {/* Loop through the completed quizzes and display them */}
+        {completedQuizzes.map((quiz) => (
+          <li key={quiz.completedQuizId}>
+            {/* Display quiz name and completion date outside the button */}
+            <p>
+              <strong>Quiz namn:</strong> {quizNames[quiz.quizId]} {/* Display the quiz name */}
+            </p>
+            <p>
+              <strong>Avklarad den:</strong> {new Date(quiz.completedAt).toLocaleString()} {/* Display the date */}
+            </p>
+            <p>
+              <strong>Antal rätt svar:</strong> {quiz.score}/{quiz.totalQuestions} {/* Display correct answers */}
+            </p>
 
-              {/* Button to view quiz details */}
-              <button 
-                onClick={() => onViewQuizDetails(quiz.quizId, quiz.completedQuizId)} 
-                className="quiz-details-button"
-              >
-                Visa Detaljer
-              </button>
-            </li>
-          ))}
-        </ul>
+            {/* Button to view quiz details */}
+            <button 
+              onClick={() => onViewQuizDetails(quiz.quizId, quiz.completedQuizId)} 
+              className="quiz-details-button"
+            >
+              Visa Detaljer
+            </button>
+          </li>
+        ))}
+      </ul>
+
       )}
       <button onClick={onBackToDashboard}>Tillbaka till Startsida</button>
+      </div>
     </div>
   );
 };
