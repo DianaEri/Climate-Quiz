@@ -998,30 +998,35 @@ progress.progress-bar::-moz-progress-bar {
   color: white;
 }
 
-/* New styled quiz buttons */
+/* Style for quiz buttons */
 .quiz-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 90%; /* Match the width of PillButton */
-  padding: 0.8rem 1rem;
-  font-size: 1rem;
+  display: flex; /* Align text and icon in a row */
+  align-items: center; /* Vertically center the icon and text */
+  justify-content: space-between; /* Space out the icon and text */
+  width: 100%; /* Make the button fill the parent container width */
+  padding: 0.8rem 1rem; /* Same padding as PillButton */
+  font-size: 1rem; /* Same font size */
   color: #fff; /* Text color */
   background: linear-gradient(90deg, #396588, #20394d); /* Gradient background */
   border: 2px solid white; /* Bold white border */
-  border-radius: 10px; /* Rounded corners */
+  border-radius: 10px; /* Rounded corners (not pill shape) */
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 6px 6px rgba(0, 0, 0, 0.5); /* Non-transparent shadow */
-  margin-top: 1.2rem;
+  box-shadow: 6px 6px black; /* Non-transparent black shadow */
+  margin-top: 1.2rem; /* Match margin for spacing between buttons */
   font-weight: bold;
 }
 
-/* Adjust button icon */
+/* Adjust button text alignment */
+.quiz-button-text {
+  margin-right: 10px; /* Add space for icon */
+}
+
+/* Icon styling */
 .quiz-button-icon {
-  width: 18px;
-  height: 18px;
-  margin-right: 10px;
+  width: 20px;
+  height: 20px;
+  margin-left: auto; /* Push the icon to the far right */
   fill: white;
 }
 

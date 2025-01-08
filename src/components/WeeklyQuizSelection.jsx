@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Import FontAwesomeIcon
+import { faSquareUpRight } from '@fortawesome/free-solid-svg-icons'; // Import the specific icon
 import studentBackground from '../assets/student_bg.svg';
 import MobileNavbar from './MobileNavbar';
 import PillButton from './PillButton'; // Import the PillButton component
@@ -47,29 +49,33 @@ const WeeklyQuizSelection = ({ onSelectQuiz, onBackToDashboard }) => {
     >
       <MobileNavbar />
       <div className="ranking-container">
-      <SectionHeading
-        mainIcon={vWhiteIcon}
-        mainText="älj"
-        subText="Quiz"
-        subIcon={medal}
-      />
-      <SubHeading text="Välj en quiz att spela:" />
-      <div>
-        {uniqueQuizzes.map((quiz) => (
-          <button onClick={() => onSelectQuiz(quiz.quizId)} key={quiz.quizId}>
-            {quiz.name}
-          </button>
-        ))}
-      </div>
-      <PillButton
-        text="Tillbaka till Startsida"
-        icon={faCircleLeft}
-        onClick={onBackToDashboard}
-      />
+        <SectionHeading
+          mainIcon={vWhiteIcon}
+          mainText="Välj"
+          subText="Quiz"
+          subIcon={medal}
+        />
+        <SubHeading text="Välj en quiz att spela:" />
+        <div>
+          {uniqueQuizzes.map((quiz) => (
+            <button
+              onClick={() => onSelectQuiz(quiz.quizId)}
+              key={quiz.quizId}
+              className="quiz-button" // Apply the quiz button class here
+            >
+              <span className="quiz-button-text">{quiz.name}</span> 
+              <i className="fa-solid fa-square-up-right quiz-button-icon"></i> {/* Icon placed after text */}
+            </button>
+          ))}
+        </div>
+        <PillButton
+          text="Tillbaka till Startsida"
+          icon={faCircleLeft}
+          onClick={onBackToDashboard}
+        />
       </div>
     </div>
   );
 };
 
 export default WeeklyQuizSelection;
-
