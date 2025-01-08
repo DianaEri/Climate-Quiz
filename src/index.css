@@ -450,7 +450,7 @@ html, body {
   display: flex; /* Flex container to align subtext and the icon */
   align-items: center; /* Align items vertically */
   justify-content: center; /* Center align within container */
-  margin-top: -0.9rem; /* Slight overlap to reduce space */
+  margin-top: -0.6rem; /* Slight overlap to reduce space */
   padding: 0;
 }
 

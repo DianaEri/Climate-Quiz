@@ -1,4 +1,12 @@
 import React, { useEffect, useState } from "react";
+import studentBackground from '../assets/student_bg.svg';
+import MobileNavbar from './MobileNavbar';
+import PillButton from './PillButton'; // Import the PillButton component
+import { faCircleLeft } from '@fortawesome/free-solid-svg-icons'; // Import the left arrow icon
+import SectionHeading from './SectionHeading';
+import vWhiteIcon from '../assets/v_white.svg';
+import medal from '../assets/megaphone.svg';
+import SubHeading from './SubHeading';
 
 const WeeklyQuizSelection = ({ onSelectQuiz, onBackToDashboard }) => {
   const [quizData, setQuizData] = useState([]);
@@ -29,9 +37,23 @@ const WeeklyQuizSelection = ({ onSelectQuiz, onBackToDashboard }) => {
   }, []);
 
   return (
-    <div>
-      <h1>Veckans Quiz</h1>
-      <p>Välj en quiz att starta:</p>
+    <div
+      className="student-view" // Reuse the same class for consistent styling
+      style={{
+        backgroundImage: `url(${studentBackground})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
+      <MobileNavbar />
+      <div className="ranking-container">
+      <SectionHeading
+        mainIcon={vWhiteIcon}
+        mainText="älj"
+        subText="Quiz"
+        subIcon={medal}
+      />
+      <SubHeading text="Välj en quiz att spela:" />
       <div>
         {uniqueQuizzes.map((quiz) => (
           <button onClick={() => onSelectQuiz(quiz.quizId)} key={quiz.quizId}>
@@ -39,7 +61,12 @@ const WeeklyQuizSelection = ({ onSelectQuiz, onBackToDashboard }) => {
           </button>
         ))}
       </div>
-      <button onClick={onBackToDashboard}>Tillbaka till Dashboard</button>
+      <PillButton
+        text="Tillbaka till Startsida"
+        icon={faCircleLeft}
+        onClick={onBackToDashboard}
+      />
+      </div>
     </div>
   );
 };
