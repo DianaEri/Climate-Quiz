@@ -722,10 +722,11 @@ html, body {
 }
 
 .ranking-container {
+  margin-top: 50px; /* Added top padding to give space for navbar */
   background-color: rgba(13, 23, 31, 1); /* Semi-transparent similar to the login box */
   border-radius: 15px; /* Rounded corners */
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-  padding: 30px; /* Internal padding */
+  padding: 30px 30px; /* Internal padding */
   width: 70%; /* Width similar to the login box */
   max-width: 400px; /* Set a maximum width */
   display: flex; /* Flexbox for layout */
@@ -1023,18 +1024,13 @@ progress.progress-bar::-moz-progress-bar {
   box-shadow: 6px 6px black; /* Non-transparent shadow */
   margin-top: 1.2rem; /* Margin between buttons */
   font-weight: bold;
+  text-align: left;
 }
 
 /* Icon styles */
 .quiz-button-icon {
   margin-left: 10px; /* Space between text and icon */
-  font-size: 2rem;
-}
-
-/* Hover and active states for the button */
-.quiz-button:hover {
-  background-color: #20495b;
-  transform: scale(1.05);
+  font-size: 3rem;
 }
 
 .quiz-button:active {
@@ -1045,8 +1041,27 @@ progress.progress-bar::-moz-progress-bar {
 /* Aligns SubHeading text to the left */
 .subheading-left {
   text-align: left; /* Aligns the text to the left */
+  margin-left: 25px;
+  width: 100%;
+  margin-top: -5px;
+  margin-bottom: -10px;
 }
 
+.choice-container {
+  margin-top: 50px; /* Added top padding to give space for navbar */
+  background-color: rgba(13, 23, 31, 1); /* Semi-transparent similar to the login box */
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  padding: 10px 30px; /* Internal padding */
+  padding-bottom: 30px;
+  width: 70%; /* Width similar to the login box */
+  max-width: 400px; /* Set a maximum width */
+  display: flex; /* Flexbox for layout */
+  flex-direction: column; /* Stack child elements vertically */
+  align-items: center; /* Center items horizontally */
+  gap: 20px; /* Add spacing between elements */
+  border: 1px solid black; /* Bold border for definition */
+}
 
 @keyframes fadeIn {
   0% {
