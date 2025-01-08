@@ -998,36 +998,37 @@ progress.progress-bar::-moz-progress-bar {
   color: white;
 }
 
+.quizchoice-container {
+  width: 100%; /* Ensures the buttons take the full width of the container */
+  display: flex; /* Use flexbox to layout buttons horizontally */
+  flex-direction: column; /* Arrange buttons in a vertical column */
+  align-items: center;
+  gap: 1.2rem; /* Adds spacing between buttons */
+}
+
 /* Style for quiz buttons */
 .quiz-button {
-  display: flex; /* Align text and icon in a row */
-  align-items: center; /* Vertically center the icon and text */
-  justify-content: space-between; /* Space out the icon and text */
-  width: 100%; /* Make the button fill the parent container width */
-  padding: 0.8rem 1rem; /* Same padding as PillButton */
-  font-size: 1rem; /* Same font size */
-  color: #fff; /* Text color */
+  display: flex; /* Flexbox layout to align items horizontally */
+  align-items: center; /* Center content vertically */
+  justify-content: space-between; /* Place content at the start and end */
+  width: 90%; /* Set to full width */
+  padding: 0.8rem 1rem; /* Padding */
+  font-size: 1rem;
+  color: white;
   background: linear-gradient(90deg, #396588, #20394d); /* Gradient background */
-  border: 2px solid white; /* Bold white border */
-  border-radius: 10px; /* Rounded corners (not pill shape) */
+  border: 3px solid white; /* White border */
+  border-radius: 12px; /* Rounded corners */
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 6px 6px black; /* Non-transparent black shadow */
-  margin-top: 1.2rem; /* Match margin for spacing between buttons */
+  box-shadow: 6px 6px black; /* Non-transparent shadow */
+  margin-top: 1.2rem; /* Margin between buttons */
   font-weight: bold;
 }
 
-/* Adjust button text alignment */
-.quiz-button-text {
-  margin-right: 10px; /* Add space for icon */
-}
-
-/* Icon styling */
+/* Icon styles */
 .quiz-button-icon {
-  width: 20px;
-  height: 20px;
-  margin-left: auto; /* Push the icon to the far right */
-  fill: white;
+  margin-left: 10px; /* Space between text and icon */
+  font-size: 2rem;
 }
 
 /* Hover and active states for the button */

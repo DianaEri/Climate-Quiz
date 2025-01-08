@@ -51,20 +51,23 @@ const WeeklyQuizSelection = ({ onSelectQuiz, onBackToDashboard }) => {
       <div className="ranking-container">
         <SectionHeading
           mainIcon={vWhiteIcon}
-          mainText="Välj"
+          mainText="älj"
           subText="Quiz"
           subIcon={medal}
         />
         <SubHeading text="Välj en quiz att spela:" />
-        <div>
+        <div className="quizchoice-container"> {/* Added class to the parent div */}
           {uniqueQuizzes.map((quiz) => (
             <button
               onClick={() => onSelectQuiz(quiz.quizId)}
               key={quiz.quizId}
-              className="quiz-button" // Apply the quiz button class here
+              className="quiz-button" // Add the class for styling
             >
-              <span className="quiz-button-text">{quiz.name}</span> 
-              <i className="fa-solid fa-square-up-right quiz-button-icon"></i> {/* Icon placed after text */}
+              {quiz.name} {/* The text part of the button */}
+              <FontAwesomeIcon 
+                icon={faSquareUpRight} 
+                className="quiz-button-icon" 
+              /> {/* The icon comes after the text */}
             </button>
           ))}
         </div>
