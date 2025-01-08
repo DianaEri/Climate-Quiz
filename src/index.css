@@ -998,6 +998,45 @@ progress.progress-bar::-moz-progress-bar {
   color: white;
 }
 
+/* New styled quiz buttons */
+.quiz-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90%; /* Match the width of PillButton */
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  color: #fff; /* Text color */
+  background: linear-gradient(90deg, #396588, #20394d); /* Gradient background */
+  border: 2px solid white; /* Bold white border */
+  border-radius: 10px; /* Rounded corners */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 6px 6px rgba(0, 0, 0, 0.5); /* Non-transparent shadow */
+  margin-top: 1.2rem;
+  font-weight: bold;
+}
+
+/* Adjust button icon */
+.quiz-button-icon {
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+  fill: white;
+}
+
+/* Hover and active states for the button */
+.quiz-button:hover {
+  background-color: #20495b;
+  transform: scale(1.05);
+}
+
+.quiz-button:active {
+  background-color: #102a35;
+  transform: scale(1);
+}
+
+
 @keyframes fadeIn {
   0% {
     opacity: 0;
