@@ -1087,8 +1087,27 @@ progress.progress-bar::-moz-progress-bar {
   padding: 10px; /* Adjust as needed */
   color: white; /* Ensure text is visible on dark backgrounds */
   box-sizing: border-box; /* Ensure padding is included in width */
-  margin-bottom: 15px; /* Adds some space between list items */
+  margin-bottom: 20px; /* Adds some space between list items */
   padding-bottom: 25px;
+}
+
+.quiz-details-button {
+  display: flex;
+  align-items: center; /* Vertically center the text and icon */
+  margin-left: auto; /* This pushes the button to the far right */
+  padding: 8px 16px; /* Adjust button padding as needed */
+  color: white; /* Text color */
+  border: 2px solid white; 
+  border-radius: 30px; /* Rounded corners */
+  cursor: pointer; /* Change the cursor on hover */
+  background: linear-gradient(90deg, #bb8e5d, #77502d); /* Gradient background */
+  border: 2px solid white; /* Bold black border */
+  font-weight: bold;
+  box-shadow: 3px 3px black ; /* Non-transparent black shadow */
+}
+
+.quiz-details-button .fa-circle-right {
+  margin-left: 10px; /* Add some space between the text and the icon */
 }
 
 .finishedquiz-container {
@@ -1100,7 +1119,7 @@ progress.progress-bar::-moz-progress-bar {
   background-color: #0d171f; /* Matches other box styles */
   border-radius: 15px; /* Rounded corners */
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-  padding: 30px 15px; /* Internal padding */
+  padding: 15px 15px; /* Internal padding */
   padding-bottom: 0px;
   display: flex; /* Flexbox for layout */
   flex-direction: column; /* Stack child elements vertically */
@@ -1109,6 +1128,21 @@ progress.progress-bar::-moz-progress-bar {
   border: 1px solid black; /* Add border */
   margin-top: 90px;
   margin-bottom: 40px;
+}
+
+.pill-button-container {
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  margin-top: 0px; /* Add margin as needed */
+  margin-bottom: 40px;
+}
+
+.finishedquiz-container > *:first-child {
+  margin-bottom: 20px;
+}
+
+.finishedquiz-container > *:nth-child(2) {
+  margin-bottom: 20px;
 }
 
 @keyframes fadeIn {
