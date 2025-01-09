@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom'; // Ensure React Router is installed.
 
-const MobileNavbar = () => {
+const MobileNavbar = ({ links }) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -21,11 +22,15 @@ const MobileNavbar = () => {
       </div>
 
       {/* Hidden Links */}
-      <div id="myLinks" style={{ display: menuOpen ? 'block' : 'none' }}>
-        <a href="#news">News</a>
-        <a href="#contact">Contact</a>
-        <a href="#about">About</a>
-      </div>
+      {links && links.length > 0 && (
+        <div id="myLinks" style={{ display: menuOpen ? 'block' : 'none' }}>
+          {links.map((link, index) => (
+            <Link key={index} to={link.path}>
+              {link.label}
+            </Link>
+          ))}
+        </div>
+      )}
 
       {/* Right Section: User Icon */}
       <div className="user-icon-container">
@@ -36,3 +41,4 @@ const MobileNavbar = () => {
 };
 
 export default MobileNavbar;
+

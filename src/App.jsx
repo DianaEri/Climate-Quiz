@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import Home from './components/Home'; 
-import StudentDashboard from './components/StudentDashboard'; 
-import TeacherDashboard from './components/TeacherDashboard'; 
-import Quiz from './components/Quiz'; 
-import Ranking from './components/Ranking'; 
-import WeeklyQuizSelection from './components/WeeklyQuizSelection'; 
-import QuizDetails from './components/QuizDetails'; 
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import MobileNavbar from './components/MobileNavbar';
+import Home from './components/Home';
+import StudentDashboard from './components/StudentDashboard';
+import TeacherDashboard from './components/TeacherDashboard';
+import Quiz from './components/Quiz';
+import Ranking from './components/Ranking';
+import WeeklyQuizSelection from './components/WeeklyQuizSelection';
+import QuizDetails from './components/QuizDetails';
 import CompletedQuiz from './components/CompletedQuiz';
 import './index.css';
 
@@ -22,77 +24,112 @@ const App = () => {
 
   const userId = "i69gyRz2uDNTrvt5gYDeJOQaIlt1"; // Replace with logic to fetch authenticated user's ID
 
+  const studentLinks = [
+    { label: 'Student Hörnan', path: '/StudentDashboard' },
+    { label: 'Välj Din Quiz', path: '/WeeklyQuizSelection' },
+    { label: 'Färdiga Quizzes', path: '/CompletedQuiz' },
+    { label: 'Rank Mästare', path: '/Ranking' },
+  ];
+
   return (
-    <div
-      className={
-        isLoggedIn
-          ? userType === 'student'
-            ? 'student-view'
-            : 'teacher-view'
-          : 'home-view'
-      }
-    >
-      {isLoggedIn ? (
-        userType === 'student' ? (
-          showQuizDetails ? (
-            <QuizDetails
-              userId={userId}
-              quizId={currentQuizId} // Use currentQuizId here
-              completedQuizId={selectedCompletedQuizId} // Pass completedQuizId
-              onBackToCompletedQuizzes={() => {
-                setShowQuizDetails(false);
-                setSelectedCompletedQuizId(null); // Reset the selectedCompletedQuizId
-              }}
-            />
-          ) : showQuiz ? (
-            <Quiz
-              onBackToDashboard={() => setShowQuiz(false)} 
-              userId={userId} 
-              quizId={currentQuizId}
-            />
-          ) : showRanking ? (
-            <Ranking onBackClick={() => setShowRanking(false)} />
-          ) : showWeeklyQuizzes ? (
-            <WeeklyQuizSelection
-              onSelectQuiz={(quizId) => {
-                setCurrentQuizId(quizId);
-                setShowQuiz(true);
-              }}
-              onBackToDashboard={() => setShowWeeklyQuizzes(false)}
-              onViewQuizDetails={(quizId, completedQuizId) => {
-                setCurrentQuizId(quizId);
-                setSelectedCompletedQuizId(completedQuizId); // Set the unique completed quiz ID
-                setShowQuizDetails(true); // Navigate to quiz details
-              }}
-            />
-          ) : showCompletedQuizzes ? (
-            <CompletedQuiz
-              userId={userId}
-              onBackToDashboard={() => setShowCompletedQuizzes(false)}
-              onViewQuizDetails={(quizId, completedQuizId) => {
-                setCurrentQuizId(quizId);
-                setSelectedCompletedQuizId(completedQuizId);
-                setShowQuizDetails(true);
-              }}
-            />
-          ) : (
-            <StudentDashboard
-              onStartQuiz={(quizId) => {
-                setCurrentQuizId(quizId);
-                setShowQuiz(true);
-              }}
-              onStartWeeklyQuiz={() => setShowWeeklyQuizzes(true)}
-              onViewRanking={() => setShowRanking(true)}
-              onViewCompletedQuizzes={() => setShowCompletedQuizzes(true)}
-            />
-          )
+    <Router>
+      <div
+        className={
+          isLoggedIn
+            ? userType === 'student'
+              ? 'student-view'
+              : 'teacher-view'
+            : 'home-view'
+        }
+      >
+        {isLoggedIn ? (
+          <>
+            <MobileNavbar links={userType === 'student' ? studentLinks : []} />
+            {userType === 'student' ? (
+              <Routes>
+                <Route
+                  path="/StudentDashboard"
+                  element={
+                    <StudentDashboard
+                      onStartQuiz={(quizId) => {
+                        setCurrentQuizId(quizId);
+                        setShowQuiz(true);
+                      }}
+                      onStartWeeklyQuiz={() => setShowWeeklyQuizzes(true)}
+                      onViewRanking={() => setShowRanking(true)}
+                      onViewCompletedQuizzes={() => setShowCompletedQuizzes(true)}
+                    />
+                  }
+                />
+                <Route
+                  path="/WeeklyQuizSelection"
+                  element={
+                    <WeeklyQuizSelection
+                      onSelectQuiz={(quizId) => {
+                        setCurrentQuizId(quizId);
+                        setShowQuiz(true);
+                      }}
+                      onBackToDashboard={() => setShowWeeklyQuizzes(false)}
+                      onViewQuizDetails={(quizId, completedQuizId) => {
+                        setCurrentQuizId(quizId);
+                        setSelectedCompletedQuizId(completedQuizId); // Set the unique completed quiz ID
+                        setShowQuizDetails(true); // Navigate to quiz details
+                      }}
+                    />
+                  }
+                />
+                <Route
+                  path="/CompletedQuiz"
+                  element={
+                    <CompletedQuiz
+                      userId={userId}
+                      onBackToDashboard={() => setShowCompletedQuizzes(false)}
+                      onViewQuizDetails={(quizId, completedQuizId) => {
+                        setCurrentQuizId(quizId);
+                        setSelectedCompletedQuizId(completedQuizId);
+                        setShowQuizDetails(true);
+                      }}
+                    />
+                  }
+                />
+                <Route
+                  path="/Ranking"
+                  element={<Ranking onBackClick={() => setShowRanking(false)} />}
+                />
+                <Route
+                  path="/QuizDetails"
+                  element={
+                    <QuizDetails
+                      userId={userId}
+                      quizId={currentQuizId}
+                      completedQuizId={selectedCompletedQuizId}
+                      onBackToCompletedQuizzes={() => {
+                        setShowQuizDetails(false);
+                        setSelectedCompletedQuizId(null);
+                      }}
+                    />
+                  }
+                />
+                <Route
+                  path="/Quiz"
+                  element={
+                    <Quiz
+                      onBackToDashboard={() => setShowQuiz(false)}
+                      userId={userId}
+                      quizId={currentQuizId}
+                    />
+                  }
+                />
+              </Routes>
+            ) : (
+              <TeacherDashboard />
+            )}
+          </>
         ) : (
-          <TeacherDashboard />
-        )
-      ) : (
-        <Home setLoggedIn={setIsLoggedIn} setUserType={setUserType} />
-      )}
-    </div>
+          <Home setLoggedIn={setIsLoggedIn} setUserType={setUserType} />
+        )}
+      </div>
+    </Router>
   );
 };
 
