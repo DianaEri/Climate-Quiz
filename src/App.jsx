@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import MobileNavbar from './components/MobileNavbar';
 import Home from './components/Home';
 import StudentDashboard from './components/StudentDashboard';
@@ -47,6 +47,9 @@ const App = () => {
             <MobileNavbar links={userType === 'student' ? studentLinks : []} />
             {userType === 'student' ? (
               <Routes>
+                {/* Default route */}
+                <Route path="/" element={<Navigate to="/StudentDashboard" />} />
+                
                 <Route
                   path="/StudentDashboard"
                   element={
@@ -122,11 +125,18 @@ const App = () => {
                 />
               </Routes>
             ) : (
-              <TeacherDashboard />
+              <Routes>
+                {/* Default route for teachers */}
+                <Route path="/" element={<Navigate to="/TeacherDashboard" />} />
+                <Route path="/TeacherDashboard" element={<TeacherDashboard />} />
+              </Routes>
             )}
           </>
         ) : (
-          <Home setLoggedIn={setIsLoggedIn} setUserType={setUserType} />
+          <Routes>
+            {/* Default route for non-logged-in users */}
+            <Route path="/" element={<Home setLoggedIn={setIsLoggedIn} setUserType={setUserType} />} />
+          </Routes>
         )}
       </div>
     </Router>
