@@ -1176,7 +1176,7 @@ progress.progress-bar::-moz-progress-bar {
 }
 
 .detail-button {
-  padding: 10px 15px;
+  padding: 10px 10px;
   cursor: pointer;
   background-color: #8c8c8c;
   border: 2px solid black; 
@@ -1192,6 +1192,10 @@ progress.progress-bar::-moz-progress-bar {
   border-radius: 4px;
   color: white;
   box-shadow: 5px 5px black ; /* Non-transparent black shadow */
+}
+
+.details-container :nth-child(5) {
+  margin-bottom: 0px;
 }
 
 @keyframes fadeIn {
