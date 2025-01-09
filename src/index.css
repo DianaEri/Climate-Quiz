@@ -499,7 +499,6 @@ html, body {
   margin-bottom: 15px; /* Space below the table */
   color: white;
   border-radius: 8px; /* Slight rounding for container edges */
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Optional shadow for the container */
 }
 
 .dashboard-table {
