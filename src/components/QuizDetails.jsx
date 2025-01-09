@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { getQuizDetails } from '../firebaseHelpers';
+import studentBackground from '../assets/student_bg.svg';
+import MobileNavbar from './MobileNavbar';
+import PillButton from './PillButton';
+import { faCircleLeft } from '@fortawesome/free-solid-svg-icons'; 
+import SectionHeading from './SectionHeading';
+import hand_lightbulb from '../assets/hand_lightbulb.svg';
+import qWhiteIcon from '../assets/q_white.svg';
 
 function QuizDetails({ userId, quizId, completedQuizId, onBackToCompletedQuizzes }) {
   const [quizDetails, setQuizDetails] = useState(null);
@@ -35,8 +42,21 @@ function QuizDetails({ userId, quizId, completedQuizId, onBackToCompletedQuizzes
   }
 
   return (
-    <div>
-      <h1>Quizdetaljer</h1>
+    <div       
+      className="teacher-view"
+      style={{
+        backgroundImage: `url(${studentBackground})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}>
+      <MobileNavbar />
+      <div className="finishedquiz-container">
+      <SectionHeading
+          mainIcon={qWhiteIcon}
+          mainText="uiz"
+          subText="Detaljer"
+          subIcon={hand_lightbulb}
+        />
       <p><strong>Quiz namn:</strong> {quizDetails.quizId}</p>
       <p><strong>Antal rätt svar:</strong> {quizDetails.score}/{quizDetails.totalQuestions}</p>
       <ol>
@@ -61,7 +81,15 @@ function QuizDetails({ userId, quizId, completedQuizId, onBackToCompletedQuizzes
           );
         })}
       </ol>
-      <button onClick={onBackToCompletedQuizzes}>Tillbaka till Avklarade Quiz</button>
+      {/* Center the PillButton */}
+      <div className="pill-button-container">
+      <PillButton
+        text="Tillbaka till Färdiga Quizzes"
+        icon={faCircleLeft}
+        onClick={onBackToCompletedQuizzes}
+      />
+      </div>
+      </div>
     </div>
   );
 }

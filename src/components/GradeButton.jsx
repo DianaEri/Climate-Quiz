@@ -1,16 +1,18 @@
 import React from 'react';
 
-const GradeButton = ({ svg, isActive, onClick }) => {
+const GradeButton = ({ grade, isActive, onClick }) => {
+  const svgContent = isActive ? gradeSvgs[grade].gradient : gradeSvgs[grade].monochrome;
+  
   return (
-    <div
+    <button
       className={`grade-button ${isActive ? 'active' : ''}`}
       onClick={onClick}
     >
       <div
         className="grade-svg"
-        dangerouslySetInnerHTML={{ __html: svg }}
+        dangerouslySetInnerHTML={{ __html: svgContent }}
       />
-    </div>
+    </button>
   );
 };
 
