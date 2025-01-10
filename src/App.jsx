@@ -111,6 +111,7 @@ const App = () => {
                 setSelectedCompletedQuizId(completedQuizId);
                 setShowQuizDetails(true);
               }}
+              handleNavigation={handleNavigation} // Pass handleNavigation here
             />
           ) : (
             <StudentDashboard

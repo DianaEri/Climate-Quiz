@@ -11,7 +11,7 @@ import PillButton from './PillButton';
 import { faCircleLeft, faCircleRight } from '@fortawesome/free-solid-svg-icons'; // Import the left and right arrow icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const CompletedQuiz = ({ userId, onBackToDashboard, onViewQuizDetails }) => {
+const CompletedQuiz = ({ userId, onBackToDashboard, onViewQuizDetails, handleNavigation }) => {
   const [completedQuizzes, setCompletedQuizzes] = useState([]);
   const [isDescending, setIsDescending] = useState(false); // For sorting by score
   const [isNameDescending, setIsNameDescending] = useState(false); // For sorting by date
@@ -61,14 +61,24 @@ const CompletedQuiz = ({ userId, onBackToDashboard, onViewQuizDetails }) => {
   };
 
   return (
-    <div       
+    <div
       className="teacher-view"
       style={{
         backgroundImage: `url(${studentBackground})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-      }}>
-      <MobileNavbar />
+      }}
+    >
+      {/* Mobile Navbar with the correct links */}
+      <MobileNavbar
+        links={[
+          { label: 'Student Hörnan', path: '/StudentDashboard' },
+          { label: 'Välj Din Quiz', path: '/WeeklyQuizSelection' },
+          { label: 'Rank Mästare', path: '/Ranking' },
+        ]}
+        handleNavigation={handleNavigation} // Pass the handleNavigation function here
+      />
+      
       <div className="finishedquiz-container">
         <SectionHeading
           mainIcon={fWhiteIcon}
@@ -112,8 +122,8 @@ const CompletedQuiz = ({ userId, onBackToDashboard, onViewQuizDetails }) => {
                 </p>
 
                 {/* Button to view quiz details */}
-                <button 
-                  onClick={() => onViewQuizDetails(quiz.quizId, quiz.completedQuizId)} 
+                <button
+                  onClick={() => onViewQuizDetails(quiz.quizId, quiz.completedQuizId)}
                   className="quiz-details-button"
                 >
                   Visa Detaljer
