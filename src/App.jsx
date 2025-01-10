@@ -22,9 +22,10 @@ const App = () => {
 
   const userId = "i69gyRz2uDNTrvt5gYDeJOQaIlt1"; // Replace with logic to fetch authenticated user's ID
 
+  // Handle page navigation based on the selected page
   const handleNavigation = (path) => {
     console.log("Navigating to:", path); // Debugging line
-    // Reset all other views and display the relevant view based on the navigation path
+
     switch (path) {
       case 'WeeklyQuizSelection':
         setShowWeeklyQuizzes(true);
@@ -112,7 +113,7 @@ const App = () => {
                 setSelectedCompletedQuizId(completedQuizId);
                 setShowQuizDetails(true);
               }}
-              handleNavigation={handleNavigation} // Pass handleNavigation here
+              handleNavigation={handleNavigation} 
             />
           ) : (
             <StudentDashboard
