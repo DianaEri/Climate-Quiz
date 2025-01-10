@@ -64,6 +64,35 @@ const QuizResult = ({
     onCompleteQuiz(results, correctAnswers, totalQuestions);
   };
 
+  // Determine the motivational message
+  const getMotivationalMessage = () => {
+    if (correctAnswers === totalQuestions) {
+      return (
+        <p className="motivating-message-quiz-result">
+          Wow, full pott! Fantastiskt jobbat, du är en riktig stjärna! Du har fått {correctAnswers} rätt av {totalQuestions} möjliga.
+        </p>
+      );
+    } else if (correctAnswers >= 9) {
+      return (
+        <p className="motivating-message-quiz-result">
+          Bra jobbat! Du är på rätt väg, fortsätt så här! Du har fått {correctAnswers} rätt av {totalQuestions} möjliga.
+        </p>
+      );
+    } else if (correctAnswers >= 4) {
+      return (
+        <p className="motivating-message-quiz-result">
+          Du har fått några rätt! Bra jobbat, men du kan definitivt göra bättre! Du har fått {correctAnswers} rätt av {totalQuestions} möjliga.
+        </p>
+      );
+    } else {
+      return (
+        <p className="motivating-message-quiz-result">
+          Det var nära! Du kan bättre, ge det ett nytt försök och visa vad du går för! Du har fått {correctAnswers} rätt av {totalQuestions} möjliga.
+        </p>
+      );
+    }
+  };
+
   return (
     <div className="quiz-result-container">
       <SectionHeading
@@ -72,10 +101,7 @@ const QuizResult = ({
         subText="Jobbat"
         subIcon={heart}
       />
-      <p className="motivating-message-quiz-result">
-        Fortsätt det fantastiska arbetet och lärandet – du gör ett riktigt bra
-        jobb! Du har fått {correctAnswers} rätt av {totalQuestions} möjliga.
-      </p>
+      {getMotivationalMessage()}
       <div
         className="chart-container"
         style={{ width: "250px", height: "250px", margin: "0 auto" }}
