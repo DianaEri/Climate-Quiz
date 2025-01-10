@@ -9,6 +9,11 @@ const MobileNavbar = ({ links, handleNavigation }) => {
     setMenuOpen(!menuOpen);
   };
 
+  const handleLinkClick = (path) => {
+    handleNavigation(path);  // Trigger the navigation
+    setMenuOpen(false); // Close the menu after clicking a link
+  };
+
   return (
     <div className="topnav">
       <div className="nav-left">
@@ -24,10 +29,7 @@ const MobileNavbar = ({ links, handleNavigation }) => {
         {links && links.map((link, index) => (
           <button
             key={index}
-            onClick={() => {
-              handleNavigation(link.path); // Trigger navigation on click
-              setMenuOpen(false); // Close the menu after clicking
-            }}
+            onClick={() => handleLinkClick(link.path)} // Use handleLinkClick
             className="navbar-link"
           >
             {link.label}

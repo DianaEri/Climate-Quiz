@@ -24,8 +24,8 @@ const App = () => {
 
   // Handle page navigation based on the selected page
   const handleNavigation = (path) => {
-    console.log("Navigating to:", path); // Debugging line
-
+    console.log("Navigating to:", path); // Debug log to track the path
+    
     switch (path) {
       case 'WeeklyQuizSelection':
         setShowWeeklyQuizzes(true);
