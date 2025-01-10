@@ -23,6 +23,7 @@ const App = () => {
   const userId = "i69gyRz2uDNTrvt5gYDeJOQaIlt1"; // Replace with logic to fetch authenticated user's ID
 
   const handleNavigation = (path) => {
+    console.log("Navigating to:", path); // Debugging line
     // Reset all other views and display the relevant view based on the navigation path
     switch (path) {
       case 'WeeklyQuizSelection':
