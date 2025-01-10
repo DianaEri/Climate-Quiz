@@ -21,19 +21,22 @@ const MobileNavbar = ({ links }) => {
       </div>
 
       {/* Hidden Links */}
-      {links && links.length > 0 && (
-        <div id="myLinks" style={{ display: menuOpen ? 'block' : 'none' }}>
-          {links.map((link, index) => (
-            <button
+      <div id="myLinks" style={{ display: menuOpen ? 'block' : 'none' }}>
+        {links &&
+          links.map((link, index) => (
+            <a
               key={index}
-              onClick={link.action}
+              onClick={() => {
+                link.action(); // Perform the action
+                setMenuOpen(false); // Close the menu
+              }}
               className="navbar-link"
+              href="#"
             >
               {link.label}
-            </button>
+            </a>
           ))}
-        </div>
-      )}
+      </div>
 
       {/* Right Section: User Icon */}
       <div className="user-icon-container">

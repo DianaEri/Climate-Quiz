@@ -1,16 +1,30 @@
 import React, { useEffect, useState } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Import FontAwesomeIcon
-import { faSquareUpRight } from '@fortawesome/free-solid-svg-icons'; // Import the specific icon
+import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSquareUpRight, faCircleLeft } from '@fortawesome/free-solid-svg-icons';
 import studentBackground from '../assets/student_bg.svg';
 import MobileNavbar from './MobileNavbar';
-import PillButton from './PillButton'; // Import the PillButton component
-import { faCircleLeft } from '@fortawesome/free-solid-svg-icons'; // Import the left arrow icon
+import PillButton from './PillButton';
 import SectionHeading from './SectionHeading';
 import vWhiteIcon from '../assets/v_white.svg';
 import medal from '../assets/megaphone.svg';
 import SubHeading from './SubHeading';
 
-const WeeklyQuizSelection = ({ onSelectQuiz, onBackToDashboard }) => {
+const WeeklyQuizSelection = ({ 
+  onSelectQuiz, 
+  onBackToDashboard, 
+  onViewCompletedQuizzes, 
+  onViewRanking 
+}) => {
+  const navigate = useNavigate();
+
+  const studentLinks = [
+    { label: 'Student Hörnan', action: () => navigate('/StudentDashboard') },
+    { label: 'Välj Din Quiz', action: () => navigate('/WeeklyQuizSelection') },
+    { label: 'Färdiga Quizzes', action: onViewCompletedQuizzes },
+    { label: 'Rank Mästare', action: onViewRanking },
+  ];
+
   const [quizData, setQuizData] = useState([]);
   const [uniqueQuizzes, setUniqueQuizzes] = useState([]);
 
@@ -23,7 +37,6 @@ const WeeklyQuizSelection = ({ onSelectQuiz, onBackToDashboard }) => {
         }
         const data = await response.json();
 
-        // Map quizId to actual quiz names
         const quizNames = {
           quiz1: "Klimatkaos: Vad Vet Du Om Världens Förändring?",
           quiz2: "Havet Uteblir: Kan Du Rädda Stränderna?",
@@ -49,14 +62,14 @@ const WeeklyQuizSelection = ({ onSelectQuiz, onBackToDashboard }) => {
 
   return (
     <div
-      className="student-view" // Reuse the same class for consistent styling
+      className="student-view"
       style={{
         backgroundImage: `url(${studentBackground})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
     >
-      <MobileNavbar />
+      <MobileNavbar links={studentLinks} />
       <div className="choice-container">
         <SectionHeading
           mainIcon={vWhiteIcon}
@@ -70,9 +83,9 @@ const WeeklyQuizSelection = ({ onSelectQuiz, onBackToDashboard }) => {
             <button
               onClick={() => onSelectQuiz(quiz.quizId)}
               key={quiz.quizId}
-              className="quiz-button" // Add the class for styling
+              className="quiz-button"
             >
-              {quiz.name} {/* Display the quiz name here */}
+              {quiz.name}
               <FontAwesomeIcon 
                 icon={faSquareUpRight} 
                 className="quiz-button-icon" 
