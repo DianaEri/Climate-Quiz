@@ -1204,6 +1204,22 @@ progress.progress-bar::-moz-progress-bar {
   margin-bottom: 0px;
 }
 
+.chart-container {
+  position: relative;
+}
+
+.percentage-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 68px;
+  font-weight: bold;
+  color: white; /* White color for the percentage */
+  z-index: 10; /* Ensure it appears above the pie chart */
+}
+
+
 @keyframes fadeIn {
   0% {
     opacity: 0;

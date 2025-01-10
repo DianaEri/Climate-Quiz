@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Pie } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { faCircleLeft, faCircleRight } from "@fortawesome/free-solid-svg-icons";
@@ -31,6 +31,7 @@ const QuizResult = ({
 
   const correctAnswers = results.filter((res) => res.isCorrect).length;
   const incorrectAnswers = totalQuestions - correctAnswers;
+  const percentage = Math.round((correctAnswers / totalQuestions) * 100); // Calculate percentage
 
   const pieData = {
     labels: ["Fel", "Rätt"],
@@ -53,13 +54,20 @@ const QuizResult = ({
       legend: {
         labels: { color: "white", font: { weight: "bold" } },
       },
+      tooltip: {
+        callbacks: {
+          label: function (tooltipItem) {
+            return tooltipItem.raw + "%";
+          },
+        },
+      },
     },
   };
 
   const handleCompleteQuiz = () => {
     if (isSubmitting) return;
     setIsSubmitting(true);
-  
+
     // Send the results, correct answers count, and total questions to Firestore
     onCompleteQuiz(results, correctAnswers, totalQuestions);
   };
@@ -104,16 +112,14 @@ const QuizResult = ({
       {getMotivationalMessage()}
       <div
         className="chart-container"
-        style={{ width: "250px", height: "250px", margin: "0 auto" }}
+        style={{ position: "relative", width: "250px", height: "250px", margin: "0 auto" }}
       >
         <Pie data={pieData} options={pieOptions} />
-      </div>
-
-      <div className="view-answers-link-container">
-        <p className="view-answers-link">
-          Se alla <a href="#" className="answer-link">dina svar</a> med rätta
-          lösningar.
-        </p>
+        
+        {/* Add the centered percentage label */}
+        <div className="percentage-label">
+          {percentage}%
+        </div>
       </div>
 
       <div className="button-container">
