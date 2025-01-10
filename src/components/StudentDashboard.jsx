@@ -1,25 +1,22 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { faCircleRight } from '@fortawesome/free-solid-svg-icons'; // Import faCircleRight
+import React from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleRight } from '@fortawesome/free-solid-svg-icons';
 import MobileNavbar from './MobileNavbar';
 import PillButton from './PillButton';
-import studentBackground from '../assets/student_bg.svg';
-import '../index.css';
-import girlHeadphone from '../assets/girl_headphone.svg';
-import sWhiteIcon from '../assets/s_white.svg';
-import lightbulb from '../assets/lightbulb.svg';
-import drink from '../assets/drink.svg';
-import splash from '../assets/splash.svg';
 import SectionHeading from './SectionHeading';
+import studentBackground from '../assets/student_bg.svg'; // Import background image
+import sWhiteIcon from '../assets/s_white.svg'; // Import icons for sections
+import girlHeadphone from '../assets/girl_headphone.svg'; // Import section icon
+import lightbulb from '../assets/lightbulb.svg'; // Overlay icon
+import drink from '../assets/drink.svg'; // Overlay icon
+import splash from '../assets/splash.svg'; // Overlay icon
 
-const StudentDashboard = ({ onStartWeeklyQuiz, onViewRanking, onViewCompletedQuizzes }) => {
-  const navigate = useNavigate();
-
+const StudentDashboard = ({ onStartWeeklyQuiz, onViewRanking, onViewCompletedQuizzes, handleNavigation }) => {
+  // Links specific to the Student Dashboard
   const studentLinks = [
-    { label: 'Student Hörnan', action: () => navigate('/StudentDashboard') },
-    { label: 'Välj Din Quiz', action: onStartWeeklyQuiz },
-    { label: 'Färdiga Quizzes', action: onViewCompletedQuizzes },
-    { label: 'Rank Mästare', action: onViewRanking },
+    { label: 'Välj Din Quiz', path: 'WeeklyQuizSelection' },
+    { label: 'Färdiga Quizzes', path: 'CompletedQuiz' },
+    { label: 'Rank Mästare', path: 'Ranking' },
   ];
 
   return (
@@ -27,9 +24,13 @@ const StudentDashboard = ({ onStartWeeklyQuiz, onViewRanking, onViewCompletedQui
       className="student-view"
       style={{
         backgroundImage: `url(${studentBackground})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
       }}
     >
-      <MobileNavbar links={studentLinks} />
+      {/* Pass student-specific links to the MobileNavbar */}
+      <MobileNavbar links={studentLinks} handleNavigation={handleNavigation} />
+      
       <div className="dashboard-wrapper">
         <div className="dashboard-container">
           <SectionHeading

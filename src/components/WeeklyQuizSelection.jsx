@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSquareUpRight, faCircleLeft } from '@fortawesome/free-solid-svg-icons';
 import studentBackground from '../assets/student_bg.svg';
@@ -14,17 +13,9 @@ const WeeklyQuizSelection = ({
   onSelectQuiz, 
   onBackToDashboard, 
   onViewCompletedQuizzes, 
-  onViewRanking 
+  onViewRanking,
+  handleNavigation
 }) => {
-  const navigate = useNavigate();
-
-  const studentLinks = [
-    { label: 'Student Hörnan', action: () => navigate('/StudentDashboard') },
-    { label: 'Välj Din Quiz', action: () => navigate('/WeeklyQuizSelection') },
-    { label: 'Färdiga Quizzes', action: onViewCompletedQuizzes },
-    { label: 'Rank Mästare', action: onViewRanking },
-  ];
-
   const [quizData, setQuizData] = useState([]);
   const [uniqueQuizzes, setUniqueQuizzes] = useState([]);
 
@@ -47,7 +38,7 @@ const WeeklyQuizSelection = ({
         const uniqueQuizIds = Array.from(new Set(data.map((quiz) => quiz.quizId)));
         const uniqueQuizObjects = uniqueQuizIds.map((id) => ({
           quizId: id,
-          name: quizNames[id] || `Quiz ${id.replace("quiz", "")}`, // Assign names based on the quizId
+          name: quizNames[id] || `Quiz ${id.replace("quiz", "")}`,
         }));
 
         setQuizData(data);
@@ -69,7 +60,15 @@ const WeeklyQuizSelection = ({
         backgroundPosition: 'center',
       }}
     >
-      <MobileNavbar links={studentLinks} />
+      <MobileNavbar
+        links={[
+          { label: 'Student Hörnan', path: 'StudentDashboard' },  // Don't use `/` here since it's controlled by state
+          { label: 'Färdiga Quizzes', path: 'CompletedQuiz' },
+          { label: 'Rank Mästare', path: 'Ranking' }
+        ]}
+        handleNavigation={handleNavigation} // Pass the handleNavigation function here
+      />
+      
       <div className="choice-container">
         <SectionHeading
           mainIcon={vWhiteIcon}
