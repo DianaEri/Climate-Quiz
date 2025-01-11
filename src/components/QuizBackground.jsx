@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-// Import all backgrounds
+// Importera alla bakgrundsbilder
 import quiz_bg1 from "../assets/quiz_bg1.png";
 import quiz_bg2 from "../assets/quiz_bg2.png";
 import quiz_bg3 from "../assets/quiz_bg3.png";
@@ -16,6 +16,7 @@ import quiz_bg12 from "../assets/quiz_bg12.png";
 import quiz_bg13 from "../assets/quiz_bg13.png";
 import quiz_bg14 from "../assets/quiz_bg14.png";
 
+// Lista av alla bakgrundsbilder
 const backgrounds = [
   quiz_bg1, quiz_bg2, quiz_bg3, quiz_bg4, quiz_bg5,
   quiz_bg6, quiz_bg7, quiz_bg8, quiz_bg9, quiz_bg10,
@@ -23,38 +24,38 @@ const backgrounds = [
 ];
 
 const QuizBackground = ({ currentQuestion }) => {
-  const [currentBackground, setCurrentBackground] = useState(backgrounds[0]);
+  const [currentBackground, setCurrentBackground] = useState(backgrounds[0]); // Sätter initial bakgrund till den första i listan
 
-  // Preload images on component mount
+  // Förladdar bilder vid komponentens montering
   useEffect(() => {
     backgrounds.forEach((bg) => {
       const img = new Image();
-      img.src = bg;
+      img.src = bg; // Laddar varje bakgrundsbild
     });
-  }, []);
+  }, []); // Kör bara vid första renderingen (montering)
 
   useEffect(() => {
-    // Change background when the question changes
-    const backgroundIndex = Math.min(currentQuestion, backgrounds.length - 1);
-    setCurrentBackground(backgrounds[backgroundIndex]);
-  }, [currentQuestion]);
+    // Byt bakgrund när frågan ändras
+    const backgroundIndex = Math.min(currentQuestion, backgrounds.length - 1); // Säkerställ att indexet inte är utanför arrayens längd
+    setCurrentBackground(backgrounds[backgroundIndex]); // Uppdatera bakgrunden
+  }, [currentQuestion]); // När currentQuestion ändras, uppdatera bakgrunden
 
   return (
     <div
       style={{
-        position: "fixed",
+        position: "fixed", // Fäst bakgrunden på hela sidan
         top: 0,
         left: 0,
-        width: "100vw",
-        height: "100vh",
-        backgroundImage: `url(${currentBackground})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        zIndex: -1, // Ensure it stays behind the quiz content
-        transition: "background-image 0.5s ease-in-out", // Smooth transition
+        width: "100vw", // Full bredd på skärmen
+        height: "100vh", // Full höjd på skärmen
+        backgroundImage: `url(${currentBackground})`, // Sätt den nuvarande bakgrunden
+        backgroundSize: "cover", // Gör så att bakgrunden täcker hela ytan
+        backgroundPosition: "center", // Centrera bakgrunden
+        zIndex: -1, // Sätt z-index så att den ligger bakom quizinnehållet
+        transition: "background-image 0.5s ease-in-out", // Lägger till en mjuk övergång för bakgrundsbytet
       }}
     />
   );
 };
 
-export default QuizBackground;
+export default QuizBackground; // Exportera QuizBackground-komponenten för användning i andra delar av appen
