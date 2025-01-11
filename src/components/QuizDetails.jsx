@@ -127,8 +127,8 @@ function QuizDetails({ userId, quizId, completedQuizId, onBackToCompletedQuizzes
                 <p><strong>Ditt svar:</strong> {userAnswer}</p> {/* Visar användarens svar */}
                 <p>
                   {userAnswer === question.correctAnswer
-                    ? "✔️ Korrekt!" // Om användarens svar är korrekt
-                    : "❌ Fel."} // Om användarens svar är fel
+                    ? "✔️ Korrekt!" 
+                    : "❌ Fel."} 
                 </p>
               </li>
             );
