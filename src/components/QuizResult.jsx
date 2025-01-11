@@ -39,7 +39,7 @@ const QuizResult = ({
       {
         label: "Resultat",
         data: [incorrectAnswers, correctAnswers],
-        backgroundColor: ["#E7625F", "#ADC290"],
+        backgroundColor: ["#fb879e", "#2a9d8f"],
         borderColor: "transparent",
         borderWidth: 0,
         hoverOffset: 4,
@@ -111,16 +111,21 @@ const QuizResult = ({
       />
       {getMotivationalMessage()}
       <div
-        className="chart-container"
-        style={{ position: "relative", width: "250px", height: "250px", margin: "0 auto" }}
-      >
-        <Pie data={pieData} options={pieOptions} />
-        
-        {/* Add the centered percentage label */}
-        <div className="percentage-label">
-          {percentage}%
-        </div>
+      className="chart-container"
+    >
+      <Pie data={pieData} options={pieOptions} />
+
+      {/* Center the percentage label */}
+      <div className="percentage-label">
+        {percentage}%
       </div>
+    </div>
+
+    <div className="view-answers-link-container">
+      <p className="view-answers-link">
+        Du kan nu välja att skicka in ditt quiz för att sparas eller gå tillbaka till startsidan.
+      </p>
+    </div>
 
       <div className="button-container">
         <PillButton
