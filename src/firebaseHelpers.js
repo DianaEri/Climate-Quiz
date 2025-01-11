@@ -1,122 +1,126 @@
-import { db } from './firebase'; // Firebase initialization file
-import { doc, setDoc, updateDoc, arrayUnion, getDoc } from "firebase/firestore";
-import { v4 as uuidv4 } from "uuid"; // For generating unique identifiers
-import quizData from '../quizData.json'; // Path to your JSON file
+// Importerar funktioner från Firebase Firestore och annan nödvändig kod
+import { db } from './firebase'; // Firebase-initialisering
+import { doc, setDoc, updateDoc, arrayUnion, getDoc } from "firebase/firestore"; // Firestore funktioner för att läsa och skriva data
+import { v4 as uuidv4 } from "uuid"; // För att generera unika identifierare
+import quizData from '../quizData.json'; // Vägen till JSON-filen med quizdata
 
-// Save completed quizzes
+// Funktion för att spara genomförda quiz
 export async function saveCompletedQuiz(userId, quizId, userAnswers, score, totalQuestions) {
-  console.log("Attempting to save quiz:", { userId, quizId, userAnswers, score, totalQuestions });
+  console.log("Försöker spara quiz:", { userId, quizId, userAnswers, score, totalQuestions });
 
+  // Validerar att alla nödvändiga parametrar finns
   if (!userId || !quizId || !userAnswers || score === undefined || totalQuestions === undefined) {
-    throw new Error("Invalid userId, quizId, userAnswers, score, or totalQuestions provided.");
+    throw new Error("Ogiltigt userId, quizId, userAnswers, score eller totalQuestions angivna.");
   }
 
-  const userRef = doc(db, 'users', userId);
+  const userRef = doc(db, 'users', userId); // Hämtar referens till användardokumentet i Firestore
 
   try {
-    const userSnap = await getDoc(userRef);
+    const userSnap = await getDoc(userRef); // Hämtar dokumentet för användaren
 
     if (!userSnap.exists()) {
-      console.log("User document does not exist. Creating a new one...");
-      await setDoc(userRef, { completedQuizzes: [] });
+      console.log("Användardokumentet finns inte. Skapar ett nytt...");
+      await setDoc(userRef, { completedQuizzes: [] }); // Om användaren inte finns, skapa ett nytt dokument
     }
 
-    const completedQuizId = uuidv4(); // Generate a unique ID for this completed quiz
+    const completedQuizId = uuidv4(); // Generera ett unikt ID för detta genomförda quiz
 
-    // Save the quiz with user answers, score, and total questions
+    // Uppdatera användardokumentet med genomfört quiz
     await updateDoc(userRef, {
       completedQuizzes: arrayUnion({
-        completedQuizId, // Unique ID for this completed quiz
+        completedQuizId, // Unikt ID för det genomförda quizet
         quizId,
-        completedAt: new Date().toISOString(),
+        completedAt: new Date().toISOString(), // Sätt tiden för när quizet genomfördes
         userAnswers,
-        score, // Save the score
-        totalQuestions // Save the total number of questions
+        score, // Spara användarens poäng
+        totalQuestions // Spara antalet frågor i quizet
       }),
     });
 
-    console.log('Quiz saved successfully with ID:', completedQuizId);
-    return completedQuizId; // Return the unique ID for further use
+    console.log('Quiz sparades framgångsrikt med ID:', completedQuizId);
+    return completedQuizId; // Returnera det unika ID:t för vidare användning
   } catch (error) {
-    console.error('Error saving quiz:', error.message);
-    throw error;
+    console.error('Fel vid sparande av quiz:', error.message);
+    throw error; // Kasta vidare felet om något går fel
   }
 }
 
-// Get completed quizzes
+// Funktion för att hämta genomförda quiz för en användare
 export async function getCompletedQuizzes(userId) {
+  // Validerar att användar-ID är angivet
   if (!userId) {
-    throw new Error("Invalid userId provided.");
+    throw new Error("Ogiltigt userId angivet.");
   }
 
-  const userRef = doc(db, 'users', userId);
+  const userRef = doc(db, 'users', userId); // Hämtar referens till användardokumentet
 
   try {
-    const userSnap = await getDoc(userRef);
+    const userSnap = await getDoc(userRef); // Hämtar dokumentet för användaren
     if (userSnap.exists()) {
-      const completedQuizzes = userSnap.data().completedQuizzes || [];
-      console.log(`Completed quizzes for user ${userId}:`, completedQuizzes);
-      return completedQuizzes;
+      const completedQuizzes = userSnap.data().completedQuizzes || []; // Hämta listan över genomförda quiz
+      console.log(`Genomförda quiz för användare ${userId}:`, completedQuizzes);
+      return completedQuizzes; // Returnera listan med genomförda quiz
     } else {
-      console.log('No user document found in Firestore.');
-      return [];
+      console.log('Användardokument hittades inte i Firestore.');
+      return []; // Returnera en tom lista om användaren inte finns
     }
   } catch (error) {
-    console.error('Error fetching completed quizzes:', error.message);
-    return [];
+    console.error('Fel vid hämtning av genomförda quiz:', error.message);
+    return []; // Returnera en tom lista om något går fel
   }
 }
 
-// Get quiz details from quizData.json and Firestore
+// Funktion för att hämta detaljer om ett specifikt quiz från både quizData.json och Firestore
 export async function getQuizDetails(quizId, userId, completedQuizId) {
   try {
-    console.log("Fetching details for quizId:", quizId, "userId:", userId, "completedQuizId:", completedQuizId);
+    console.log("Hämtar detaljer för quizId:", quizId, "userId:", userId, "completedQuizId:", completedQuizId);
 
+    // Validerar att både userId och completedQuizId är angivna
     if (!userId || !completedQuizId) {
-      throw new Error("Invalid userId or completedQuizId provided.");
+      throw new Error("Ogiltigt userId eller completedQuizId angivet.");
     }
 
-    // Fetch questions from quizData.json
+    // Hämta frågor från quizData.json baserat på quizId
     const questions = quizData.filter((question) => question.quizId === quizId);
-    console.log("Filtered questions:", questions);
+    console.log("Filtrerade frågor:", questions);
 
     if (questions.length === 0) {
-      throw new Error(`Quiz with ID ${quizId} not found in quizData.json.`);
+      throw new Error(`Quiz med ID ${quizId} hittades inte i quizData.json.`);
     }
 
-    // Fetch completed quizzes from Firestore
+    // Hämta genomförda quiz från Firestore
     const userRef = doc(db, 'users', userId);
     const userSnap = await getDoc(userRef);
 
     let userAnswers = [];
-    let completedQuiz = null; // Make sure completedQuiz is initially null
+    let completedQuiz = null; // Se till att completedQuiz är initialt null
 
     if (userSnap.exists()) {
       const completedQuizzes = userSnap.data().completedQuizzes || [];
-      console.log(`Completed quizzes for user ${userId}:`, completedQuizzes);
+      console.log(`Genomförda quiz för användare ${userId}:`, completedQuizzes);
 
-      // Match quiz using quizId and completedQuizId
+      // Matcha quizet med quizId och completedQuizId
       completedQuiz = completedQuizzes.find(
         (quiz) => quiz.quizId === quizId && quiz.completedQuizId === completedQuizId
       );
 
       if (completedQuiz) {
-        console.log("Matching completed quiz found:", completedQuiz);
+        console.log("Matchande genomfört quiz hittades:", completedQuiz);
         userAnswers = completedQuiz.userAnswers || [];
-        console.log("User Answers Retrieved:", userAnswers);
+        console.log("Användarens svar hämtades:", userAnswers);
       } else {
-        console.warn(`No matching completed quiz found for completedQuizId: ${completedQuizId}`);
+        console.warn(`Inget matchande genomfört quiz hittades för completedQuizId: ${completedQuizId}`);
       }
     } else {
-      console.warn(`User document not found in Firestore for userId: ${userId}`);
+      console.warn(`Användardokumentet hittades inte i Firestore för userId: ${userId}`);
     }
 
-    // If completedQuiz is not found, throw an error
+    // Om completedQuiz inte hittades, kasta ett fel
     if (!completedQuiz) {
-      throw new Error(`Completed quiz with ID ${completedQuizId} not found.`);
+      throw new Error(`Genomfört quiz med ID ${completedQuizId} hittades inte.`);
     }
 
-    // Return the quiz details along with user answers, score, and totalQuestions
+    // Returnera quizdetaljerna tillsammans med användarens svar, poäng och totalt antal frågor
     return {
       quizId,
       questions: questions.map((question) => ({
@@ -124,14 +128,14 @@ export async function getQuizDetails(quizId, userId, completedQuizId) {
         text: question.question,
         correctAnswer: question.correct_answer,
         incorrectAnswers: question.incorrect_answers,
-        chartData: question.chart_data || null,
+        chartData: question.chart_data || null, // Om det finns diagramdata, inkludera det
       })),
       userAnswers,
       score: completedQuiz.score || 0,
       totalQuestions: completedQuiz.totalQuestions || 0,
     };
   } catch (error) {
-    console.error("Error fetching quiz details:", error.message);
-    throw error;
+    console.error("Fel vid hämtning av quizdetaljer:", error.message);
+    throw error; // Kasta felet vidare om något gick fel
   }
 }
