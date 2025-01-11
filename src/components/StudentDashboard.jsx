@@ -1,18 +1,18 @@
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleRight } from '@fortawesome/free-solid-svg-icons';
-import MobileNavbar from './MobileNavbar';
-import PillButton from './PillButton';
-import SectionHeading from './SectionHeading';
-import studentBackground from '../assets/student_bg.svg'; // Import background image
-import sWhiteIcon from '../assets/s_white.svg'; // Import icons for sections
-import girlHeadphone from '../assets/girl_headphone.svg'; // Import section icon
-import lightbulb from '../assets/lightbulb.svg'; // Overlay icon
-import drink from '../assets/drink.svg'; // Overlay icon
-import splash from '../assets/splash.svg'; // Overlay icon
+import MobileNavbar from './MobileNavbar'; // Importerar MobileNavbar-komponenten
+import PillButton from './PillButton'; // Importerar PillButton-komponenten
+import SectionHeading from './SectionHeading'; // Importerar SectionHeading-komponenten
+import studentBackground from '../assets/student_bg.svg'; // Importerar bakgrundsbilden
+import sWhiteIcon from '../assets/s_white.svg'; // Importerar ikoner för sektioner
+import girlHeadphone from '../assets/girl_headphone.svg'; // Importerar sektionens ikon
+import lightbulb from '../assets/lightbulb.svg'; // Overlay-ikon
+import drink from '../assets/drink.svg'; // Overlay-ikon
+import splash from '../assets/splash.svg'; // Overlay-ikon
 
 const StudentDashboard = ({ onStartWeeklyQuiz, onViewRanking, onViewCompletedQuizzes, handleNavigation }) => {
-  // Links specific to the Student Dashboard
+  // Länkar specifika för Student Dashboard
   const studentLinks = [
     { label: 'Välj Din Quiz', path: 'WeeklyQuizSelection' },
     { label: 'Färdiga Quizzes', path: 'CompletedQuiz' },
@@ -23,32 +23,36 @@ const StudentDashboard = ({ onStartWeeklyQuiz, onViewRanking, onViewCompletedQui
     <div
       className="student-view"
       style={{
-        backgroundImage: `url(${studentBackground})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        backgroundImage: `url(${studentBackground})`, // Sätter bakgrundsbilden för studentvyn
+        backgroundSize: 'cover', // Gör bakgrunden täckande
+        backgroundPosition: 'center', // Centrera bakgrunden
       }}
     >
-      {/* Pass student-specific links to the MobileNavbar */}
+      {/* Passar student-specifika länkar till MobileNavbar-komponenten */}
       <MobileNavbar links={studentLinks} handleNavigation={handleNavigation} />
       
       <div className="dashboard-wrapper">
         <div className="dashboard-container">
+          {/* Sektionens rubrik */}
           <SectionHeading
-            mainIcon={sWhiteIcon}
-            mainText="tudent"
-            subText="Hörnan"
-            subIcon={girlHeadphone}
+            mainIcon={sWhiteIcon} // Huvudikon
+            mainText="tudent" // Huvudtext
+            subText="Hörnan" // Underrubrik
+            subIcon={girlHeadphone} // Underrubrikens ikon
           />
+          {/* Knapp för att starta veckans quiz */}
           <PillButton
             text="Välj Din Quiz"
             icon={faCircleRight}
             onClick={onStartWeeklyQuiz}
           />
+          {/* Knapp för att visa färdiga quiz */}
           <PillButton
             text="Färdiga Quizzes"
             icon={faCircleRight}
             onClick={onViewCompletedQuizzes}
           />
+          {/* Knapp för att visa rankingen */}
           <PillButton
             text="Rank Mästare"
             icon={faCircleRight}
@@ -56,13 +60,13 @@ const StudentDashboard = ({ onStartWeeklyQuiz, onViewRanking, onViewCompletedQui
           />
         </div>
 
-        {/* Overlay SVGs */}
-        <img src={lightbulb} alt="Lightbulb" className="dashboard-lightbulb" />
-        <img src={drink} alt="Drink" className="dashboard-drink" />
-        <img src={splash} alt="Splash" className="dashboard-splash" />
+        {/* Overlay SVG-ikoner */}
+        <img src={lightbulb} alt="Lightbulb" className="dashboard-lightbulb" /> {/* Lyspär ikon */}
+        <img src={drink} alt="Drink" className="dashboard-drink" /> {/* Drink ikon */}
+        <img src={splash} alt="Splash" className="dashboard-splash" /> {/* Splash ikon */}
       </div>
     </div>
   );
 };
 
-export default StudentDashboard;
+export default StudentDashboard; // Exporterar StudentDashboard-komponenten
