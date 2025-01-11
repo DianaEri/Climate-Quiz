@@ -1,26 +1,29 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'; // Importerar PropTypes för att definiera typer för komponentens props
 
 const SectionHeading = ({ mainIcon, mainText, subText = '', subIcon = null }) => {
   return (
-    <div className="section-heading-container">
+    <div className="section-heading-container"> {/* Huvudcontainer för rubriken */}
       <h1 className="section-heading-main">
+        {/* Visar huvudikonen */}
         <img src={mainIcon} alt="Main Icon" className="section-heading-main-icon" />
-        {mainText}
+        {mainText} {/* Visar huvudtexten */}
       </h1>
       <div className="section-heading-sub">
-        <span className="section-heading-sub-text">{subText}</span>
+        <span className="section-heading-sub-text">{subText}</span> {/* Visar eventuellt undertexten */}
+        {/* Om subIcon finns, visa underikonen */}
         {subIcon && <img src={subIcon} alt="Sub Icon" className="section-heading-sub-icon" />}
       </div>
     </div>
   );
 };
 
+// Definierar typer och om vissa props är obligatoriska
 SectionHeading.propTypes = {
-  mainIcon: PropTypes.string.isRequired, // Path to the main SVG icon
-  mainText: PropTypes.string.isRequired, // Text for the main heading
-  subText: PropTypes.string, // Optional text for the subheading
-  subIcon: PropTypes.string, // Optional path to the subheading SVG icon
+  mainIcon: PropTypes.string.isRequired, // Sökväg till huvud-SVG-ikonen
+  mainText: PropTypes.string.isRequired, // Text för huvudrubriken
+  subText: PropTypes.string, // Valfri text för underrubriken
+  subIcon: PropTypes.string, // Valfri sökväg till underrubriken ikonen
 };
 
-export default SectionHeading;
+export default SectionHeading; // Exporterar SectionHeading-komponenten
