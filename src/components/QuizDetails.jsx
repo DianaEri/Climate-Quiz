@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { getQuizDetails } from '../firebaseHelpers';
-import studentBackground from '../assets/student_bg.svg';
-import MobileNavbar from './MobileNavbar';
-import PillButton from './PillButton';
-import { faCircleLeft } from '@fortawesome/free-solid-svg-icons'; 
-import SectionHeading from './SectionHeading';
-import hand_lightbulb from '../assets/hand_lightbulb.svg';
-import qWhiteIcon from '../assets/q_white.svg';
+import { getQuizDetails } from '../firebaseHelpers'; // Hämtar quizdetaljer från Firebase
+import studentBackground from '../assets/student_bg.svg'; // Bakgrundsbild för studentvy
+import MobileNavbar from './MobileNavbar'; // Importerar mobilmenyn
+import PillButton from './PillButton'; // Importerar PillButton-komponenten för att gå tillbaka
+import { faCircleLeft } from '@fortawesome/free-solid-svg-icons'; // Ikon för att gå tillbaka
+import SectionHeading from './SectionHeading'; // Importerar komponent för rubrik
+import hand_lightbulb from '../assets/hand_lightbulb.svg'; // Ikon för sektion
+import qWhiteIcon from '../assets/q_white.svg'; // Ikon för quiz
 
 function QuizDetails({ userId, quizId, completedQuizId, onBackToCompletedQuizzes, handleNavigation }) {
-  const [quizDetails, setQuizDetails] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  
-  const [filter, setFilter] = useState('all'); 
+  const [quizDetails, setQuizDetails] = useState(null); // Håller quizdetaljer i state
+  const [loading, setLoading] = useState(true); // Håller koll på om data laddas
+  const [error, setError] = useState(null); // Håller koll på eventuella fel
 
+  const [filter, setFilter] = useState('all'); // Håller koll på vilken filter som används
+
+  // Quiznamn för att koppla rätt namn till varje quizId
   const quizNames = {
     quiz1: "Klimatkaos: Vad Vet Du Om Världens Förändring?",
     quiz2: "Havet Uteblir: Kan Du Rädda Stränderna?",
@@ -22,22 +23,24 @@ function QuizDetails({ userId, quizId, completedQuizId, onBackToCompletedQuizzes
     quiz4: "CO2-Utmaningen: Vad Kan Du Om Fossila Bränslen?"
   };
 
+  // Hämta quizdetaljer från Firebase när komponenten mountas
   useEffect(() => {
     async function fetchDetails() {
       try {
         const data = await getQuizDetails(quizId, userId, completedQuizId);
-        console.log("Fetched quiz details:", data);
-        setQuizDetails(data);
+        console.log("Fetched quiz details:", data); // Loggar quizdetaljer
+        setQuizDetails(data); // Sätter quizdetaljer i state
       } catch (error) {
-        console.error("Error fetching quiz details:", error.message);
-        setError(error.message);
+        console.error("Error fetching quiz details:", error.message); // Loggar fel om något går fel
+        setError(error.message); // Sätter felmeddelande
       } finally {
-        setLoading(false);
+        setLoading(false); // Sätter loading till false när datan har hämtats
       }
     }
-    fetchDetails();
+    fetchDetails(); // Anropar funktionen för att hämta quizdetaljer
   }, [quizId, userId, completedQuizId]);
 
+  // Om quizdetaljer inte är hämtade eller om det finns ett fel, visa meddelande
   if (loading) {
     return <p>Laddar quizdetaljer...</p>;
   }
@@ -50,6 +53,7 @@ function QuizDetails({ userId, quizId, completedQuizId, onBackToCompletedQuizzes
     return <p>Quizdetaljer kunde inte laddas. Kontrollera dina valda uppgifter.</p>;
   }
 
+  // Filtrera frågorna baserat på användarens valda filter (korrekta, felaktiga eller alla)
   const filteredQuestions = quizDetails.questions.filter((question) => {
     const userAnswerDetails = quizDetails.userAnswers.find(
       (ans) => ans.questionId === question.id
@@ -57,11 +61,11 @@ function QuizDetails({ userId, quizId, completedQuizId, onBackToCompletedQuizzes
     const userAnswer = userAnswerDetails?.userAnswer;
 
     if (filter === 'correct') {
-      return userAnswer === question.correctAnswer;
+      return userAnswer === question.correctAnswer; // Filtrera korrekt svar
     } else if (filter === 'incorrect') {
-      return userAnswer !== question.correctAnswer;
+      return userAnswer !== question.correctAnswer; // Filtrera felaktiga svar
     } else {
-      return true; 
+      return true; // Visa alla svar
     }
   });
 
@@ -69,12 +73,12 @@ function QuizDetails({ userId, quizId, completedQuizId, onBackToCompletedQuizzes
     <div className="teacher-view" style={{ backgroundImage: `url(${studentBackground})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
       <MobileNavbar 
         links={[
-          { label: 'Student Hörnan', path: '/StudentDashboard' },
-          { label: 'Välj Din Quiz', path: '/WeeklyQuizSelection' },
-          { label: 'Färdiga Quizzes', path: '/CompletedQuiz' },
-          { label: 'Rank Mästare', path: '/Ranking' },
+          { label: 'Student Hörnan', path: '/StudentDashboard' }, // Länk till StudentDashboard
+          { label: 'Välj Din Quiz', path: '/WeeklyQuizSelection' }, // Länk till WeeklyQuizSelection
+          { label: 'Färdiga Quizzes', path: '/CompletedQuiz' }, // Länk till CompletedQuiz
+          { label: 'Rank Mästare', path: '/Ranking' }, // Länk till Ranking
         ]}
-        handleNavigation={handleNavigation} // Pass the handleNavigation function here
+        handleNavigation={handleNavigation} // Passar handleNavigation för navigation
       />
       <div className="details-container">
         <SectionHeading
@@ -83,10 +87,10 @@ function QuizDetails({ userId, quizId, completedQuizId, onBackToCompletedQuizzes
           subText="Detaljer"
           subIcon={hand_lightbulb}
         />
-        <p><strong>Quiz namn:</strong> {quizNames[quizDetails.quizId]}</p>
-        <p><strong>Antal rätt svar:</strong> {quizDetails.score}/{quizDetails.totalQuestions}</p>
-
-        <p><strong>Välj för att visa:</strong></p>
+        <p><strong>Quiz namn:</strong> {quizNames[quizDetails.quizId]}</p> {/* Visar quiznamnet */}
+        <p><strong>Antal rätt svar:</strong> {quizDetails.score}/{quizDetails.totalQuestions}</p> {/* Visar antal rätta svar */}
+        
+        <p><strong>Välj för att visa:</strong></p> {/* Välj filter */}
         <div className="detail-buttons">
           <button 
             className={`detail-button ${filter === 'all' ? 'active' : ''}`}
@@ -108,28 +112,30 @@ function QuizDetails({ userId, quizId, completedQuizId, onBackToCompletedQuizzes
           </button>
         </div>
 
+        {/* Lista med filtrerade frågor */}
         <ol>
           {filteredQuestions.map((question, index) => {
             const userAnswerDetails = quizDetails.userAnswers.find(
               (ans) => ans.questionId === question.id
             );
-            const userAnswer = userAnswerDetails?.userAnswer || "Ingen svar";
+            const userAnswer = userAnswerDetails?.userAnswer || "Ingen svar"; // Sätt användarsvaret eller "Ingen svar" om inget finns
 
             return (
               <li key={index}>
-                <p>{question.text}</p>
-                <p><strong>Rätt svar:</strong> {question.correctAnswer}</p>
-                <p><strong>Ditt svar:</strong> {userAnswer}</p>
+                <p>{question.text}</p> {/* Visar frågan */}
+                <p><strong>Rätt svar:</strong> {question.correctAnswer}</p> {/* Visar rätt svar */}
+                <p><strong>Ditt svar:</strong> {userAnswer}</p> {/* Visar användarens svar */}
                 <p>
                   {userAnswer === question.correctAnswer
-                    ? "✔️ Korrekt!"
-                    : "❌ Fel."}
+                    ? "✔️ Korrekt!" // Om användarens svar är korrekt
+                    : "❌ Fel."} // Om användarens svar är fel
                 </p>
               </li>
             );
           })}
         </ol>
 
+        {/* Knapp för att gå tillbaka till färdiga quizzes */}
         <div className="pill-button-container">
           <PillButton
             text="Tillbaka till Färdiga Quizzes"
@@ -142,4 +148,4 @@ function QuizDetails({ userId, quizId, completedQuizId, onBackToCompletedQuizzes
   );
 }
 
-export default QuizDetails;
+export default QuizDetails; // Exporterar QuizDetails-komponenten
