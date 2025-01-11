@@ -93,9 +93,9 @@ const CompletedQuiz = ({ userId, onBackToDashboard, onViewQuizDetails, handleNav
       {/* Mobile Navbar with the correct links */}
       <MobileNavbar
         links={[
-          { label: 'Student Hörnan', path: '/StudentDashboard' },
-          { label: 'Välj Din Quiz', path: '/WeeklyQuizSelection' },
-          { label: 'Rank Mästare', path: '/Ranking' },
+          { label: 'Student Hörnan', path: 'StudentDashboard' },
+          { label: 'Välj Din Quiz', path: 'WeeklyQuizSelection' },
+          { label: 'Rank Mästare', path: 'Ranking' },
         ]}
         handleNavigation={handleNavigation} // Pass the handleNavigation function here
       />
@@ -176,4 +176,3 @@ const CompletedQuiz = ({ userId, onBackToDashboard, onViewQuizDetails, handleNav
 };
 
 export default CompletedQuiz;
-

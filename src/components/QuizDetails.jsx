@@ -8,15 +8,13 @@ import SectionHeading from './SectionHeading';
 import hand_lightbulb from '../assets/hand_lightbulb.svg';
 import qWhiteIcon from '../assets/q_white.svg';
 
-function QuizDetails({ userId, quizId, completedQuizId, onBackToCompletedQuizzes }) {
+function QuizDetails({ userId, quizId, completedQuizId, onBackToCompletedQuizzes, handleNavigation }) {
   const [quizDetails, setQuizDetails] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   
-  // State to manage the filter (all answers, correct answers, or incorrect answers)
   const [filter, setFilter] = useState('all'); 
 
-  // Map quizId to actual quiz names
   const quizNames = {
     quiz1: "Klimatkaos: Vad Vet Du Om Världens Förändring?",
     quiz2: "Havet Uteblir: Kan Du Rädda Stränderna?",
@@ -52,7 +50,6 @@ function QuizDetails({ userId, quizId, completedQuizId, onBackToCompletedQuizzes
     return <p>Quizdetaljer kunde inte laddas. Kontrollera dina valda uppgifter.</p>;
   }
 
-  // Filter questions based on selected filter
   const filteredQuestions = quizDetails.questions.filter((question) => {
     const userAnswerDetails = quizDetails.userAnswers.find(
       (ans) => ans.questionId === question.id
@@ -64,19 +61,21 @@ function QuizDetails({ userId, quizId, completedQuizId, onBackToCompletedQuizzes
     } else if (filter === 'incorrect') {
       return userAnswer !== question.correctAnswer;
     } else {
-      return true; // Show all answers
+      return true; 
     }
   });
 
   return (
-    <div       
-      className="teacher-view"
-      style={{
-        backgroundImage: `url(${studentBackground})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}>
-      <MobileNavbar />
+    <div className="teacher-view" style={{ backgroundImage: `url(${studentBackground})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <MobileNavbar 
+        links={[
+          { label: 'Student Hörnan', path: '/StudentDashboard' },
+          { label: 'Välj Din Quiz', path: '/WeeklyQuizSelection' },
+          { label: 'Färdiga Quizzes', path: '/CompletedQuiz' },
+          { label: 'Rank Mästare', path: '/Ranking' },
+        ]}
+        handleNavigation={handleNavigation} // Pass the handleNavigation function here
+      />
       <div className="details-container">
         <SectionHeading
           mainIcon={qWhiteIcon}
@@ -84,11 +83,9 @@ function QuizDetails({ userId, quizId, completedQuizId, onBackToCompletedQuizzes
           subText="Detaljer"
           subIcon={hand_lightbulb}
         />
-        {/* Display the quiz name from quizNames */}
         <p><strong>Quiz namn:</strong> {quizNames[quizDetails.quizId]}</p>
         <p><strong>Antal rätt svar:</strong> {quizDetails.score}/{quizDetails.totalQuestions}</p>
 
-        {/* Filter Buttons */}
         <p><strong>Välj för att visa:</strong></p>
         <div className="detail-buttons">
           <button 
@@ -133,7 +130,6 @@ function QuizDetails({ userId, quizId, completedQuizId, onBackToCompletedQuizzes
           })}
         </ol>
 
-        {/* Center the PillButton */}
         <div className="pill-button-container">
           <PillButton
             text="Tillbaka till Färdiga Quizzes"

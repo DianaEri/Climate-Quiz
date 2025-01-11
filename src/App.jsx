@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Home from './components/Home'; 
 import StudentDashboard from './components/StudentDashboard'; 
 import TeacherDashboard from './components/TeacherDashboard'; 
@@ -25,18 +25,18 @@ const App = () => {
   // Handle page navigation based on the selected page
   const handleNavigation = (path) => {
     console.log("Navigating to:", path);
-
+  
     // Reset all views to false
     setShowQuiz(false);
     setShowRanking(false);
-    setShowWeeklyQuizzes(false); // Make sure this is set to false before setting true
+    setShowWeeklyQuizzes(false);
     setShowQuizDetails(false);
     setShowCompletedQuizzes(false);
-
+  
     // Activate the specific page based on the path
     switch (path) {
       case 'StudentDashboard':
-        setUserType('student'); // Set userType to student
+        setShowStudentDashboard(true); // Show Student Dashboard
         break;
       case 'WeeklyQuizSelection':
         setShowWeeklyQuizzes(true); // Show Weekly Quiz Selection
@@ -50,29 +50,27 @@ const App = () => {
       default:
         break;
     }
-  };
+  }
+
+  useEffect(() => {
+    console.log("Is Logged In:", isLoggedIn);
+    console.log("User Type:", userType);
+  }, [isLoggedIn, userType]); // Re-run the effect whenever `isLoggedIn` or `userType` changes
 
   return (
-    <div
-      className={
-        isLoggedIn
-          ? userType === 'student'
-            ? 'student-view'
-            : 'teacher-view'
-          : 'home-view'
-      }
-    >
+    <div className={isLoggedIn ? (userType === 'student' ? 'student-view' : 'teacher-view') : 'home-view'}>
       {isLoggedIn ? (
         userType === 'student' ? (
           showQuizDetails ? (
             <QuizDetails
               userId={userId}
-              quizId={currentQuizId} // Use currentQuizId here
-              completedQuizId={selectedCompletedQuizId} // Pass completedQuizId
+              quizId={currentQuizId}
+              completedQuizId={selectedCompletedQuizId}
               onBackToCompletedQuizzes={() => {
                 setShowQuizDetails(false);
-                setSelectedCompletedQuizId(null); // Reset the selectedCompletedQuizId
+                setSelectedCompletedQuizId(null); 
               }}
+              handleNavigation={handleNavigation} // Pass handleNavigation here
             />
           ) : showQuiz ? (
             <Quiz
@@ -91,10 +89,10 @@ const App = () => {
               onBackToDashboard={() => setShowWeeklyQuizzes(false)}
               onViewQuizDetails={(quizId, completedQuizId) => {
                 setCurrentQuizId(quizId);
-                setSelectedCompletedQuizId(completedQuizId); // Set the unique completed quiz ID
-                setShowQuizDetails(true); // Navigate to quiz details
+                setSelectedCompletedQuizId(completedQuizId);
+                setShowQuizDetails(true);
               }}
-              handleNavigation={handleNavigation} // Pass handleNavigation here
+              handleNavigation={handleNavigation} 
             />
           ) : showCompletedQuizzes ? (
             <CompletedQuiz
@@ -126,7 +124,7 @@ const App = () => {
         <Home setLoggedIn={setIsLoggedIn} setUserType={setUserType} />
       )}
     </div>
-  );
+  );  
 };
 
 export default App;
