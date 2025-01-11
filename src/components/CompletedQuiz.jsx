@@ -1,25 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import { getCompletedQuizzes } from '../firebaseHelpers'; // Fetch completed quizzes
-import studentBackground from '../assets/student_bg.svg'; // Background image for the student view
-import MobileNavbar from './MobileNavbar'; // Mobile navigation bar component
-import SectionHeading from './SectionHeading'; // Section heading component
-import green_mind from '../assets/green_mind.svg'; // Icon for section heading
-import fWhiteIcon from '../assets/f_white.svg'; // Icon for section heading
-import SubHeading from './SubHeading'; // Subheading component
-import FilterButton from './FilterButton'; // Button for filtering quizzes
-import PillButton from './PillButton'; // Button for navigating back to the dashboard
-import { faCircleLeft, faCircleRight } from '@fortawesome/free-solid-svg-icons'; // Import the left and right arrow icons
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // FontAwesome for icons
+import { getCompletedQuizzes } from '../firebaseHelpers'; // Hämtar slutförda quiz
+import studentBackground from '../assets/student_bg.svg'; // Bakgrundsbild för studentvy
+import MobileNavbar from './MobileNavbar'; // Komponent för mobilnavigering
+import SectionHeading from './SectionHeading'; // Komponent för avsnittsrubrik
+import green_mind from '../assets/green_mind.svg'; // Ikon för avsnittsrubrik
+import fWhiteIcon from '../assets/f_white.svg'; // Ikon för avsnittsrubrik
+import SubHeading from './SubHeading'; // Komponent för underrubrik
+import FilterButton from './FilterButton'; // Knapp för att filtrera quiz
+import PillButton from './PillButton'; // Knapp för att navigera tillbaka till instrumentpanelen
+import { faCircleLeft, faCircleRight } from '@fortawesome/free-solid-svg-icons'; // Importera vänster- och högerpilar
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // FontAwesome för ikoner
 
 const CompletedQuiz = ({ userId, onBackToDashboard, onViewQuizDetails, handleNavigation }) => {
-  const [completedQuizzes, setCompletedQuizzes] = useState([]); // State to store completed quizzes
-  const [isDescending, setIsDescending] = useState(false); // For sorting by score, initially set to false
-  const [isNameDescending, setIsNameDescending] = useState(false); // For sorting by date, initially set to false
-  const [currentPage, setCurrentPage] = useState(1); // Track the current page for pagination
+  const [completedQuizzes, setCompletedQuizzes] = useState([]); // State för att lagra slutförda quiz
+  const [isDescending, setIsDescending] = useState(false); // För att sortera efter poäng, initialt inställd på false
+  const [isNameDescending, setIsNameDescending] = useState(false); // För att sortera efter datum, initialt inställd på false
+  const [currentPage, setCurrentPage] = useState(1); // Håller koll på aktuell sida för paginering
 
-  const quizzesPerPage = 4; // Number of quizzes displayed per page
+  const quizzesPerPage = 4; // Antal quiz som visas per sida
 
-  // Map quizId to actual quiz names for display
+  // Mappar quizId till de faktiska quiznamnen för visning
   const quizNames = {
     quiz1: "Klimatkaos: Vad Vet Du Om Världens Förändring?",
     quiz2: "Havet Uteblir: Kan Du Rädda Stränderna?",
@@ -27,82 +27,82 @@ const CompletedQuiz = ({ userId, onBackToDashboard, onViewQuizDetails, handleNav
     quiz4: "CO2-Utmaningen: Vad Kan Du Om Fossila Bränslen?"
   };
 
-  // Fetch completed quizzes from Firestore when the component mounts
+  // Hämtar slutförda quiz från Firestore när komponenten laddas
   useEffect(() => {
     const fetchCompletedQuizzes = async () => {
       try {
-        const quizzes = await getCompletedQuizzes(userId); // Fetch completed quizzes using userId
-        setCompletedQuizzes(quizzes); // Store completed quizzes in state
+        const quizzes = await getCompletedQuizzes(userId); // Hämtar slutförda quiz baserat på userId
+        setCompletedQuizzes(quizzes); // Lagrar de slutförda quiz i state
       } catch (error) {
-        console.error("Error fetching completed quizzes:", error); // Log any errors if fetching fails
+        console.error("Error fetching completed quizzes:", error); // Loggar eventuella fel om hämtningen misslyckas
       }
     };
 
-    fetchCompletedQuizzes(); // Call function to fetch completed quizzes
-  }, [userId]); // Re-run this effect whenever `userId` changes
+    fetchCompletedQuizzes(); // Anropar funktionen för att hämta de slutförda quiz
+  }, [userId]); // Kör om den här effekten varje gång `userId` ändras
 
-  // Handle sorting quizzes by Result (score)
+  // Hanterar sortering av quiz baserat på Resultat (poäng)
   const handleResultFilter = () => {
-    setIsDescending((prev) => !prev); // Toggle the sorting order
+    setIsDescending((prev) => !prev); // Växla sorteringsordning
     const sortedQuizzes = [...completedQuizzes].sort((a, b) =>
       isDescending
-        ? b.score - a.score // If descending, sort quizzes by highest score
-        : a.score - b.score // If ascending, sort quizzes by lowest score
+        ? b.score - a.score // Om det är i fallande ordning, sortera quiz efter högsta poäng
+        : a.score - b.score // Om det är i stigande ordning, sortera quiz efter lägsta poäng
     );
-    setCompletedQuizzes(sortedQuizzes); // Update the state with sorted quizzes
+    setCompletedQuizzes(sortedQuizzes); // Uppdatera state med sorterade quiz
   };
 
-  // Handle sorting quizzes by Date
+  // Hanterar sortering av quiz baserat på Datum
   const handleNameFilter = () => {
-    setIsNameDescending((prev) => !prev); // Toggle the sorting order by date
+    setIsNameDescending((prev) => !prev); // Växla sorteringsordning efter datum
     const sortedQuizzes = [...completedQuizzes].sort((a, b) =>
       isNameDescending
-        ? new Date(b.completedAt) - new Date(a.completedAt) // If descending, sort by latest date first
-        : new Date(a.completedAt) - new Date(b.completedAt) // If ascending, sort by earliest date first
+        ? new Date(b.completedAt) - new Date(a.completedAt) // Om det är i fallande ordning, sortera efter senaste datum först
+        : new Date(a.completedAt) - new Date(b.completedAt) // Om det är i stigande ordning, sortera efter tidigaste datum först
     );
-    setCompletedQuizzes(sortedQuizzes); // Update the state with sorted quizzes
+    setCompletedQuizzes(sortedQuizzes); // Uppdatera state med sorterade quiz
   };
 
-  // Pagination: Get the quizzes for the current page
-  const indexOfLastQuiz = currentPage * quizzesPerPage; // Index of the last quiz on the current page
-  const indexOfFirstQuiz = indexOfLastQuiz - quizzesPerPage; // Index of the first quiz on the current page
-  const currentQuizzes = completedQuizzes.slice(indexOfFirstQuiz, indexOfLastQuiz); // Get the quizzes for the current page
+  // Paginering: Hämta quiz för aktuell sida
+  const indexOfLastQuiz = currentPage * quizzesPerPage; // Index för det sista quizet på aktuell sida
+  const indexOfFirstQuiz = indexOfLastQuiz - quizzesPerPage; // Index för det första quizet på aktuell sida
+  const currentQuizzes = completedQuizzes.slice(indexOfFirstQuiz, indexOfLastQuiz); // Hämta quiz för aktuell sida
 
-  // Handle moving to the next page
+  // Hanterar att gå till nästa sida
   const nextPage = () => {
     if (currentPage * quizzesPerPage < completedQuizzes.length) {
-      setCurrentPage((prev) => prev + 1); // Increment the current page if there are more quizzes to display
+      setCurrentPage((prev) => prev + 1); // Öka den aktuella sidan om det finns fler quiz att visa
     }
   };
 
-  // Handle moving to the previous page
+  // Hanterar att gå till föregående sida
   const prevPage = () => {
     if (currentPage > 1) {
-      setCurrentPage((prev) => prev - 1); // Decrement the current page if it's greater than 1
+      setCurrentPage((prev) => prev - 1); // Minska den aktuella sidan om den är större än 1
     }
   };
 
   return (
     <div
-      className="teacher-view" // Container with a class to indicate the teacher's view
+      className="teacher-view" // Container med klass som anger lärarens vy
       style={{
-        backgroundImage: `url(${studentBackground})`, // Background image for the page
+        backgroundImage: `url(${studentBackground})`, // Bakgrundsbild för sidan
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
     >
-      {/* Mobile Navbar with the correct links */}
+      {/* Mobilnavigering med rätt länkar */}
       <MobileNavbar
         links={[
-          { label: 'Student Hörnan', path: 'StudentDashboard' }, // Link to Student Dashboard
-          { label: 'Välj Din Quiz', path: 'WeeklyQuizSelection' }, // Link to Weekly Quiz Selection
-          { label: 'Rank Mästare', path: 'Ranking' }, // Link to Ranking page
+          { label: 'Student Hörnan', path: 'StudentDashboard' }, // Länk till Student Dashboard
+          { label: 'Välj Din Quiz', path: 'WeeklyQuizSelection' }, // Länk till Weekly Quiz Selection
+          { label: 'Rank Mästare', path: 'Ranking' }, // Länk till Ranking-sidan
         ]}
-        handleNavigation={handleNavigation} // Pass the handleNavigation function to the Navbar
+        handleNavigation={handleNavigation} // Skicka handleNavigation-funktionen till Navbar
       />
       
       <div className="finishedquiz-container">
-        {/* Section heading */}
+        {/* Sektionens rubrik */}
         <SectionHeading
           mainIcon={fWhiteIcon}
           mainText="ärdiga"
@@ -110,47 +110,47 @@ const CompletedQuiz = ({ userId, onBackToDashboard, onViewQuizDetails, handleNav
           subIcon={green_mind}
         />
         
-        {/* Filter Buttons for sorting quizzes */}
+        {/* Filterknappar för att sortera quiz */}
         <div className="filter-container">
-          <SubHeading text="Sortera" /> {/* Subheading for filter options */}
+          <SubHeading text="Sortera" /> {/* Underrubrik för filteralternativ */}
           <FilterButton
             label="Resultat"
             isDescending={isDescending}
-            onFilter={handleResultFilter} // Trigger sorting by score when clicked
+            onFilter={handleResultFilter} // Trigga sortering efter poäng när den klickas
           />
           <FilterButton
             label="Datum"
             isDescending={isNameDescending}
-            onFilter={handleNameFilter} // Trigger sorting by date when clicked
+            onFilter={handleNameFilter} // Trigga sortering efter datum när den klickas
           />
         </div>
 
-        {/* Display message if no quizzes are found */}
+        {/* Visar meddelande om inga quiz hittas */}
         {completedQuizzes.length === 0 ? (
-          <p>Du har inte gjort några Quiz än, börja nu för att få en rank bland mästarna.</p> // Message if no completed quizzes exist
+          <p>Du har inte gjort några Quiz än, börja nu för att få en rank bland mästarna.</p> // Meddelande om inga slutförda quiz finns
         ) : (
           <ul className="completed-quizzes-list">
-            {/* Loop through the completed quizzes and display them */}
+            {/* Loopa genom de slutförda quiz och visa dem */}
             {currentQuizzes.map((quiz) => (
               <li key={quiz.completedQuizId}>
-                {/* Display quiz name and completion date */}
+                {/* Visa quiznamn och slutförandedatum */}
                 <p>
-                  <strong>Quiz namn:</strong> {quizNames[quiz.quizId]} {/* Display the quiz name */}
+                  <strong>Quiz namn:</strong> {quizNames[quiz.quizId]} {/* Visa quiznamnet */}
                 </p>
                 <p>
-                  <strong>Avklarad den:</strong> {new Date(quiz.completedAt).toLocaleString()} {/* Display the date */}
+                  <strong>Avklarad den:</strong> {new Date(quiz.completedAt).toLocaleString()} {/* Visa datum */}
                 </p>
                 <p>
-                  <strong>Antal rätt svar:</strong> {quiz.score}/{quiz.totalQuestions} {/* Display correct answers */}
+                  <strong>Antal rätt svar:</strong> {quiz.score}/{quiz.totalQuestions} {/* Visa antal rätt svar */}
                 </p>
 
-                {/* Button to view quiz details */}
+                {/* Knapp för att visa quizdetaljer */}
                 <button
-                  onClick={() => onViewQuizDetails(quiz.quizId, quiz.completedQuizId)} // Trigger quiz details view
+                  onClick={() => onViewQuizDetails(quiz.quizId, quiz.completedQuizId)} // Trigga visning av quizdetaljer
                   className="quiz-details-button"
                 >
-                  Visa Detaljer {/* Button label */}
-                  {/* Add the FontAwesome right arrow icon after the text */}
+                  Visa Detaljer {/* Knapptext */}
+                  {/* Lägg till FontAwesome högerpilikon efter texten */}
                   <FontAwesomeIcon icon={faCircleRight} />
                 </button>
               </li>
@@ -158,18 +158,18 @@ const CompletedQuiz = ({ userId, onBackToDashboard, onViewQuizDetails, handleNav
           </ul>
         )}
 
-        {/* Pagination buttons */}
+        {/* Paginering-knappar */}
         <div className="pagination">
-          <button onClick={prevPage} disabled={currentPage === 1}>Föregående</button> {/* "Previous" button */}
-          <button onClick={nextPage} disabled={currentPage * quizzesPerPage >= completedQuizzes.length}>Nästa</button> {/* "Next" button */}
+          <button onClick={prevPage} disabled={currentPage === 1}>Föregående</button> {/* "Föregående" knapp */}
+          <button onClick={nextPage} disabled={currentPage * quizzesPerPage >= completedQuizzes.length}>Nästa</button> {/* "Nästa" knapp */}
         </div>
 
-        {/* Center the PillButton */}
+        {/* Centera PillButton */}
         <div className="pill-button-container">
           <PillButton
             text="Tillbaka till Startsida"
             icon={faCircleLeft}
-            onClick={onBackToDashboard} // Trigger the function to go back to the dashboard
+            onClick={onBackToDashboard} // Trigga funktionen för att gå tillbaka till startsidan
           />
         </div>
       </div>
