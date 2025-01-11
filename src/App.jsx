@@ -24,36 +24,28 @@ const App = () => {
 
   // Handle page navigation based on the selected page
   const handleNavigation = (path) => {
-    console.log("Navigating to:", path); // Debug log to track the path
-    
+    console.log("Navigating to:", path);
+
+    // Reset all views to false
+    setShowQuiz(false);
+    setShowRanking(false);
+    setShowWeeklyQuizzes(false); // Make sure this is set to false before setting true
+    setShowQuizDetails(false);
+    setShowCompletedQuizzes(false);
+
+    // Activate the specific page based on the path
     switch (path) {
-      case 'WeeklyQuizSelection':
-        setShowWeeklyQuizzes(true);
-        setShowRanking(false);
-        setShowQuiz(false);
-        setShowQuizDetails(false);
-        setShowCompletedQuizzes(false);
+      case 'StudentDashboard':
+        setUserType('student'); // Set userType to student
         break;
-      case 'CompletedQuiz':
-        setShowCompletedQuizzes(true);
-        setShowQuiz(false);
-        setShowQuizDetails(false);
-        setShowRanking(false);
-        setShowWeeklyQuizzes(false);
+      case 'WeeklyQuizSelection':
+        setShowWeeklyQuizzes(true); // Show Weekly Quiz Selection
         break;
       case 'Ranking':
-        setShowRanking(true);
-        setShowQuiz(false);
-        setShowQuizDetails(false);
-        setShowCompletedQuizzes(false);
-        setShowWeeklyQuizzes(false);
+        setShowRanking(true); // Show Ranking page
         break;
-      case 'StudentDashboard':
-        setShowWeeklyQuizzes(false);
-        setShowQuiz(false);
-        setShowQuizDetails(false);
-        setShowCompletedQuizzes(false);
-        setShowRanking(false);
+      case 'CompletedQuiz':
+        setShowCompletedQuizzes(true); // Show Completed Quizzes page
         break;
       default:
         break;

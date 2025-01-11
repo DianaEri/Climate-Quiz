@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const SectionHeading = ({ mainIcon, mainText, subText, subIcon }) => {
+const SectionHeading = ({ mainIcon, mainText, subText = '', subIcon = null }) => {
   return (
     <div className="section-heading-container">
       <h1 className="section-heading-main">
@@ -21,11 +21,6 @@ SectionHeading.propTypes = {
   mainText: PropTypes.string.isRequired, // Text for the main heading
   subText: PropTypes.string, // Optional text for the subheading
   subIcon: PropTypes.string, // Optional path to the subheading SVG icon
-};
-
-SectionHeading.defaultProps = {
-  subText: '', // Default to no subtext
-  subIcon: null, // Default to no sub-icon
 };
 
 export default SectionHeading;

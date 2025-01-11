@@ -15,6 +15,9 @@ const CompletedQuiz = ({ userId, onBackToDashboard, onViewQuizDetails, handleNav
   const [completedQuizzes, setCompletedQuizzes] = useState([]);
   const [isDescending, setIsDescending] = useState(false); // For sorting by score
   const [isNameDescending, setIsNameDescending] = useState(false); // For sorting by date
+  const [currentPage, setCurrentPage] = useState(1); // Track the current page
+
+  const quizzesPerPage = 4; // Display 4 quizzes per page
 
   // Map quizId to actual quiz names
   const quizNames = {
@@ -58,6 +61,24 @@ const CompletedQuiz = ({ userId, onBackToDashboard, onViewQuizDetails, handleNav
         : new Date(a.completedAt) - new Date(b.completedAt)
     );
     setCompletedQuizzes(sortedQuizzes);
+  };
+
+  // Pagination: Get the quizzes for the current page
+  const indexOfLastQuiz = currentPage * quizzesPerPage;
+  const indexOfFirstQuiz = indexOfLastQuiz - quizzesPerPage;
+  const currentQuizzes = completedQuizzes.slice(indexOfFirstQuiz, indexOfLastQuiz);
+
+  // Handle the next and previous page
+  const nextPage = () => {
+    if (currentPage * quizzesPerPage < completedQuizzes.length) {
+      setCurrentPage((prev) => prev + 1);
+    }
+  };
+
+  const prevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage((prev) => prev - 1);
+    }
   };
 
   return (
@@ -108,7 +129,7 @@ const CompletedQuiz = ({ userId, onBackToDashboard, onViewQuizDetails, handleNav
         ) : (
           <ul className="completed-quizzes-list">
             {/* Loop through the completed quizzes and display them */}
-            {completedQuizzes.map((quiz) => (
+            {currentQuizzes.map((quiz) => (
               <li key={quiz.completedQuizId}>
                 {/* Display quiz name and completion date */}
                 <p>
@@ -134,7 +155,13 @@ const CompletedQuiz = ({ userId, onBackToDashboard, onViewQuizDetails, handleNav
             ))}
           </ul>
         )}
-        
+
+        {/* Pagination buttons */}
+        <div className="pagination">
+          <button onClick={prevPage} disabled={currentPage === 1}>Föregående</button>
+          <button onClick={nextPage} disabled={currentPage * quizzesPerPage >= completedQuizzes.length}>Nästa</button>
+        </div>
+
         {/* Center the PillButton */}
         <div className="pill-button-container">
           <PillButton
@@ -149,3 +176,4 @@ const CompletedQuiz = ({ userId, onBackToDashboard, onViewQuizDetails, handleNav
 };
 
 export default CompletedQuiz;
+
