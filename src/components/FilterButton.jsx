@@ -1,27 +1,28 @@
-import React from 'react'; // Importing React library to use JSX
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Import FontAwesomeIcon for icons
-import { faSquareCaretUp, faSquareCaretDown } from '@fortawesome/free-solid-svg-icons'; // Importing specific icons for sorting
+import React from 'react'; // Importerar React-biblioteket för att använda JSX
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Importerar FontAwesomeIcon för ikoner
+import { faSquareCaretUp, faSquareCaretDown } from '@fortawesome/free-solid-svg-icons'; // Importerar specifika ikoner för sortering
 
-// FilterButton component accepts three props:
-// - isDescending: Boolean indicating whether sorting is in descending order
-// - onFilter: Function to trigger the sorting behavior when clicked
-// - label: The label text to display on the button (e.g., "Resultat" or "Datum")
+// FilterButton-komponenten accepterar tre props:
+// - isDescending: Boolean som indikerar om sorteringen är i fallande ordning
+// - onFilter: Funktion som triggas för att ändra sorteringsbeteendet när den klickas
+// - label: Texten på knappen som visas (t.ex. "Resultat" eller "Datum")
 const FilterButton = ({ isDescending, onFilter, label }) => {
   return (
-    // Button element for the filter, triggers onFilter function when clicked
+    // Knappelement för filter, triggar onFilter-funktionen när den klickas
     <button className="filter-button" onClick={onFilter}>
-      {label}{' '} {/* Display the label passed as a prop */}
+      {label}{' '} {/* Visar etiketten som skickas som en prop */}
       
-      {/* Conditionally render the up or down arrow based on the isDescending prop */}
+      {/* Villkorsstyrt rendera upp- eller nedpilen baserat på isDescending prop */}
       {isDescending ? (
-        // If isDescending is true, show the up arrow (indicating descending order)
+        // Om isDescending är true, visa upp-pilen (som indikerar fallande ordning)
         <FontAwesomeIcon icon={faSquareCaretUp} className="filter-icon" />
       ) : (
-        // If isDescending is false, show the down arrow (indicating ascending order)
+        // Om isDescending är false, visa ned-pilen (som indikerar stigande ordning)
         <FontAwesomeIcon icon={faSquareCaretDown} className="filter-icon" />
       )}
     </button>
   );
 };
 
-export default FilterButton; // Export the FilterButton component for use in other parts of the app
+export default FilterButton; // Exporterar FilterButton-komponenten för användning i andra delar av appen
+
