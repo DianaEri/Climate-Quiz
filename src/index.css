@@ -1212,6 +1212,7 @@ progress.progress-bar::-moz-progress-bar {
   display: flex; /* Use flexbox to center content */
   justify-content: center; /* Ensure the chart is centered */
   align-items: center; /* Align everything vertically */
+  padding-bottom: 20px;
 }
 
 .percentage-label {

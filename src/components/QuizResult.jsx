@@ -121,12 +121,6 @@ const QuizResult = ({
       </div>
     </div>
 
-    <div className="view-answers-link-container">
-      <p className="view-answers-link">
-        Du kan nu välja att skicka in ditt quiz för att sparas eller gå tillbaka till startsidan.
-      </p>
-    </div>
-
       <div className="button-container">
         <PillButton
           text={isSubmitting ? "Skickar..." : "Skicka in Quiz"}
