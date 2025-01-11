@@ -1,33 +1,37 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import React, { useState, useEffect, useRef } from 'react'; // Importerar React och nödvändiga hooks för att hantera state och ref
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Importerar FontAwesomeIcon för att använda ikoner
+import { faBars, faUserCircle } from '@fortawesome/free-solid-svg-icons'; // Importerar ikoner för hamburgermenyn och användarikonen
 
+// MobileNavbar-komponenten som hanterar mobilnavigation
 const MobileNavbar = ({ links, handleNavigation }) => {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const menuRef = useRef(null);
+  const [menuOpen, setMenuOpen] = useState(false); // State för att hålla reda på om menyn är öppen eller stängd
+  const menuRef = useRef(null); // Ref för att referera till menyn
 
+  // Funktion för att växla mellan öppen/stängd meny
   const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
+    setMenuOpen(!menuOpen); // Växlar mellan true/false för att öppna/stänga menyn
   };
 
+  // Funktion för att hantera när en länk klickas, navigerar till den specifika sidan
   const handleLinkClick = (path) => {
-    handleNavigation(path); // Trigger the navigation
-    setMenuOpen(false); // Close the menu after clicking a link
+    handleNavigation(path); // Anropar handleNavigation för att navigera till den valda vägen
+    setMenuOpen(false); // Stänger menyn efter att en länk klickats
   };
 
+  // Funktion för att hantera klick utanför menyn för att stänga menyn
   const handleClickOutside = (e) => {
-    if (menuRef.current && !menuRef.current.contains(e.target)) {
-      setMenuOpen(false);
+    if (menuRef.current && !menuRef.current.contains(e.target)) { // Kollar om klicket var utanför menyn
+      setMenuOpen(false); // Stänger menyn om det var ett klick utanför
     }
   };
 
-  // Add event listener for clicking outside the menu
+  // Lägg till event listener för att stänga menyn om användaren klickar utanför
   useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside); // Lyssnar på klick utanför
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside); // Tar bort event listener när komponenten tas bort
     };
-  }, []);
+  }, []); // Kör bara när komponenten först renderas
 
   return (
     <div className="topnav">
@@ -39,7 +43,7 @@ const MobileNavbar = ({ links, handleNavigation }) => {
         </div>
       </div>
 
-      {/* Links */}
+      {/* Länkar i menyn */}
       <div 
         id="myLinks" 
         ref={menuRef} 
@@ -48,9 +52,9 @@ const MobileNavbar = ({ links, handleNavigation }) => {
         {links && links.map((link, index) => (
           <button
             key={index}
-            onClick={() => handleLinkClick(link.path)} // Use handleLinkClick
+            onClick={() => handleLinkClick(link.path)}
             className="navbar-link"
-            aria-label={link.label} // Accessibility
+            aria-label={link.label}
           >
             {link.label}
           </button>
