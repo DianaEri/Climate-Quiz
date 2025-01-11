@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import Home from './components/Home'; 
-import StudentDashboard from './components/StudentDashboard'; 
-import TeacherDashboard from './components/TeacherDashboard'; 
-import Quiz from './components/Quiz'; 
-import Ranking from './components/Ranking'; 
-import WeeklyQuizSelection from './components/WeeklyQuizSelection'; 
-import QuizDetails from './components/QuizDetails'; 
+import Home from './components/Home';
+import StudentDashboard from './components/StudentDashboard';
+import TeacherDashboard from './components/TeacherDashboard';
+import Quiz from './components/Quiz';
+import Ranking from './components/Ranking';
+import WeeklyQuizSelection from './components/WeeklyQuizSelection';
+import QuizDetails from './components/QuizDetails';
 import CompletedQuiz from './components/CompletedQuiz';
 import './index.css';
 
@@ -22,40 +22,38 @@ const App = () => {
 
   const userId = "i69gyRz2uDNTrvt5gYDeJOQaIlt1"; // Replace with logic to fetch authenticated user's ID
 
-  // Handle page navigation based on the selected page
+  // Navigation handler
   const handleNavigation = (path) => {
     console.log("Navigating to:", path);
-  
-    // Reset all views to false
+    
+    // Reset all views to false to prevent conflicts
     setShowQuiz(false);
     setShowRanking(false);
     setShowWeeklyQuizzes(false);
     setShowQuizDetails(false);
     setShowCompletedQuizzes(false);
-  
+
     // Activate the specific page based on the path
     switch (path) {
       case 'StudentDashboard':
-        setShowStudentDashboard(true); // Show Student Dashboard
+        setUserType('student');
         break;
       case 'WeeklyQuizSelection':
-        setShowWeeklyQuizzes(true); // Show Weekly Quiz Selection
+        setShowWeeklyQuizzes(true);
         break;
       case 'Ranking':
-        setShowRanking(true); // Show Ranking page
+        setShowRanking(true);
         break;
       case 'CompletedQuiz':
-        setShowCompletedQuizzes(true); // Show Completed Quizzes page
+        setShowCompletedQuizzes(true);
+        break;
+      case 'QuizDetails':
+        setShowQuizDetails(true); 
         break;
       default:
         break;
     }
-  }
-
-  useEffect(() => {
-    console.log("Is Logged In:", isLoggedIn);
-    console.log("User Type:", userType);
-  }, [isLoggedIn, userType]); // Re-run the effect whenever `isLoggedIn` or `userType` changes
+  };
 
   return (
     <div className={isLoggedIn ? (userType === 'student' ? 'student-view' : 'teacher-view') : 'home-view'}>
@@ -74,12 +72,15 @@ const App = () => {
             />
           ) : showQuiz ? (
             <Quiz
-              onBackToDashboard={() => setShowQuiz(false)} 
-              userId={userId} 
+              onBackToDashboard={() => setShowQuiz(false)}
+              userId={userId}
               quizId={currentQuizId}
             />
           ) : showRanking ? (
-            <Ranking onBackClick={() => setShowRanking(false)} />
+            <Ranking 
+              onBackClick={() => setShowRanking(false)} 
+              handleNavigation={handleNavigation} 
+            />
           ) : showWeeklyQuizzes ? (
             <WeeklyQuizSelection
               onSelectQuiz={(quizId) => {
@@ -124,7 +125,7 @@ const App = () => {
         <Home setLoggedIn={setIsLoggedIn} setUserType={setUserType} />
       )}
     </div>
-  );  
+  );
 };
 
 export default App;
