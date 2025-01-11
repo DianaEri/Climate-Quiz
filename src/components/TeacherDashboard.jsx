@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import MobileNavbar from './MobileNavbar';
-import Heading from './Heading';
-import SubHeading from './SubHeading';
-import Table from './Table';
-import RoundButton from './RoundButton';
-import GradeButton from './GradeButton';
-import FilterButton from './FilterButton';
-import '../index.css';
-import teacherBackground from '../assets/teacher_bg.svg';
-import SectionHeading from './SectionHeading';
-import globe from '../assets/globe.svg';
-import lWhiteIcon from '../assets/l_white.svg';
+import React, { useState, useEffect } from 'react'; // Importerar React och hooks för hantering av state och effekt
+import MobileNavbar from './MobileNavbar'; // Importerar mobilnav-komponenten
+import Heading from './Heading'; // Importerar komponent för huvudrubrik
+import SubHeading from './SubHeading'; // Importerar komponent för underrubrik
+import Table from './Table'; // Importerar tabellkomponenten för att visa data i tabellformat
+import RoundButton from './RoundButton'; // Importerar komponent för rund knapp
+import GradeButton from './GradeButton'; // Importerar komponent för betygsknapp
+import FilterButton from './FilterButton'; // Importerar filterkomponenten för att sortera data
+import '../index.css'; // Importerar stilar för komponenterna
+import teacherBackground from '../assets/teacher_bg.svg'; // Importerar bakgrundsbild för lärarvy
+import SectionHeading from './SectionHeading'; // Importerar komponent för sektionens rubrik
+import globe from '../assets/globe.svg'; // Importerar ikon för glob som används i rubriken
+import lWhiteIcon from '../assets/l_white.svg'; // Importerar ikon för läraravsnittet
 
-// SVGs for Grade Buttons
+// SVG:er för betygsknappar
 const gradeSvgs = {
   7: {
     gradient: `<?xml version="1.0" encoding="utf-8"?><!-- SVG with Gradient -->
@@ -64,7 +64,7 @@ const gradeSvgs = {
   },
 };
 
-// Data for Each Grade
+// Data för varje årskurs
 const gradeData = {
   7: [
     ["Saga Lindberg", "98%", <RoundButton />],
@@ -167,50 +167,53 @@ const gradeData = {
   
 };
 
+// Lärare Dashboard-komponent
 const TeacherDashboard = () => {
-  const [activeGrade, setActiveGrade] = useState(7); // Default Grade 7
-  const [rows, setRows] = useState([]);
-  const [isDescending, setIsDescending] = useState(true); // Default Result Sorting
-  const [isNameDescending, setIsNameDescending] = useState(true); // Default Name Sorting
+  const [activeGrade, setActiveGrade] = useState(7); // Ställ in standardbetyg på 7
+  const [rows, setRows] = useState([]); // Rader för tabellen
+  const [isDescending, setIsDescending] = useState(true); // Standard sortering av resultat (stigande)
+  const [isNameDescending, setIsNameDescending] = useState(true); // Standard sortering av namn (stigande)
 
-  // Sort rows when the grade or sorting order changes
+  // Sortera rader när betyget eller sorteringsordningen ändras
   useEffect(() => {
     const sortedRows = [...gradeData[activeGrade]].sort((a, b) => {
-      const aValue = parseInt(a[1].replace('%', ''), 10);
+      const aValue = parseInt(a[1].replace('%', ''), 10); // Extrahera procent från resultatet
       const bValue = parseInt(b[1].replace('%', ''), 10);
-      return isDescending ? bValue - aValue : aValue - bValue;
+      return isDescending ? bValue - aValue : aValue - bValue; // Sortera efter resultat
     });
-    setRows(sortedRows);
+    setRows(sortedRows); // Uppdatera raderna med sorterat resultat
   }, [activeGrade, isDescending]);
 
   const handleGradeClick = (grade) => {
-    setActiveGrade(grade);
-    setIsDescending(true); // Reset sorting order to default when grade changes
+    setActiveGrade(grade); // Ändra aktivt betyg
+    setIsDescending(true); // Återställ sorteringsordning när betyg ändras
   };
 
   const handleResultFilter = () => {
+    // Sortera resultat efter poäng
     const sortedRows = [...rows].sort((a, b) => {
       const aValue = parseInt(a[1].replace('%', ''), 10);
       const bValue = parseInt(b[1].replace('%', ''), 10);
       return isDescending ? bValue - aValue : aValue - bValue;
     });
-    setRows(sortedRows);
-    setIsDescending(!isDescending);
+    setRows(sortedRows); // Uppdatera rader med sorterade resultat
+    setIsDescending(!isDescending); // Växla mellan stigande/ fallande sortering
   };
 
   const handleNameFilter = () => {
+    // Sortera efter namn
     const sortedRows = [...rows].sort((a, b) => {
       const aName = a[0].toLowerCase();
       const bName = b[0].toLowerCase();
       return isNameDescending ? bName.localeCompare(aName) : aName.localeCompare(bName);
     });
-    setRows(sortedRows);
-    setIsNameDescending(!isNameDescending);
+    setRows(sortedRows); // Uppdatera rader med sorterade namn
+    setIsNameDescending(!isNameDescending); // Växla mellan stigande/ fallande sortering av namn
   };
 
   const GradeButton = ({ grade, isActive, onClick }) => {
     const svgContent = isActive ? gradeSvgs[grade].gradient : gradeSvgs[grade].monochrome;
-  
+
     return (
       <button
         className={`grade-button ${isActive ? 'active' : ''}`}
@@ -218,89 +221,90 @@ const TeacherDashboard = () => {
       >
         <div
           className="grade-svg"
-          dangerouslySetInnerHTML={{ __html: svgContent }}
+          dangerouslySetInnerHTML={{ __html: svgContent }} // Inkludera SVG för betyg
         />
       </button>
     );
   };
 
+  
   return (
     <div       
       className="teacher-view"
       style={{
-        backgroundImage: `url(${teacherBackground})`,
+        backgroundImage: `url(${teacherBackground})`, // Bakgrundsbild för lärarvyn
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}>
-      <MobileNavbar />
+      <MobileNavbar /> {/* Navigering för mobilvyn */}
       <div className="teacher-container">
-      <SectionHeading
-        mainIcon={lWhiteIcon}
-        mainText="ärar"
-        subText="Hörnan"
-        subIcon={globe}
-      />
-      <Heading text="Student Quiz" />
-      <SubHeading text="Senaste fem inskickade Quiz" />
+        <SectionHeading
+          mainIcon={lWhiteIcon} // Huvudikon för rubriken
+          mainText="ärar" // Huvudtext för rubriken
+          subText="Hörnan" // Underrubrik
+          subIcon={globe} // Underrubrikens ikon
+        />
+        <Heading text="Student Quiz" /> {/* Rubrik för studentquiz */}
+        <SubHeading text="Senaste fem inskickade Quiz" /> {/* Underrubrik för senaste quiz */}
 
-      {/* First Table */}
-      <Table
-        style={{ paddingBottom: '50px' }}
-        headers={["Student", "Resultat", "Quiz"]}
-        rows={[
-          ["Omar Al-Fayez", "9/13", <RoundButton />],
-          ["Maja Blomqvist", "8/13", <RoundButton />],
-          ["Sebastian Holmgren", "6/13", <RoundButton />],
-          ["Layla Nasser", "5/13", <RoundButton />],
-          ["Tilda Åkerman", "7/13", <RoundButton />],
-        ]}
-      />
+        {/* Första tabellen med studentresultat */}
+        <Table
+          style={{ paddingBottom: '50px' }}
+          headers={["Student", "Resultat", "Quiz"]}
+          rows={[ // Data för de senaste studentresultaten
+            ["Omar Al-Fayez", "9/13", <RoundButton />],
+            ["Maja Blomqvist", "8/13", <RoundButton />],
+            ["Sebastian Holmgren", "6/13", <RoundButton />],
+            ["Layla Nasser", "5/13", <RoundButton />],
+            ["Tilda Åkerman", "7/13", <RoundButton />],
+          ]}
+        />
 
-      <SubHeading text="Totalt korrekta svar per årskurs" />
-      <p className='instruction'>Välj årskurs</p>
-      <div className="dynamic-table-wrapper">
+        <SubHeading text="Totalt korrekta svar per årskurs" />
+        <p className='instruction'>Välj årskurs</p>
+        <div className="dynamic-table-wrapper">
 
-      {/* Grade Buttons */}
-      <div className="grade-buttons">
-        {Object.keys(gradeSvgs).map((grade) => (
-          <GradeButton
-            key={grade}
-            grade={grade}
-            isActive={parseInt(grade) === activeGrade}
-            onClick={() => handleGradeClick(parseInt(grade))}
-          />
-        ))}
-      </div>
+          {/* Betygsknappar för att växla mellan olika betyg */}
+          <div className="grade-buttons">
+            {Object.keys(gradeSvgs).map((grade) => (
+              <GradeButton
+                key={grade}
+                grade={grade}
+                isActive={parseInt(grade) === activeGrade}
+                onClick={() => handleGradeClick(parseInt(grade))}
+              />
+            ))}
+          </div>
 
-        {/* Filter Buttons */}
-        <div className="filter-container">
-          <SubHeading text="Sortera" />
-          <FilterButton
-            label="Resultat"
-            isDescending={isDescending}
-            onFilter={handleResultFilter}
-          />
-          <FilterButton
-            label="Namn"
-            isDescending={isNameDescending}
-            onFilter={handleNameFilter}
+          {/* Filterknappar för att sortera resultaten */}
+          <div className="filter-container">
+            <SubHeading text="Sortera" />
+            <FilterButton
+              label="Resultat"
+              isDescending={isDescending}
+              onFilter={handleResultFilter}
+            />
+            <FilterButton
+              label="Namn"
+              isDescending={isNameDescending}
+              onFilter={handleNameFilter}
+            />
+          </div>
+
+          {/* Dynamisk tabell för att visa betyg */}
+          <Table
+            style={{ paddingBottom: '5px' }}
+            headers={["Student", "Resultat", "Besök"]}
+            rows={rows.map((row) => [
+              row[0],
+              row[1],
+              row[2], // RoundButton för "Besök"
+            ])}
           />
         </div>
-
-      {/* Dynamic Table for Grades */}
-      <Table
-        style={{ paddingBottom: '5px' }}
-        headers={["Student", "Resultat", "Besök"]}
-        rows={rows.map((row) => [
-          row[0],
-          row[1],
-          row[2], // RoundButton for "Besök"
-        ])}
-      />
-      </div>
       </div>
     </div>
   );
 };
 
-export default TeacherDashboard;
+export default TeacherDashboard; // Exportera lärarpanelen för användning i andra delar av appen
