@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { Pie } from "react-chartjs-2";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import { faCircleLeft, faCircleRight } from "@fortawesome/free-solid-svg-icons";
-import PillButton from "./PillButton";
-import heart from "../assets/heart.svg";
-import bWhiteIcon from "../assets/b_white.svg";
-import SectionHeading from "./SectionHeading";
+import { Pie } from "react-chartjs-2"; // Importerar Pie-diagram från react-chartjs-2
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js"; // Importerar de nödvändiga delarna från chart.js
+import { faCircleLeft, faCircleRight } from "@fortawesome/free-solid-svg-icons"; // Importerar ikoner för att gå till föregående eller nästa
+import PillButton from "./PillButton"; // Importerar PillButton-komponenten för knappar
+import heart from "../assets/heart.svg"; // Importerar ikon för motivation
+import bWhiteIcon from "../assets/b_white.svg"; // Importerar ikon för sektion
+import SectionHeading from "./SectionHeading"; // Importerar komponent för rubrik
 
-// Register Chart.js components
+// Registrera Chart.js-komponenter
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const QuizResult = ({
@@ -18,61 +18,65 @@ const QuizResult = ({
   onBackToDashboard,
   onCompleteQuiz,
 }) => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false); // Håller koll på om quizresultaten skickas
 
+  // Beräkna resultatet för varje fråga
   const results = quizData.map((question) => {
-    const userAnswer = selectedAnswers[question.id] || "Ingen svar";
-    const correctAnswer = question.correct_answer.trim();
+    const userAnswer = selectedAnswers[question.id] || "Ingen svar"; // Hämta användarens svar eller sätt "Ingen svar"
+    const correctAnswer = question.correct_answer.trim(); // Trimma rätt svar
     const isCorrect =
-      userAnswer.trim().toLowerCase() === correctAnswer.toLowerCase();
+      userAnswer.trim().toLowerCase() === correctAnswer.toLowerCase(); // Jämför om användarens svar är korrekt
 
-    return { questionId: question.id, userAnswer, correctAnswer, isCorrect };
+    return { questionId: question.id, userAnswer, correctAnswer, isCorrect }; // Returnera objekt med resultat
   });
 
-  const correctAnswers = results.filter((res) => res.isCorrect).length;
-  const incorrectAnswers = totalQuestions - correctAnswers;
-  const percentage = Math.round((correctAnswers / totalQuestions) * 100); // Calculate percentage
+  const correctAnswers = results.filter((res) => res.isCorrect).length; // Beräkna antalet korrekta svar
+  const incorrectAnswers = totalQuestions - correctAnswers; // Beräkna antalet felaktiga svar
+  const percentage = Math.round((correctAnswers / totalQuestions) * 100); // Beräkna procentandel korrekta svar
 
+  // Data för pie-diagrammet
   const pieData = {
-    labels: ["Fel", "Rätt"],
+    labels: ["Fel", "Rätt"], // Etiketter för diagrammet
     datasets: [
       {
         label: "Resultat",
-        data: [incorrectAnswers, correctAnswers],
-        backgroundColor: ["#fb879e", "#2a9d8f"],
-        borderColor: "transparent",
+        data: [incorrectAnswers, correctAnswers], // Data för diagrammet (felaktiga vs. korrekta svar)
+        backgroundColor: ["#fb879e", "#2a9d8f"], // Färger för felen och de korrekta svaren
+        borderColor: "transparent", // Ingen kantfärg
         borderWidth: 0,
         hoverOffset: 4,
       },
     ],
   };
 
+  // Inställningar för pie-diagrammet
   const pieOptions = {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
       legend: {
-        labels: { color: "white", font: { weight: "bold" } },
+        labels: { color: "white", font: { weight: "bold" } }, // Förändrar färg och fontstil för legendetiketterna
       },
       tooltip: {
         callbacks: {
           label: function (tooltipItem) {
-            return tooltipItem.raw + "%";
+            return tooltipItem.raw + "%"; // Visar procentvärdet i tooltip
           },
         },
       },
     },
   };
 
+  // Funktion för att skicka in quizresultaten
   const handleCompleteQuiz = () => {
-    if (isSubmitting) return;
+    if (isSubmitting) return; // Om resultaten redan skickas, gör inget
     setIsSubmitting(true);
 
-    // Send the results, correct answers count, and total questions to Firestore
+    // Skicka resultatet, antal korrekta svar och totalt antal frågor till Firestore
     onCompleteQuiz(results, correctAnswers, totalQuestions);
   };
 
-  // Determine the motivational message
+  // Bestäm motivationstext baserat på resultat
   const getMotivationalMessage = () => {
     if (correctAnswers === totalQuestions) {
       return (
@@ -109,35 +113,33 @@ const QuizResult = ({
         subText="Jobbat"
         subIcon={heart}
       />
-      {getMotivationalMessage()}
-      <div
-      className="chart-container"
-    >
-      <Pie data={pieData} options={pieOptions} />
+      {getMotivationalMessage()} {/* Visar motivationstext */}
+      <div className="chart-container">
+        <Pie data={pieData} options={pieOptions} /> {/* Visar pie-diagrammet */}
 
-      {/* Center the percentage label */}
-      <div className="percentage-label">
-        {percentage}%
+        {/* Centrera procentetiketten */}
+        <div className="percentage-label">
+          {percentage}%
+        </div>
       </div>
-    </div>
 
       <div className="button-container">
         <PillButton
-          text={isSubmitting ? "Skickar..." : "Skicka in Quiz"}
+          text={isSubmitting ? "Skickar..." : "Skicka in Quiz"} // Om quizresultatet skickas, visa "Skickar..."
           icon={faCircleRight}
           onClick={handleCompleteQuiz}
-          disabled={isSubmitting}
+          disabled={isSubmitting} // Disable knappen om resultaten redan skickas
         />
       </div>
       <div className="button-container">
         <PillButton
-          text="Tillbaka till Startsida"
+          text="Tillbaka till Startsida" // Text för att gå tillbaka till startsidan
           icon={faCircleLeft}
-          onClick={onBackToDashboard}
+          onClick={onBackToDashboard} // Anropar onBackToDashboard för att gå tillbaka
         />
       </div>
     </div>
   );
 };
 
-export default QuizResult;
+export default QuizResult; // Exporterar QuizResult-komponenten
