@@ -60,7 +60,9 @@ const QuizResult = ({
       tooltip: {
         callbacks: {
           label: function (tooltipItem) {
-            return tooltipItem.raw + "%"; // Visar procentvärdet i tooltip
+            const total = tooltipItem.dataset.data.reduce((acc, curr) => acc + curr, 0); // Calculate total value
+            const percentage = ((tooltipItem.raw / total) * 100).toFixed(2); // Calculate the percentage
+            return percentage + "%"; // Show percentage in the tooltip
           },
         },
       },
