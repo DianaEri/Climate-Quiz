@@ -59,8 +59,9 @@ const Question = (props) => {
         <div className="progress-bar-container">
           <progress className="progress-bar" 
           value={props.progress} 
-          max="100">
+          max="100"
           aria-label={`Progress: ${Math.round(props.progress)}% completed`}
+          >
           </progress>
           <div className="progress-text">{Math.round(props.progress)}%</div> {/* Visar procent */}
         </div>
