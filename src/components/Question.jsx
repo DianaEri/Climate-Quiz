@@ -57,13 +57,17 @@ const Question = (props) => {
       <div className="question-body">
         {/* Progress Bar med procent */}
         <div className="progress-bar-container">
-          <progress className="progress-bar" value={props.progress} max="100"></progress>
+          <progress className="progress-bar" 
+          value={props.progress} 
+          max="100">
+          aria-label={`Progress: ${Math.round(props.progress)}% completed`}
+          </progress>
           <div className="progress-text">{Math.round(props.progress)}%</div> {/* Visar procent */}
         </div>
 
         {/* Rendera diagram endast om chart_data finns */}
         {currentQuestion.chart_data?.datasets && (
-        <div className="chart-container">
+        <div className="chart-container" role="img">
           <Bar 
             data={{
               labels: currentQuestion.chart_data.labels, // Diagrammets etiketter
@@ -124,6 +128,7 @@ const Question = (props) => {
                 value={String(answer)} // Se till att värdet är en sträng
                 onChange={(e) => props.onSelectAnswer(e.target.value)} // Skicka det valda svaret till onSelectAnswer
                 aria-label={`Svar alternativ: ${answer}`} // Lägg till aria-label
+                aria-checked={props.selectedAnswer === String(answer) ? "true" : "false"} // Dynamiskt uppdatera status av knappen
               />
             </label>
           </div>
