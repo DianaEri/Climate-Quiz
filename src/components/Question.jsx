@@ -105,8 +105,11 @@ const Question = (props) => {
       )}
 
         {/* Frågeinformation */}
+        <div className="question-container">
         <div className="question-info" aria-live="polite">
           Fråga {props.index + 1} / {props.numberOfQuestion} {/* Visar nuvarande fråga och total antal frågor */}
+        </div>
+          <h5 className="question-title">{currentQuestion.question}</h5> {/* Visar själva frågan */}
         </div>
 
         {currentQuestion.all_answers.map((answer, index) => (
